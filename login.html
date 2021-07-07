@@ -10,39 +10,44 @@
     <script src="code.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap" rel="stylesheet">
 
     <title>Login</title>
 </head>
 
 <body>
 
-    <article id="login" class="container">
-        <div id="divform" class="row">
-            <form action="" class="col-6">
+    <article id="login">
+        <div id="divform">
+            <form action="">
                 <p>GAME<strong>FINDER</strong></p>
-                <div class="input-group">
-                    <span class="input-group-text" id="input-group-left-example"><img src="img/person-circle.svg" alt="userIcon"></span>
-                    <input type="text" class="form-control" placeholder="Username or email" aria-label="Username" aria-describedby="input-group-left">
+                <div id="inputMail">
+                    <span id="spnUsuario"><img src="img/avatar.svg" alt="userIcon"></span>
+                    <input id="txtUser" type="text" placeholder="Username or email" name="user" required>
                 </div>
-                <div class="input-group">
-                    <span class="input-group-text" id="input-group-left-example"><img src="img/key-fill.svg" alt="passwordIcon"></span>
-                    <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="input-group-button-right">
-                    <button type="button" class="btn btn-outline-secondary" id="input-group-button-right"><img src="img/eye-fill.svg" alt="See Password"></i></button>
+                <div id="inputPass">
+                    <span id="spnPass"><img src="img/key.svg" alt="passwordIcon"></span>
+                    <input id="pass" type="password" placeholder="Password" name="password" required>
+                    <a id="showpass"><img src="img/showpass.svg" alt="See Password"></a>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="formCheckDefault">
-                    <label class="form-check-label" for="formCheckDefault">Remember me</label>
+                <div id="contenedorLogin">
+                    <div id="cbox">
+                        <input type="checkbox" value="" id="rememberMe">
+                        <label id="labelcbox" class="containerCB" for="rememberMe">Remember me</label>
+                    </div>
+                    <input type="submit" id="btnlogin" value="LOGIN">
                 </div>
-                <input type="submit" name="btnlogin" id="btnlogin" value="LOGIN">
-                <a href="">Register now</a>
-                <a href="">Forgot your password?</a>
+                <div id="divLinks">
+                    <a href="">Register now</a>
+                    <a href="">Forgot your password?</a>
+                </div>
             </form>
 
-            <img src="img/Bitmap.png" alt="Biomutant welcome image" class="col-6">
         </div>
+        <figure>
+            <img src="img/Bitmap.png" alt="Biomutant welcome image">
+        </figure>
     </article>
-
 </body>
 
 </html>

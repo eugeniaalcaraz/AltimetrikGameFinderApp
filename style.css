@@ -1,7 +1,181 @@
-body {
-    font-family: 'Open Sans', sans-serif;
-}
-
 html {
     scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    background-color: #141414;
+}
+
+article {
+    width: 1083px;
+    height: 660px;
+    margin: 180px auto 184px;
+    display: flex;
+}
+
+#divform {
+    height: 660px;
+    width: 630px;
+    background-color: #303030;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+form {
+    margin: 34px auto;
+}
+
+form p {
+    font-size: 45px;
+    letter-spacing: 2.8px;
+    line-height: 61.28px;
+    text-align: center;
+}
+
+form p strong {
+    font-weight: 800;
+}
+
+#txtUser,
+#pass {
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid #8F8F8F;
+    font-size: 14px;
+    line-height: 19px;
+    color: #8F8F8F;
+    height: 50px;
+    width: 278px;
+    padding-left: 20px;
+    position: absolute;
+}
+
+#inputPass,
+#inputMail {
+    width: 330px;
+    height: 52px;
+    margin: 20px auto;
+    border: 1px solid #8F8F8F;
+    box-sizing: border-box;
+    border-radius: 8px;
+    position: relative;
+}
+
+form img {
+    width: 20px;
+}
+
+#inputMail img {
+    margin: 16px;
+}
+
+#inputPass span img {
+    margin: 22px 15px 21px 16px;
+}
+
+#inputPass a img {
+    position: absolute;
+    cursor: pointer;
+    right: 14px;
+    top: 20px;
+}
+
+form input:focus {
+    outline-color: #7CD235!important;
+}
+
+#contenedorLogin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+}
+
+#cbox {
+    display: flex;
+    align-items: center;
+}
+
+#rememberMe {
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid #8F8F8F;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+}
+
+#rememberMe:checked {
+    background-color: #2BB34F;
+    border: 1px solid #7CD235;
+}
+
+#rememberMe:checked:after {
+    content: '\2713';
+    font-size: 14px;
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    color: #7CD235;
+}
+
+#cbox label {
+    font-size: 14px;
+    line-height: 19px;
+    color: #8F8F8F;
+    padding-left: 10px;
+    justify-content: center;
+}
+
+#btnlogin {
+    width: 100px;
+    height: 40px;
+    background: linear-gradient(180deg, #7CD235 0%, #2BB34F 100%);
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#divLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#divLinks a {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#divLinks a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#divLinks a:hover {
+    color: #7CD235;
+}
+
+#divLinks a:active {
+    color: #2BB34F;
+}
+
+figure img {
+    height: 660px;
+    border-radius: 0 10px 10px 0;
 }
