@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="code.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap" rel="stylesheet">
@@ -20,7 +19,7 @@
     <article id="login">
         <!-- Form -->
         <div id="divform">
-            <form action="">
+            <form action="" method="POST">
                 <p>GAME<strong>FINDER</strong></p>
                 <div id="inputMail">
                     <span id="spnUsuario"><img src="img/avatar.svg" alt="userIcon"></span>
@@ -29,7 +28,8 @@
                 <div id="inputPass">
                     <span id="spnPass"><img src="img/key.svg" alt="passwordIcon"></span>
                     <input id="pass" type="password" placeholder="Password" name="password" required>
-                    <a id="showpass"><img src="img/showpass.svg" alt="See Password"></a>
+                    <a id="showPass" style="display: block"><img src="img/showpass.svg" alt="See Password"></a>
+                    <a id="hidePass" style="display: none"><img src="img/hidepass.svg" alt="Hide Password"></a>
                 </div>
                 <div id="contenedorLogin">
                     <div id="cbox">
@@ -83,6 +83,9 @@
                 <li><span class="dot" onclick="currentSlide(7)"></span></li>
             </ul>
     </article>
+
+    <script src="code.js" type="text/javascript"></script>
 </body>
+
 
 </html>

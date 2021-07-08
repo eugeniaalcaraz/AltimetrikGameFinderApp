@@ -13,3 +13,18 @@ function showSlides() {
   setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
 */
+
+document.querySelector("#showPass").addEventListener("click", showPass);
+document.querySelector("#hidePass").addEventListener("click", hidePass);
+
+function showPass() {
+    document.querySelector("#pass").setAttribute("type", "text");
+    document.querySelector("#showPass").style.display = "none";
+    document.querySelector("#hidePass").style.display = "block";
+}
+
+function hidePass() {
+    document.querySelector("#pass").setAttribute("type", "password");
+    document.querySelector("#showPass").style.display = "block";
+    document.querySelector("#hidePass").style.display = "none";
+}

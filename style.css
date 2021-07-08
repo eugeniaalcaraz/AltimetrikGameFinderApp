@@ -163,6 +163,10 @@ form input:focus {
     color: #FFFFFF;
 }
 
+#btnlogin:hover {
+    background: linear-gradient(180deg, #2BB34F 0%, #7CD235 100%);
+}
+
 
 /* links */
 
@@ -394,4 +398,85 @@ ul li {
     .divCarousel {
         display: none;
     }
+}
+
+header {
+    height: 120px;
+    /* position: fixed; */
+    background: linear-gradient(180deg, #7CD235 0%, #2BB34F 100%);
+    box-shadow: 1px -3px 36px rgba(0, 0, 0, 0.5);
+    display: flex;
+}
+
+#headerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #FFFFFF;
+    margin: 30px 40px 30px 40px;
+    padding-bottom: 15px;
+}
+
+#headerContainer p {
+    font-size: 28px;
+    letter-spacing: 1.74px;
+    line-height: 38px;
+    text-align: center;
+    margin: 0;
+}
+
+#headerContainer p strong {
+    font-weight: 800;
+}
+
+#divSearch,
+#divSearch input {
+    width: 362px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+#divSearch {
+    height: 40px;
+    background-color: #F1F1F1;
+    display: flex;
+    position: relative;
+}
+
+#divSearch input {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 9px 76px 9px 61px;
+}
+
+#divSearch img {
+    width: 16px;
+    position: absolute;
+    left: 20px;
+    bottom: 11px;
+}
+
+#divSesion {
+    display: flex;
+    align-items: center;
+}
+
+#divSesion a {
+    font-size: 14px;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#divSesion a img {
+    height: 12px;
+    padding-left: 11px;
+    padding-right: 32px;
+}
+
+#divSesion img {
+    height: 45px;
+    border-radius: 50%;
 }
