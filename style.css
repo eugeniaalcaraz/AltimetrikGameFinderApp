@@ -1,3 +1,5 @@
+/* --- general --- */
+
 html {
     scroll-behavior: smooth;
 }
@@ -8,12 +10,18 @@ body {
     background-color: #141414;
 }
 
+
+/* --- containers --- */
+
 article {
     width: 1083px;
     height: 660px;
     margin: 180px auto 184px;
     display: flex;
 }
+
+
+/* form */
 
 #divform {
     height: 660px;
@@ -40,6 +48,9 @@ form p {
 form p strong {
     font-weight: 800;
 }
+
+
+/* inputs */
 
 #txtUser,
 #pass {
@@ -89,6 +100,9 @@ form input:focus {
     outline-color: #7CD235!important;
 }
 
+
+/* checkbox */
+
 #contenedorLogin {
     display: flex;
     justify-content: space-between;
@@ -134,6 +148,9 @@ form input:focus {
     justify-content: center;
 }
 
+
+/* button */
+
 #btnlogin {
     width: 100px;
     height: 40px;
@@ -145,6 +162,9 @@ form input:focus {
     text-align: center;
     color: #FFFFFF;
 }
+
+
+/* links */
 
 #divLinks {
     display: flex;
@@ -196,6 +216,9 @@ form input:focus {
     height: 9px;
     border-bottom: 1px solid #FFFFFF;
 }
+
+
+/* Fb, twitter & google links */
 
 #divFb,
 #divTw,
@@ -259,13 +282,16 @@ form input:focus {
     padding: 11px 13px 11px 13px;
 }
 
-figure img {
-    height: 660px;
-    border-radius: 0 10px 10px 0;
-}
+
+/* side image & carousel */
 
 .divCarousel {
     position: relative;
+}
+
+figure img {
+    height: 660px;
+    border-radius: 0 10px 10px 0;
 }
 
 #ulCarousel {
@@ -298,12 +324,74 @@ ul li {
     background-color: #FFFFFF;
 }
 
-
-/* Fading animation */
-
 .fade {
     -webkit-animation-name: fade;
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
     animation-duration: 1.5s;
+}
+
+@media screen and (max-width:1024px) {
+    article {
+        width: 100%;
+        height: 1024px;
+        margin: 0;
+        background-color: #303030;
+    }
+    body {
+        background-color: #303030;
+    }
+    #divform {
+        margin: 70px auto 0px;
+    }
+    .divCarousel {
+        display: none;
+    }
+}
+
+@media screen and (max-width:767px) {
+    article {
+        width: 100%;
+        height: 100%;
+    }
+    body {
+        background-color: #303030;
+    }
+    #divform {
+        margin: 10px auto 0px;
+    }
+    #divform form {
+        margin-bottom: 0px;
+    }
+    form p {
+        font-size: 35px;
+        line-height: 48px;
+    }
+    /* inputs */
+    #txtUser,
+    #pass {
+        width: 188px;
+        padding-left: 20px;
+        position: absolute;
+    }
+    #inputPass,
+    #inputMail {
+        width: 240px;
+        height: 52px;
+        margin: 32px auto;
+    }
+    #contenedorLogin {
+        margin-top: 15px;
+    }
+    #division {
+        margin-top: 20px;
+    }
+    .line {
+        width: 89px;
+        height: 9px;
+        border-bottom: 1px solid #FFFFFF;
+    }
+    .divCarousel {
+        display: none;
+    }
 }
