@@ -293,7 +293,7 @@ form input:focus {
     position: relative;
 }
 
-figure img {
+.divCarousel figure img {
     height: 660px;
     border-radius: 0 10px 10px 0;
 }
@@ -307,18 +307,20 @@ figure img {
     bottom: 48px;
 }
 
-ul li {
+
+/* #ulCarousel li {
     list-style-type: none;
     display: inline-block;
-}
+} */
 
 .dot {
     cursor: pointer;
     height: 7px;
     width: 7px;
-    background-color: #ffffff50;
+    background-color: #FFFFFF;
+    opacity: 30%;
     border-radius: 50%;
-    margin: 0 4.5px;
+    margin: 0 4px;
     display: inline-block;
     transition: background-color 0.6s ease;
 }
@@ -479,4 +481,150 @@ header {
 #divSesion img {
     height: 45px;
     border-radius: 50%;
+}
+
+main {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+#navAside {
+    display: flex;
+    flex-direction: column;
+    /* width: 260px; */
+}
+
+#navAside ul {
+    list-style-type: none;
+    margin-top: 33px;
+}
+
+#navAside ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 22px;
+    line-height: 30px;
+}
+
+#navAside ul li {
+    padding-top: 11px;
+}
+
+#navAside ul li a:visited {
+    color: #FFFFFF;
+}
+
+#navAside ul li a:active {
+    color: #7CD235;
+}
+
+.linkBold {
+    font-weight: 800;
+}
+
+#navAside ul li:hover .st0,
+#navAside ul li:hover a {
+    fill: #7CD235;
+    color: #7CD235;
+}
+
+#navAside svg {
+    height: 16px;
+    margin-right: 13px;
+}
+
+#gameCards {
+    flex-grow: 2;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30px;
+}
+
+#headline {
+    padding-top: 24px;
+    position: relative;
+    width: 100%;
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#headline h1 {
+    font-weight: 800;
+    font-size: 55px;
+    line-height: 75px;
+}
+
+#headline p {
+    font-size: 18px;
+    line-height: 25px;
+    position: absolute;
+    top: 89px;
+}
+
+#headline svg {
+    width: 40px;
+    margin-left: 24px;
+}
+
+.displayActive {
+    fill: #515151;
+}
+
+#headline svg #displayInctive {
+    fill: #303030;
+}
+
+#headline figure {
+    align-self: flex-end;
+}
+
+#gameDisplay ul {
+    list-style-type: none;
+    margin-top: 30px;
+    background-color: #303030;
+    width: 363px;
+    border-radius: 10px;
+    padding: 0px;
+    display: flex;
+}
+
+#gameDisplay ul li img {
+    border-radius: 10px 10px 0 0;
+}
+
+#cardText {
+    padding-left: 20px;
+    display: flex;
+    width: 186px;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#cardText h2 {
+    width: 100%;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 23px;
+    line-height: 31px;
+}
+
+#cardText div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 6px;
+    height: 19px;
+    border-bottom: 1px solid #3D3D3D;
+}
+
+#cardText div p {
+    font-size: 12px;
+    line-height: 16px;
+    color: #939393;
+}
+
+#logoConsolas {
+    display: flex;
 }
