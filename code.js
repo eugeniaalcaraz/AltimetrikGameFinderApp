@@ -14,17 +14,17 @@ function showSlides() {
 }
 */
 
-document.querySelector("#showPass").addEventListener("click", showPass);
-document.querySelector("#hidePass").addEventListener("click", hidePass);
+document.querySelector("#login-link-showPass").addEventListener("click", showPass);
+document.querySelector("#login-link-hidePass").addEventListener("click", hidePass);
 
 function showPass() {
-    document.querySelector("#pass").setAttribute("type", "text");
-    document.querySelector("#showPass").style.display = "none";
-    document.querySelector("#hidePass").style.display = "block";
+    document.querySelector("#login-input-pass").setAttribute("type", "text");
+    document.querySelector("#login-link-showPass").style.display = "none";
+    document.querySelector("#login-link-hidePass").style.display = "block";
 }
 
 function hidePass() {
-    document.querySelector("#pass").setAttribute("type", "password");
-    document.querySelector("#showPass").style.display = "block";
-    document.querySelector("#hidePass").style.display = "none";
+    document.querySelector("#login-input-pass").setAttribute("type", "password");
+    document.querySelector("#login-link-showPass").style.display = "block";
+    document.querySelector("#login-link-hidePass").style.display = "none";
 }
