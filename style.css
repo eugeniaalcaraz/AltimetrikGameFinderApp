@@ -74,6 +74,29 @@
         position: relative;
     }
     
+    .login-input-container:focus-within,
+    .login-input:focus {
+        border-color: #FFFFFF;
+        color: #FFFFFF;
+        outline: none;
+    }
+    
+    .login-input-container:active,
+    .login-input:active {
+        border-color: #FFFFFF;
+        color: #FFFFFF;
+        outline: none;
+    }
+    
+    .error {
+        border-color: #D24040;
+        color: #D24040;
+    }
+    
+    .error svg path {
+        fill: #D24040;
+    }
+    
     .login-input-container svg {
         margin: 16px 15px 0 16px;
         width: 20px;
