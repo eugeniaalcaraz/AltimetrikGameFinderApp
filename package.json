@@ -1,0 +1,9 @@
+{
+    "dependencies": {
+        "cors": "2.8.5"
+    },
+    "devDependencies": {
+        "json-server": "0.15.1",
+        "json-server-auth": "2.0.2"
+    }
+}

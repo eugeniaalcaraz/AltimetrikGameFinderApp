@@ -1,6 +1,18 @@
 {
     "users": [{
-        "email": "usuario@mail.com",
-        "password": "bestPassword"
-    }]
+            "email": "prueba@mail.com",
+            "password": "hola"
+        },
+
+        {
+            "email": "prueba2@mail.com",
+            "password": "bestPassw0rd"
+        },
+        {
+            "email": "olivier@mail.com",
+            "password": "bestPassw0rd"
+        }
+
+
+    ]
 }

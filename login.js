@@ -16,6 +16,7 @@ function showSlides() {
 
 document.querySelector("#login-link-showPass").addEventListener("click", showPass);
 document.querySelector("#login-link-hidePass").addEventListener("click", hidePass);
+document.querySelector("#user-form").addEventListener("submit", loadMain);
 
 function showPass() {
     document.querySelector("#login-input-pass").setAttribute("type", "text");
@@ -30,13 +31,19 @@ function hidePass() {
 }
 
 
-function loadMain() {
+
+
+function loadMain(evt) {
+
+    evt.preventDefault();
+
 
     let email = document.querySelector("#login-input-email").value;
-    let password = document.querySelector("login-input-pass").value;
+    let password = document.querySelector("#login-input-pass").value;
+
+    console.log(password);
 
 
-    console.log("fetch");
     fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {
@@ -45,39 +52,32 @@ function loadMain() {
         },
         body: JSON.stringify({
             email: `${email}`,
-            password: `${password}`
-        })
+            password: `${password}`,
+        }),
 
-    })
-
-    .then(async(response) => {
+    }).then(async(response) => {
         let responseText = await response.json();
-        if (response.status === 200) {
-            document.cookie = "authToken-" + responseText.accessToken;
-            console.log(responseText);
+        console.log(responseText);
+        // if (response.status === 200) {
+        //     document.cookie = "authToken-" + responseText.accessToken;
+        //     console.log(responseText);
 
-        }
-        if (response.status === 400) {
-            console.log(responseText);
-        }
+        // }
+        // if (response.status === 400) {
+        //     console.log(responseText);
+        // }
     })
-
-    // window.location.href = "http://127.0.0.1:5500/main.html"
 
 }
 
-//--------------------------------------------------------------------
 
-// const jsonServer = require('json-server')
-// const auth = require('json-server-auth')
 
-// const app = jsonServer.create()
-// const router = jsonServer.router('db.json')
 
-// // /!\ Bind the router db to the app
-// app.db = router.db
 
-// // You must apply the auth middleware before the router
-// app.use(auth)
-// app.use(router)
-// app.listen(3000)
+// }
+
+
+
+
+
+// window.location.href = "http://127.0.0.1:5500/main.html"
