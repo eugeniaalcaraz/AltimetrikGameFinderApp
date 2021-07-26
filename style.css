@@ -36,6 +36,7 @@
         flex-direction: column;
         flex-wrap: wrap;
         align-items: center;
+        position: relative;
     }
     
     .form-container form {
@@ -88,13 +89,22 @@
         outline: none;
     }
     
+    .login-error-message {
+        color: #E07979;
+        font-size: 14px;
+        line-height: 19px;
+        position: absolute;
+        bottom: -26px;
+        left: 0;
+    }
+    
     .error {
-        border-color: #D24040;
-        color: #D24040;
+        border-color: #E07979;
+        color: #E07979;
     }
     
     .error svg path {
-        fill: #D24040;
+        fill: #E07979;
     }
     
     .login-input-container svg {
@@ -173,18 +183,19 @@
     }
     
     .btn:hover {
-        background: #7CD235;
+        background: #7CD235!important;
+        color: #FFFFFF;
     }
     
     .btn:active {
         background: linear-gradient(180deg, #7CD235 0%, #2BB34F 100%);
         border: none;
+        outline: none;
     }
     
     .btn:focus {
         background: linear-gradient(180deg, #7CD235 0%, #2BB34F 100%);
         border: 1px solid #FFFFFF;
-        box-sizing: border-box;
         outline: none;
     }
     /* ---------------- Registration Links ----------------- */
@@ -336,6 +347,48 @@
         -webkit-animation-duration: 1.5s;
         animation-name: fade;
         animation-duration: 1.5s;
+    }
+    /* ---------------- Snackbars ----------------------------- */
+    
+    .snackbar {
+        width: 630px;
+        height: 40px;
+        box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.25);
+        font-size: 14px;
+        line-height: 19px;
+        color: #FFFFFF;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+        align-items: center;
+        position: absolute;
+        top: -500px;
+        left: 225px;
+        transition: top 0.5s;
+    }
+    
+    .snackbar p {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .snackbar img {
+        width: 16px;
+        cursor: pointer;
+    }
+    
+    #snackbar-success {
+        background-color: #88DA44;
+        transition: top 0.5s;
+    }
+    
+    #snackbar-alert {
+        background-color: #EDAE74;
+    }
+    
+    #snackbar-error {
+        background-color: #ED7474;
     }
     /* ---------------- Login responsive breakpoints ----------------- */
     
