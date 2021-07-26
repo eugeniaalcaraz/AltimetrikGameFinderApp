@@ -1,4 +1,4 @@
-//ShowCards();
+ShowCards();
 
 
 function ShowCards() {
