@@ -41,8 +41,6 @@ function loadMain(evt) {
     let email = document.querySelector("#login-input-email").value;
     let password = document.querySelector("#login-input-pass").value;
 
-    console.log(password);
-
 
     fetch("http://localhost:3000/login", {
         method: "POST",
@@ -58,26 +56,15 @@ function loadMain(evt) {
     }).then(async(response) => {
         let responseText = await response.json();
         console.log(responseText);
-        // if (response.status === 200) {
-        //     document.cookie = "authToken-" + responseText.accessToken;
-        //     console.log(responseText);
+        if (response.status === 200) {
+            document.cookie = "authToken-" + responseText.accessToken;
+            console.log(responseText);
+            window.location.href = "http://127.0.0.1:5500/main.html";
 
-        // }
-        // if (response.status === 400) {
-        //     console.log(responseText);
-        // }
+        }
+        if (response.status === 400) {
+            console.log(responseText);
+        }
     })
 
 }
-
-
-
-
-
-// }
-
-
-
-
-
-// window.location.href = "http://127.0.0.1:5500/main.html"

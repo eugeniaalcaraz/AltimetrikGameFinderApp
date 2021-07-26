@@ -1,18 +1,9 @@
 {
-    "users": [{
-            "email": "prueba@mail.com",
-            "password": "hola"
-        },
-
-        {
-            "email": "prueba2@mail.com",
-            "password": "bestPassw0rd"
-        },
-        {
-            "email": "olivier@mail.com",
-            "password": "bestPassw0rd"
-        }
-
-
-    ]
+  "users": [
+    {
+      "email": "test@mail.com",
+      "password": "$2a$10$RxOFVNufby.HeeQQWYOh3OKoo9XAE1KJzpxBY/lpvM7pktgLeEQ1e",
+      "id": 1
+    }
+  ]
 }

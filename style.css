@@ -606,6 +606,9 @@
     
     .game-card-image img {
         width: 100%;
+        height: 204px;
+        object-fit: cover;
+        object-position: top;
         border-radius: 10px 10px 0 0;
     }
     
@@ -617,7 +620,7 @@
     
     .game-card-info-left {
         padding-left: 20px;
-        width: 186px;
+        width: 70%;
         display: flex;
         flex-wrap: wrap;
         align-content: center;
@@ -635,7 +638,7 @@
     .game-card-p-container {
         display: flex;
         justify-content: space-between;
-        width: 100%;
+        width: 186px;
         margin-top: 6px;
         height: 19px;
         border-bottom: 1px solid #3D3D3D;
