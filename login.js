@@ -28,6 +28,9 @@ function LoadMain(evt) {
 
     let email = document.querySelector("#login-input-email").value;
     let password = document.querySelector("#login-input-pass").value;
+    let snackbarError = document.querySelector("#snackbar-error");
+    let snackbarSuccess = document.querySelector("#snackbar-success");
+    let snackbarAlert = document.querySelector("#snackbar-alert");
     let error = "";
 
     if (password.length < 3) {
@@ -35,8 +38,7 @@ function LoadMain(evt) {
         document.querySelector("#pass-error-message").innerHTML = error;
         document.querySelector("#pass-container").classList.add("error");
         document.querySelector("#login-input-pass").classList.add("error");
-
-        document.querySelector(".snackbar").classList.add("visible");
+        snackbarError.style.top = "-80px";
 
 
     }
@@ -45,7 +47,8 @@ function LoadMain(evt) {
         document.querySelector("#email-error-message").innerHTML = error;
         document.querySelector("#email-container").classList.add("error");
         document.querySelector("#login-input-email").classList.add("error");
-        document.querySelector(".snackbar").classList.add("visible");
+        snackbarError.style.top = "-80px";
+
     }
 
     if (error === "") {
@@ -67,11 +70,23 @@ function LoadMain(evt) {
             if (response.status === 200) {
                 document.cookie = "authToken-" + responseText.accessToken;
                 console.log(responseText);
-                window.location.href = "http://127.0.0.1:5500/main.html";
+                snackbarSuccess.style.top = "-80px";
+                setTimeout(function() {
+                    window.location.href = "http://127.0.0.1:5500/main.html";
+                }, 1000)
+
 
             }
             if (response.status === 400) {
                 console.log(responseText);
+                snackbarAlert.style.top = "-80px";
+                error = "Incorrect email or password";
+                document.querySelector("#pass-error-message").innerHTML = error;
+                document.querySelector("#pass-container").classList.add("error");
+                document.querySelector("#login-input-pass").classList.add("error");
+                document.querySelector("#email-container").classList.add("error");
+                document.querySelector("#login-input-email").classList.add("error");
+
             }
         })
 
@@ -98,7 +113,7 @@ function RemoveError() {
     document.querySelector("#email-container").classList.remove("error");
     document.querySelector("#login-input-pass").classList.remove("error");
     document.querySelector("#login-input-email").classList.remove("error");
-    document.querySelector("#snackbar-error").classList.add("hidden");
+    //document.querySelector("#snackbar-error").classList.add("hidden");
     document.querySelector("#pass-error-message").innerHTML = "";
     document.querySelector("#email-error-message").innerHTML = "";
 

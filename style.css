@@ -180,23 +180,24 @@
         line-height: 22px;
         text-align: center;
         color: #FFFFFF;
+        transition: all 0s;
     }
     
     .btn:hover {
-        background: #7CD235!important;
+        background: #7CD235 100%;
         color: #FFFFFF;
     }
     
     .btn:active {
         background: linear-gradient(180deg, #7CD235 0%, #2BB34F 100%);
         border: none;
-        outline: none;
+        outline: none!important;
     }
     
     .btn:focus {
         background: linear-gradient(180deg, #7CD235 0%, #2BB34F 100%);
         border: 1px solid #FFFFFF;
-        outline: none;
+        outline: none!important;
     }
     /* ---------------- Registration Links ----------------- */
     
@@ -341,13 +342,12 @@
     .dot:hover {
         background-color: #FFFFFF;
     }
-    
-    .fade {
+    /* .fade {
         -webkit-animation-name: fade;
         -webkit-animation-duration: 1.5s;
         animation-name: fade;
         animation-duration: 1.5s;
-    }
+    } */
     /* ---------------- Snackbars ----------------------------- */
     
     .snackbar {
@@ -365,7 +365,7 @@
         position: absolute;
         top: -500px;
         left: 225px;
-        transition: top 0.5s;
+        transition: all 0.5s;
     }
     
     .snackbar p {
@@ -380,7 +380,6 @@
     
     #snackbar-success {
         background-color: #88DA44;
-        transition: top 0.5s;
     }
     
     #snackbar-alert {
