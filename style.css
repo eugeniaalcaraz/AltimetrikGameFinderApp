@@ -1262,6 +1262,7 @@
         .modal-black {
             display: none;
         }
+        .modal-info {}
         .modal-container,
         .modal-background-img,
         .modal-background-img img,
