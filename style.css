@@ -458,10 +458,12 @@
     
     header {
         height: 120px;
-        /* position: fixed; */
+        width: 100%;
         background: linear-gradient(180deg, #7CD235 0%, #2BB34F 100%);
         box-shadow: 1px -3px 36px rgba(0, 0, 0, 0.5);
         display: flex;
+        position: fixed;
+        z-index: 9999999;
     }
     
     .header-container {
@@ -474,7 +476,8 @@
         padding-bottom: 15px;
     }
     
-    .burger-menu-icon {
+    .burger-menu-icon,
+    .header-search {
         display: none;
     }
     
@@ -549,18 +552,19 @@
         flex-basis: auto;
         display: flex;
         flex-direction: column;
+        margin-top: 153px;
     }
     
-    .nav-aside p,
+    .nav-header-container,
     .nav-aside #log-out-nav {
         display: none;
     }
     
     .nav-aside ul {
         list-style-type: none;
-        margin-top: 30px;
         padding-left: 40px;
         width: 230px;
+        position: relative;
     }
     
     .nav-aside ul li {
@@ -599,6 +603,8 @@
         display: flex;
         flex-wrap: wrap;
         margin-left: 30px;
+        margin-top: 120px;
+        align-items: flex-start;
     }
     
     .main-headerline-container {
@@ -1187,27 +1193,35 @@
         }
         .nav-aside {
             position: fixed;
+            z-index: 99999999;
+            margin-top: 0;
             height: 100vh;
             padding-right: 65px;
             top: 0;
             left: -1000px;
             background-color: #151515;
             box-shadow: 14px 0px 36px 5px rgba(0, 0, 0, 0.62);
-            transition: all 0.6s;
+            transition: left 0.6s;
+        }
+        .nav-header-container {
+            display: inline-block;
+        }
+        .nav-header-container img {
+            display: none;
         }
         .nav-aside p {
-            display: inline-block;
             font-size: 28px;
             line-height: 38px;
             letter-spacing: 1.74222px;
             margin-top: 34px;
             margin-left: 40px;
+            margin-bottom: 81px;
             padding: 0;
         }
         .nav-aside #log-out-nav {
             display: inline-block;
             position: absolute;
-            bottom: 100px;
+            bottom: 9%;
             height: 30px;
             left: 40px;
             padding: 0;
@@ -1237,12 +1251,169 @@
         }
         .leave-nav {
             position: fixed;
+            z-index: 99999998;
             top: 0;
             width: 100%;
             height: 100vh;
             background-color: white;
             opacity: 0;
             cursor: pointer;
+        }
+        .game-cards-container {
+            margin-left: 40px;
+        }
+        .game-cards-h-display ul li {
+            width: calc(100%/2 - 12px);
+        }
+        .game-cards-v-display ul {
+            margin-top: 30px;
+            margin-right: 40px;
+            padding-left: 0;
+            align-content: flex-start;
+        }
+        .game-cards-v-display ul li {
+            width: 100%;
+        }
+        .modal-black {
+            display: none;
+        }
+        .modal-container,
+        .modal-background-img,
+        .modal-background-img img,
+        .modal-info {
+            width: 100%;
+        }
+        .modal-info,
+        .modal-background-img img {
+            border-radius: 0px;
+        }
+        .modal-info {
+            padding-top: 35px;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-bottom: 65px;
+        }
+        .modal-close svg {
+            height: 25px;
+            width: 25px;
+        }
+        .modal-tags,
+        .modal-links-container,
+        .modal-description {
+            width: 75%;
+        }
+        .container-for-responsive-display {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+        .modal-links-reviews {
+            margin: 0;
+            display: flex;
+            justify-content: left;
+            width: calc(45% - 18px);
+        }
+        .modal-links-reviews a {
+            margin: 0;
+        }
+        .modal-links-reviews a:nth-child(1) {
+            margin-right: 24px;
+        }
+        .modal-gallery {
+            position: static;
+            width: 55%;
+            margin: 0;
+            padding: 0;
+        }
+        .modal-image {
+            height: auto;
+        }
+        .modal-last-image {
+            height: auto;
+        }
+        .modal-viewMore {
+            height: 100%;
+            width: 100%;
+        }
+        .modal-bottom-links {
+            width: 45%;
+            margin: 0;
+            position: absolute;
+            top: 72px;
+        }
+        .modal-detail-container {
+            width: calc(50% - 25px);
+        }
+    }
+    
+    @media screen and (max-width:767px) {
+        header {
+            height: 104px;
+            transition: height 0.6s;
+            overflow: hidden;
+            position: fixed;
+            z-index: 9999999;
+        }
+        .header-session-details,
+        .header-searchbar img {
+            display: none;
+        }
+        .header-searchbar,
+        .header-searchbar input {
+            width: 100%;
+        }
+        .header-searchbar input {
+            text-align: center;
+            left: 0;
+            font-size: 16px;
+        }
+        .header-container {
+            height: 104px;
+            border-bottom: 0;
+            margin: 40px 40px 40px 42px;
+            padding-bottom: 0;
+            align-items: start;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+        .header-searchbar {
+            margin-top: 23px;
+        }
+        .header-search {
+            display: inline-block;
+            cursor: pointer;
+        }
+        .header-search svg {
+            height: 23px;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-aside {
+            position: fixed;
+            z-index: 99999999;
+            height: 100vh;
+            width: 100%;
+            top: 0;
+            left: -1000px;
+            transition: left 0.6s;
+        }
+        .nav-header-container {
+            display: flex;
+            justify-content: space-between;
+            padding-right: 22px;
+            padding-left: 40px;
+            margin-top: 34px;
+        }
+        .nav-header-container img {
+            display: inline-block;
+        }
+        .nav-aside p {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 81px;
+        }
+        #log-out-nav a {
+            line-height: 30px;
         }
         .game-cards-container {
             margin-left: 40px;

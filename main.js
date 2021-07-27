@@ -3,6 +3,8 @@ Events();
 function Events() {
     //ShowCards();
     document.querySelector("#burger-icon").addEventListener("click", ShowNav);
+    document.querySelector("#nav-burger-icon").addEventListener("click", ShowNav);
+    document.querySelector("#search-icon").addEventListener("click", ShowSearchBar);
 }
 
 function ShowCards() {
@@ -117,11 +119,32 @@ function MakeCards(cards) {
 
 function ShowNav() {
     let nav = document.querySelector(".nav-aside");
-    nav.style.left = "0";
     let leaveNav = document.querySelector(".leave-nav");
-    leaveNav.classList.remove("hidden");
-    leaveNav.addEventListener("click", function() {
+    if (nav.style.left !== "0px") {
+        nav.style.left = "0px";
+
+        leaveNav.classList.remove("hidden");
+        leaveNav.addEventListener("click", function() {
+            nav.style.left = "-1000px";
+            leaveNav.classList.add("hidden");
+        })
+    } else {
         nav.style.left = "-1000px";
         leaveNav.classList.add("hidden");
-    })
+    }
+
+
+}
+
+function ShowSearchBar() {
+    let searchBar = document.querySelector(".header-searchbar");
+    let header = document.querySelector("header");
+    if (header.style.height === "166px") {
+        header.style.height = "104px";
+
+    } else {
+        header.style.height = "166px";
+
+    }
+
 }
