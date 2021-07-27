@@ -474,6 +474,10 @@
         padding-bottom: 15px;
     }
     
+    .burger-menu-icon {
+        display: none;
+    }
+    
     .header-container p {
         font-size: 28px;
         letter-spacing: 1.74px;
@@ -526,6 +530,7 @@
         height: 12px;
         padding-left: 11px;
         padding-right: 32px;
+        border-radius: 0px;
     }
     
     .header-session-details img {
@@ -546,9 +551,15 @@
         flex-direction: column;
     }
     
+    .nav-aside p,
+    .nav-aside #log-out-nav {
+        display: none;
+    }
+    
     .nav-aside ul {
         list-style-type: none;
         margin-top: 30px;
+        padding-left: 40px;
         width: 230px;
     }
     
@@ -767,6 +778,10 @@
         flex-wrap: wrap;
     }
     
+    .game-cards-v-display img {
+        height: 300px;
+    }
+    
     .game-cards-v-display ul {
         list-style-type: none;
         width: 100%;
@@ -922,6 +937,7 @@
     
     .modal-close svg {
         height: 16px;
+        width: 16px;
     }
     
     .modal-logos-container {
@@ -1157,19 +1173,127 @@
     /* ---------------- Main responsive breakpoints ----------------- */
     
     @media screen and (max-width:1024px) {
-        .login {
-            width: 100%;
-            height: 1024px;
-            margin: 0;
-            background-color: #303030;
-        }
-        #login-body {
-            background-color: #303030;
-        }
-        .form-container {
-            margin: 70px auto 0px;
-        }
-        .divCarousel {
+        .header-container p {
             display: none;
+        }
+        .burger-menu-icon {
+            display: inline-block;
+            height: 22.5px;
+            cursor: pointer;
+        }
+        .header-session-details a,
+        .header-session-details a img {
+            display: none;
+        }
+        .nav-aside {
+            position: fixed;
+            height: 100vh;
+            padding-right: 65px;
+            top: 0;
+            left: -1000px;
+            background-color: #151515;
+            box-shadow: 14px 0px 36px 5px rgba(0, 0, 0, 0.62);
+            transition: all 0.6s;
+        }
+        .nav-aside p {
+            display: inline-block;
+            font-size: 28px;
+            line-height: 38px;
+            letter-spacing: 1.74222px;
+            margin-top: 34px;
+            margin-left: 40px;
+            padding: 0;
+        }
+        .nav-aside #log-out-nav {
+            display: inline-block;
+            position: absolute;
+            bottom: 100px;
+            height: 30px;
+            left: 40px;
+            padding: 0;
+            cursor: pointer;
+        }
+        #log-out-nav a {
+            display: inline-block;
+            font-size: 22px;
+            line-height: 30px;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        #log-out-nav a svg {
+            display: inline-block;
+            margin: 0;
+            padding-left: 0;
+            padding-right: 11px;
+            border-radius: 0;
+        }
+        #log-out-nav a:active {
+            color: #7CD235;
+        }
+        #log-out-nav:hover .st0,
+        #log-out-nav:hover a {
+            fill: #7CD235;
+            color: #7CD235;
+        }
+        .leave-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .game-cards-container {
+            margin-left: 40px;
+        }
+        .game-cards-h-display ul li {
+            width: calc(100%/2 - 12px);
+        }
+        .game-cards-v-display ul {
+            margin-top: 30px;
+            margin-right: 40px;
+            padding-left: 0;
+            align-content: flex-start;
+        }
+        .game-cards-v-display ul li {
+            width: 100%;
+        }
+        .modal-black {
+            display: none;
+        }
+        .modal-container,
+        .modal-background-img,
+        .modal-background-img img,
+        .modal-info {
+            width: 100%;
+        }
+        .modal-info,
+        .modal-background-img img {
+            border-radius: 0px;
+        }
+        .modal-info {
+            padding-top: 35px;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-bottom: 65px;
+        }
+        .modal-close svg {
+            height: 25px;
+            width: 25px;
+        }
+        .modal-right-container {
+            width: 75%;
+        }
+        .modal-gallery {
+            width: 50%;
+            position: absolute;
+            right: 30px;
+            top: 457px;
+            margin: 0;
+            padding: 0;
+        }
+        .modal-bottom-links {
+            width: 55%;
         }
     }

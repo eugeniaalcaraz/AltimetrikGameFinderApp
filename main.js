@@ -1,5 +1,9 @@
-ShowCards();
+Events();
 
+function Events() {
+    //ShowCards();
+    document.querySelector("#burger-icon").addEventListener("click", ShowNav);
+}
 
 function ShowCards() {
 
@@ -109,4 +113,15 @@ function MakeCards(cards) {
 
 
 
+}
+
+function ShowNav() {
+    let nav = document.querySelector(".nav-aside");
+    nav.style.left = "0";
+    let leaveNav = document.querySelector(".leave-nav");
+    leaveNav.classList.remove("hidden");
+    leaveNav.addEventListener("click", function() {
+        nav.style.left = "-1000px";
+        leaveNav.classList.add("hidden");
+    })
 }
