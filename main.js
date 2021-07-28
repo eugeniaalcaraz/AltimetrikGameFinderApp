@@ -5,7 +5,7 @@ window.scrollTo(0, 0);
 Events();
 
 function Events() {
-    //ShowCards(page);
+    ShowCards(page);
     document.querySelector("#burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#nav-burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#search-icon").addEventListener("click", ShowSearchBar);
