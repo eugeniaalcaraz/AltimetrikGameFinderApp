@@ -1,15 +1,24 @@
 let page = 1;
+let cardNames = [];
 window.scrollTo(0, 0);
 
 Events();
 
 function Events() {
-    ShowCards(page);
+    //ShowCards(page);
     document.querySelector("#burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#nav-burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#search-icon").addEventListener("click", ShowSearchBar);
     CardsAddClickEvent();
+    document.querySelector("#searchbar").addEventListener("keyup", ReadSearch);
+    //document.querySelector("#searchbar").addEventListener("click", OpenSearchBar);
 
+}
+
+
+function ReadSearch(e) {
+    console.log(e.target.value);
+    document.querySelector(".search-suggestions").innerHTML += `<p>${e.target.value}</p>`;
 }
 
 function ShowCards(page) {
@@ -29,7 +38,7 @@ function ShowCards(page) {
 
         if (response.status === 200) {
             MakeCards(cards);
-
+            GetGamesNames(cards.count);
         }
         if (response.status === 400) {
             console.log(response.status);
@@ -38,6 +47,33 @@ function ShowCards(page) {
 
 }
 
+function GetGamesNames(count) {
+    let uri = `https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10&page_size=${count}`;
+
+    fetch(uri, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "User-Agent": "Eugenia Alcaraz BFEDA"
+        },
+
+    }).then(async(response) => {
+        let cards = await response.json();
+
+        if (response.status === 200) {
+            for (let i = 0; i < cards.results.length; i++) {
+                let cardName = cards.results[i].name;
+                cardNames.push(cardName);
+            }
+            console.log(cardNames);
+        }
+
+        if (response.status === 400) {
+            console.log(response.status);
+        }
+    })
+}
 
 
 function MakeCards(cards) {
