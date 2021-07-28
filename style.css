@@ -1200,6 +1200,24 @@
     }
     /* ---------------- Main responsive breakpoints ----------------- */
     
+    @media screen and (min-width: 1024px) {
+        .nav-aside {
+            flex-basis: auto;
+            display: inline-block;
+            flex-direction: column;
+            position: absolute;
+            left: 0!important;
+            height: 100%;
+            width: 260px;
+            margin-top: 120px;
+            margin-left: 0;
+            padding-top: 33px;
+            flex-basis: auto;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    
     @media screen and (max-width: 1023px) {
         .header-container p {
             display: none;

@@ -1,17 +1,22 @@
+let page = 1;
+window.scrollTo(0, 0);
+
 Events();
 
 function Events() {
-    ShowCards();
+    ShowCards(page);
     document.querySelector("#burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#nav-burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#search-icon").addEventListener("click", ShowSearchBar);
+    CardsAddClickEvent();
 
 }
 
-function ShowCards() {
+function ShowCards(page) {
 
+    let uri = `https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10&page=${page}&page_size=30`;
 
-    fetch("https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10", {
+    fetch(uri, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -32,6 +37,8 @@ function ShowCards() {
     })
 
 }
+
+
 
 function MakeCards(cards) {
 
@@ -109,15 +116,31 @@ function MakeCards(cards) {
                         </div>
                     </li>`;
         document.querySelector("#card-list").innerHTML += newCard;
-        AddClickEvent();
 
     }
-
-
-
+    CardsAddClickEvent();
+    AddScrollEvent();
+    page++;
 }
 
-function AddClickEvent() {
+function AddScrollEvent() {
+
+    let needMoreCards = false;
+    window.addEventListener("scroll", () => {
+
+        let scrollHigh = document.documentElement.scrollHeight - window.innerHeight;
+        let scrolled = window.scrollY;
+        let percentageScrolled = Math.floor((scrolled / scrollHigh) * 100);
+
+        if (percentageScrolled >= 60 && !(needMoreCards)) {
+            ShowCards(page);
+            needMoreCards = true;
+        }
+
+    });
+}
+
+function CardsAddClickEvent() {
 
     let cards = document.querySelectorAll(".card");
     for (let i = 0; i < cards.length; i++) {
@@ -127,6 +150,7 @@ function AddClickEvent() {
 }
 
 function ShowNav() {
+
     let nav = document.querySelector(".nav-aside");
     let leaveNav = document.querySelector(".leave-nav");
     if (nav.style.left !== "0px") {
@@ -162,7 +186,6 @@ function ShowModal() {
     let gameId = Number(this.getAttribute("id"));
 
     SearchGame(gameId);
-
     console.log(gameId);
 
 }
@@ -303,9 +326,10 @@ function MakeModal(game) {
 </div>
 `;
 
-    window.scrollTo(0, 0);
+
     modalBack.classList.remove("hidden");
     modal.classList.remove("hidden");
+    window.scrollTo(0, 0);
 
     modal.innerHTML += modalInfo;
     if (smallDispositives.matches) {
