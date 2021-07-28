@@ -18,10 +18,8 @@ function ShowCards() {
             "User-Agent": "Eugenia Alcaraz BFEDA"
         },
 
-
     }).then(async(response) => {
         let cards = await response.json();
-
 
         if (response.status === 200) {
             MakeCards(cards);

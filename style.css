@@ -552,7 +552,12 @@
         flex-basis: auto;
         display: flex;
         flex-direction: column;
-        margin-top: 153px;
+        position: fixed;
+        height: 100%;
+        width: 260px;
+        margin-top: 120px;
+        padding-top: 33px;
+        background-color: #151515;
     }
     
     .nav-header-container,
@@ -602,7 +607,7 @@
         flex: 1;
         display: flex;
         flex-wrap: wrap;
-        margin-left: 30px;
+        margin-left: 260px;
         margin-top: 120px;
         align-items: flex-start;
     }
@@ -672,7 +677,7 @@
     
     .game-cards-h-display ul li {
         background-color: #303030;
-        width: calc(100%/3 - 24px);
+        width: calc(100%/3 - 12px);
         border-radius: 10px;
         margin-bottom: 24px;
     }
@@ -687,7 +692,7 @@
     
     .game-card-info-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         margin: 20px auto;
     }
     
@@ -711,7 +716,7 @@
     .game-card-p-container {
         display: flex;
         justify-content: space-between;
-        width: 186px;
+        width: 100%;
         margin-top: 6px;
         height: 19px;
         border-bottom: 1px solid #3D3D3D;
@@ -1178,7 +1183,7 @@
     }
     /* ---------------- Main responsive breakpoints ----------------- */
     
-    @media screen and (max-width:1024px) {
+    @media screen and (max-width: 1023px) {
         .header-container p {
             display: none;
         }
@@ -1195,13 +1200,19 @@
             position: fixed;
             z-index: 99999999;
             margin-top: 0;
-            height: 100vh;
-            padding-right: 65px;
+            padding-top: 0;
+            height: 100%;
+            width: 303px;
             top: 0;
             left: -1000px;
             background-color: #151515;
             box-shadow: 14px 0px 36px 5px rgba(0, 0, 0, 0.62);
             transition: left 0.6s;
+        }
+        .ul-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         .nav-header-container {
             display: inline-block;
@@ -1215,17 +1226,17 @@
             letter-spacing: 1.74222px;
             margin-top: 34px;
             margin-left: 40px;
-            margin-bottom: 81px;
+            margin-bottom: 7%;
             padding: 0;
         }
         .nav-aside #log-out-nav {
-            display: inline-block;
-            position: absolute;
-            bottom: 9%;
-            height: 30px;
-            left: 40px;
+            display: flex;
+            margin-left: 40px;
+            margin-bottom: 30%;
+            height: 40%;
             padding: 0;
             cursor: pointer;
+            align-items: flex-end;
         }
         #log-out-nav a {
             display: inline-block;
@@ -1346,7 +1357,7 @@
         }
     }
     
-    @media screen and (max-width:767px) {
+    @media screen and (max-width: 767px) {
         header {
             height: 104px;
             transition: height 0.6s;
@@ -1366,6 +1377,8 @@
             text-align: center;
             left: 0;
             font-size: 16px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
         .header-container {
             height: 104px;
@@ -1389,13 +1402,18 @@
             margin: 0;
         }
         .nav-aside {
+            padding: 0;
             position: fixed;
+            margin-top: 0;
+            padding-top: 0;
             z-index: 99999999;
-            height: 100vh;
+            height: 100%;
             width: 100%;
             top: 0;
             left: -1000px;
             transition: left 0.6s;
+            display: flex;
+            flex-direction: column;
         }
         .nav-header-container {
             display: flex;
@@ -1403,6 +1421,7 @@
             padding-right: 22px;
             padding-left: 40px;
             margin-top: 34px;
+            align-items: baseline;
         }
         .nav-header-container img {
             display: inline-block;
@@ -1412,22 +1431,57 @@
             padding: 0;
             margin-bottom: 81px;
         }
-        #log-out-nav a {
-            line-height: 30px;
-        }
         .game-cards-container {
-            margin-left: 40px;
+            margin: 104px auto;
+        }
+        .main-headerline-container {
+            justify-content: center;
+            padding: 0;
+        }
+        .main-headerline-container figure {
+            display: none;
+        }
+        .main-headerline-container div {
+            width: 240px;
+            padding-top: 24px;
+        }
+        .main-headerline-container h1 {
+            font-weight: 800;
+            font-size: 45px;
+            line-height: 110%;
+            width: 100%;
+        }
+        .main-headerline-container p {
+            margin-top: 25px;
+            width: 85%;
+        }
+        .game-cards-h-display ul {
+            margin: 0;
         }
         .game-cards-h-display ul li {
-            width: calc(100%/2 - 12px);
+            width: 100%;
+            border-radius: 0;
         }
-        .game-cards-v-display ul {
-            margin-top: 30px;
-            margin-right: 40px;
-            padding-left: 0;
-            align-content: flex-start;
+        .game-card-image img {
+            border-radius: 0;
         }
-        .game-cards-v-display ul li {
+        .game-card-info-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .game-card-info-left {
+            width: 75%;
+            padding: 0;
+        }
+        .game-card-info-right {
+            width: 75%;
+            padding: 0;
+            margin-top: 19.5px;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .game-card-p-container {
             width: 100%;
         }
         .modal-black {
