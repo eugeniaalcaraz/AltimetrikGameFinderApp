@@ -38,7 +38,7 @@ function LoadMain(evt) {
         document.querySelector("#pass-error-message").innerHTML = error;
         document.querySelector("#pass-container").classList.add("error");
         document.querySelector("#login-input-pass").classList.add("error");
-        snackbarError.style.top = "-80px";
+        //snackbarError.style.top = "-80px";
 
 
     }
@@ -47,7 +47,7 @@ function LoadMain(evt) {
         document.querySelector("#email-error-message").innerHTML = error;
         document.querySelector("#email-container").classList.add("error");
         document.querySelector("#login-input-email").classList.add("error");
-        snackbarError.style.top = "-80px";
+        //snackbarError.style.top = "-80px";
 
     }
 
@@ -69,7 +69,7 @@ function LoadMain(evt) {
             console.log(responseText);
             if (response.status === 200) {
                 document.cookie = "authToken-" + responseText.accessToken;
-                console.log(responseText);
+                //console.log(responseText);
                 snackbarSuccess.style.top = "-80px";
                 setTimeout(function() {
                     window.location.href = "http://127.0.0.1:5500/main.html";
@@ -78,8 +78,8 @@ function LoadMain(evt) {
 
             }
             if (response.status === 400) {
-                console.log(responseText);
-                snackbarAlert.style.top = "-80px";
+                //console.log(responseText);
+                snackbarError.style.top = "-80px";
                 error = "Incorrect email or password";
                 document.querySelector("#pass-error-message").innerHTML = error;
                 document.querySelector("#pass-container").classList.add("error");
@@ -113,10 +113,14 @@ function RemoveError() {
     document.querySelector("#email-container").classList.remove("error");
     document.querySelector("#login-input-pass").classList.remove("error");
     document.querySelector("#login-input-email").classList.remove("error");
-    //document.querySelector("#snackbar-error").classList.add("hidden");
     document.querySelector("#pass-error-message").innerHTML = "";
     document.querySelector("#email-error-message").innerHTML = "";
 
+    let snackbarError = document.querySelector("#snackbar-error");
+    let snackbarAlert = document.querySelector("#snackbar-alert");
+
+    snackbarError.style.top = "-500px";
+    snackbarAlert.style.top = "-500px";
 
 
 }

@@ -463,7 +463,7 @@
         box-shadow: 1px -3px 36px rgba(0, 0, 0, 0.5);
         display: flex;
         position: fixed;
-        z-index: 9999999;
+        z-index: 999;
     }
     
     .header-container {
@@ -550,14 +550,18 @@
     
     .nav-aside {
         flex-basis: auto;
-        display: flex;
+        display: inline-block;
         flex-direction: column;
-        position: fixed;
+        position: absolute;
+        left: 0;
         height: 100%;
         width: 260px;
         margin-top: 120px;
+        margin-left: 0;
         padding-top: 33px;
-        background-color: #151515;
+        flex-basis: auto;
+        display: flex;
+        flex-direction: column;
     }
     
     .nav-header-container,
@@ -680,6 +684,7 @@
         width: calc(100%/3 - 12px);
         border-radius: 10px;
         margin-bottom: 24px;
+        cursor: pointer;
     }
     
     .game-card-image img {
@@ -893,6 +898,7 @@
     
     .modal-black {
         position: fixed;
+        z-index: 9999;
         top: 0;
         width: 100%;
         height: 100vh;
@@ -906,7 +912,8 @@
     
     .modal-background-img {
         position: absolute;
-        top: 115px;
+        z-index: 999999;
+        top: 120px;
         width: 1082px;
     }
     
@@ -919,7 +926,8 @@
         border-radius: 10px;
         width: 1082px;
         position: absolute;
-        top: 115px;
+        z-index: 999999;
+        top: 120px;
         background-image: linear-gradient(#303030be, #303030);
         padding-top: 35px;
         padding-left: 79px;
@@ -1181,6 +1189,15 @@
         line-height: 16px;
         margin: 0;
     }
+    
+    footer {
+        position: fixed;
+        bottom: 0;
+        height: 108px;
+        width: 100%;
+        z-index: 9999999;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, #000000 100%);
+    }
     /* ---------------- Main responsive breakpoints ----------------- */
     
     @media screen and (max-width: 1023px) {
@@ -1293,6 +1310,7 @@
         .modal-background-img img,
         .modal-info {
             width: 100%;
+            z-index: 1;
         }
         .modal-info,
         .modal-background-img img {
@@ -1363,7 +1381,7 @@
             transition: height 0.6s;
             overflow: hidden;
             position: fixed;
-            z-index: 9999999;
+            z-index: 99999999;
         }
         .header-session-details,
         .header-searchbar img {
@@ -1464,6 +1482,7 @@
         }
         .game-card-image img {
             border-radius: 0;
+            height: 60%;
         }
         .game-card-info-container {
             flex-direction: column;
@@ -1483,19 +1502,6 @@
         }
         .game-card-p-container {
             width: 100%;
-        }
-        .modal-black {
-            display: none;
-        }
-        .modal-container,
-        .modal-background-img,
-        .modal-background-img img,
-        .modal-info {
-            width: 100%;
-        }
-        .modal-info,
-        .modal-background-img img {
-            border-radius: 0px;
         }
         .modal-info {
             padding-top: 35px;
