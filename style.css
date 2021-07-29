@@ -514,6 +514,7 @@
         position: relative;
         transition: all 0.6s;
         overflow: hidden;
+        align-self: baseline;
     }
     
     .header-searchbar input {
@@ -1248,6 +1249,12 @@
             flex-basis: auto;
             display: flex;
             flex-direction: column;
+        }
+    }
+    
+    @media screen and (min-width:768px) {
+        header {
+            height: 120px!important;
         }
     }
     

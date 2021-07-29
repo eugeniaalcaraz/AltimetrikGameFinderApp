@@ -19,6 +19,41 @@ function Events() {
 function ReadSearch(e) {
     console.log(e.target.value);
     document.querySelector(".search-suggestions").innerHTML += `<p>${e.target.value}</p>`;
+    if (e.keyCode === 13) {
+        if (e.target.value.trim() !== "") {
+            SearchGameByName(e.target.value);
+        } else {
+            console.log("vacio");
+        }
+    }
+}
+
+function SearchGameByName(string) {
+
+
+    let uri = `https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10&search=${string}`;
+    document.querySelector("#card-list").innerHTML = "";
+
+    fetch(uri, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "User-Agent": "Eugenia Alcaraz BFEDA"
+        },
+
+    }).then(async(response) => {
+        let cards = await response.json();
+
+        if (response.status === 200) {
+            MakeCards(cards);
+            //GetGamesNames(cards.count);
+        }
+        if (response.status === 400) {
+            console.log(response.status);
+        }
+    })
+
 }
 
 function ShowCards(page) {
@@ -220,13 +255,12 @@ function ShowSearchBar() {
 
 function ShowModal() {
     let gameId = Number(this.getAttribute("id"));
-
-    SearchGame(gameId);
+    SearchGameById(gameId);
     console.log(gameId);
 
 }
 
-function SearchGame(id) {
+function SearchGameById(id) {
 
     let uri = `https://api.rawg.io/api/games/${id}?key=8854630ec3f74ac487342aced66aef10`
 
