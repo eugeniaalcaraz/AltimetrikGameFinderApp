@@ -1239,7 +1239,7 @@
             flex-basis: auto;
             display: inline-block;
             flex-direction: column;
-            position: absolute;
+            position: fixed;
             left: 0!important;
             height: 100%;
             width: 260px;

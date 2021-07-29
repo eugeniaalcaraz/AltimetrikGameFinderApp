@@ -25,7 +25,10 @@ function VerticalDisplay() {
 
         let descripcionesCards = document.querySelectorAll(".game-card-description");
         for (let j = 0; j < descripcionesCards.length; j++) {
-            descripcionesCards[j].classList.remove("hidden");
+            let card = descripcionesCards[j];
+            let cardId = card.getAttribute("numero");
+            card.classList.remove("hidden");
+            AddDescription(cardId);
         }
 
         horizontal = false;
@@ -248,12 +251,11 @@ function MakeCards(cards) {
                         </div>`;
 
         if (horizontal) {
-            newCard += `<p class="game-card-description hidden">`;
+            newCard += `<p numero="${card.id}" id="description-of-${card.id}" class="game-card-description hidden">`;
         } else {
-            newCard += `<p class="game-card-description">`;
+            newCard += `<p numero="${card.id}" id="description-of-${card.id}"class="game-card-description">`;
         }
 
-        newCard += "hola me estoy viendo como descripcion" //AddDescription();
         newCard += `</p></li>`;
         document.querySelector("#card-list").innerHTML += newCard;
 
@@ -262,6 +264,18 @@ function MakeCards(cards) {
     AddScrollEvent();
     page++;
 }
+
+function AddDescription(id) {
+
+    let description = "-"
+    for (let i = 0; i < cardsDetails.length; i++) {
+        let game = cardsDetails[i];
+        if (game.Id == id) {
+            description = game.Descr;
+        }
+    }
+    document.querySelector(`#description-of-${id}`).innerHTML = description;
+};
 
 function AddScrollEvent() {
 
