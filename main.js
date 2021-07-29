@@ -41,6 +41,7 @@ function ReadSearch(e) {
     if (e.keyCode === 13) {
         if (e.target.value.trim() !== "") {
             SearchGameByName(e.target.value);
+            document.activeElement.blur();
         } else {
             console.log("vacio");
         }
@@ -66,6 +67,7 @@ function SearchGameByName(string) {
 
         if (response.status === 200) {
             MakeCards(cards);
+            GetGameDetails(cards);
         }
         if (response.status === 400) {
             console.log(response.status);
@@ -102,8 +104,9 @@ function ShowCards(page) {
 
 function GetGameDetails(cards) {
 
-    for (i = 0; i < cards.results.length; i++) {
+    for (let i = 0; i < cards.results.length; i++) {
         let gameId = cards.results[i].id;
+        let gamePics = cards.results[i].short_screenshots;
         let uri = `https://api.rawg.io/api/games/${gameId}?key=8854630ec3f74ac487342aced66aef10`;
 
         fetch(uri, {
@@ -120,7 +123,13 @@ function GetGameDetails(cards) {
             if (response.status === 200) {
 
                 let cardDescription = game.description;
-                cardsDetails.push({ gameId, cardDescription });
+
+                let oneGame = new Game();
+                oneGame.Id = gameId;
+                oneGame.Descr = cardDescription;
+                oneGame.Pics = gamePics;
+
+                cardsDetails.push(oneGame);
             }
 
             if (response.status === 400) {
@@ -153,7 +162,7 @@ function MakeCards(cards) {
             </div>
             <div class="game-card-p-container">
                 <p>Genres</p><p>`;
-        for (j = 0; j < card.genres.length; j++) {
+        for (let j = 0; j < card.genres.length; j++) {
             let genre = card.genres[j];
             newCard += `${genre.name} `;
         }
@@ -163,7 +172,7 @@ function MakeCards(cards) {
         <div class="game-card-info-right">
             <figure class="game-card-consoles">`;
 
-        for (k = 0; k < card.parent_platforms.length; k++) {
+        for (let k = 0; k < card.parent_platforms.length; k++) {
             let platform = card.parent_platforms[k].platform;
             if (platform.name.indexOf("PlayStation") > -1) {
                 newCard += `<svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -284,28 +293,35 @@ function ShowModal() {
 
 function SearchGameById(id) {
 
-    let uri = `https://api.rawg.io/api/games/${id}?key=8854630ec3f74ac487342aced66aef10`
-
-    fetch(uri, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "User-Agent": "Eugenia Alcaraz BFEDA"
-        },
-
-    }).then(async(response) => {
-        let game = await response.json();
-
-        if (response.status === 200) {
-            MakeModal(game);
-
-
+    for (let i = 0; i < cardsDetails.length; i++) {
+        let gameDetails = cardsDetails[i];
+        if (gameDetails.gameId === id) {
+            MakeModal(gameDetails);
         }
-        if (response.status === 400) {
-            console.log(response.status);
-        }
-    })
+    }
+
+    // let uri = `https://api.rawg.io/api/games/${id}?key=8854630ec3f74ac487342aced66aef10`
+
+    // fetch(uri, {
+    //     method: "GET",
+    //     headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         "User-Agent": "Eugenia Alcaraz BFEDA"
+    //     },
+
+    // }).then(async(response) => {
+    //     let game = await response.json();
+
+    //     if (response.status === 200) {
+    //         MakeModal(game);
+
+
+    //     }
+    //     if (response.status === 400) {
+    //         console.log(response.status);
+    //     }
+    // })
 
 }
 
