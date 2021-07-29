@@ -1,5 +1,6 @@
 let page = 1;
-let cardNames = [];
+let horizontal = true;
+let cardsDetails = [];
 window.scrollTo(0, 0);
 
 Events();
@@ -11,10 +12,28 @@ function Events() {
     document.querySelector("#search-icon").addEventListener("click", ShowSearchBar);
     CardsAddClickEvent();
     document.querySelector("#searchbar").addEventListener("keyup", ReadSearch);
+    document.querySelector("#vertical-display-button").addEventListener("click", VerticalDisplay);
+    document.querySelector("#horizontal-display-button").addEventListener("click", HorizontalDisplay);
     //document.querySelector("#searchbar").addEventListener("click", OpenSearchBar);
-
 }
 
+function VerticalDisplay() {
+    if (horizontal) {
+        let container = document.querySelector("#card-list-container");
+        container.classList.remove("game-cards-h-display");
+        container.classList.add("game-cards-v-display");
+        horizontal = false;
+    }
+}
+
+function HorizontalDisplay() {
+    if (!horizontal) {
+        let container = document.querySelector("#card-list-container");
+        container.classList.add("game-cards-h-display");
+        container.classList.remove("game-cards-v-display");
+        horizontal = true;
+    }
+}
 
 function ReadSearch(e) {
     console.log(e.target.value);
@@ -47,7 +66,6 @@ function SearchGameByName(string) {
 
         if (response.status === 200) {
             MakeCards(cards);
-            //GetGamesNames(cards.count);
         }
         if (response.status === 400) {
             console.log(response.status);
@@ -73,7 +91,7 @@ function ShowCards(page) {
 
         if (response.status === 200) {
             MakeCards(cards);
-            GetGamesNames(cards.count);
+            GetGameDetails(cards);
         }
         if (response.status === 400) {
             console.log(response.status);
@@ -82,32 +100,36 @@ function ShowCards(page) {
 
 }
 
-function GetGamesNames(count) {
-    let uri = `https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10&page_size=${count}`;
+function GetGameDetails(cards) {
 
-    fetch(uri, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "User-Agent": "Eugenia Alcaraz BFEDA"
-        },
+    for (i = 0; i < cards.results.length; i++) {
+        let gameId = cards.results[i].id;
+        let uri = `https://api.rawg.io/api/games/${gameId}?key=8854630ec3f74ac487342aced66aef10`;
 
-    }).then(async(response) => {
-        let cards = await response.json();
+        fetch(uri, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "User-Agent": "Eugenia Alcaraz BFEDA"
+            },
 
-        if (response.status === 200) {
-            for (let i = 0; i < cards.results.length; i++) {
-                let cardName = cards.results[i].name;
-                cardNames.push(cardName);
+        }).then(async(response) => {
+            let game = await response.json();
+
+            if (response.status === 200) {
+
+                let cardDescription = game.description;
+                cardsDetails.push({ gameId, cardDescription });
             }
-            console.log(cardNames);
-        }
 
-        if (response.status === 400) {
-            console.log(response.status);
-        }
-    })
+            if (response.status === 400) {
+                console.log(response.status);
+            }
+        })
+    }
+
+
 }
 
 
