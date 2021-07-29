@@ -22,7 +22,14 @@ function VerticalDisplay() {
         let container = document.querySelector("#card-list-container");
         container.classList.remove("game-cards-h-display");
         container.classList.add("game-cards-v-display");
+
+        let descripcionesCards = document.querySelectorAll(".game-card-description");
+        for (let j = 0; j < descripcionesCards.length; j++) {
+            descripcionesCards[j].classList.remove("hidden");
+        }
+
         horizontal = false;
+
     }
 }
 
@@ -31,6 +38,12 @@ function HorizontalDisplay() {
         let container = document.querySelector("#card-list-container");
         container.classList.add("game-cards-h-display");
         container.classList.remove("game-cards-v-display");
+
+        let descripcionesCards = document.querySelectorAll(".game-card-description");
+        for (let j = 0; j < descripcionesCards.length; j++) {
+            descripcionesCards[j].classList.add("hidden");
+        }
+
         horizontal = true;
     }
 }
@@ -66,8 +79,9 @@ function SearchGameByName(string) {
         let cards = await response.json();
 
         if (response.status === 200) {
-            MakeCards(cards);
             GetGameDetails(cards);
+            MakeCards(cards);
+
         }
         if (response.status === 400) {
             console.log(response.status);
@@ -92,8 +106,9 @@ function ShowCards(page) {
         let cards = await response.json();
 
         if (response.status === 200) {
-            MakeCards(cards);
             GetGameDetails(cards);
+            MakeCards(cards);
+
         }
         if (response.status === 400) {
             console.log(response.status);
@@ -107,6 +122,7 @@ function GetGameDetails(cards) {
     for (let i = 0; i < cards.results.length; i++) {
         let gameId = cards.results[i].id;
         let gamePics = cards.results[i].short_screenshots;
+        // validar que el Id no este en el array ya -- if (gameId)
         let uri = `https://api.rawg.io/api/games/${gameId}?key=8854630ec3f74ac487342aced66aef10`;
 
         fetch(uri, {
@@ -122,12 +138,19 @@ function GetGameDetails(cards) {
 
             if (response.status === 200) {
 
-                let cardDescription = game.description;
-
                 let oneGame = new Game();
                 oneGame.Id = gameId;
-                oneGame.Descr = cardDescription;
+                oneGame.Name = game.name;
+                oneGame.BackgroundPic = game.background_image;
+                oneGame.ReleaseDate = game.released;
+                oneGame.Genres = game.genres;
+                oneGame.Platforms = game.parent_platforms;
+                oneGame.Descr = game.description;
                 oneGame.Pics = gamePics;
+                oneGame.Developers = game.developers;
+                oneGame.Publishers = game.publishers;
+                oneGame.Age;
+                oneGame.Website = game.website;
 
                 cardsDetails.push(oneGame);
             }
@@ -174,7 +197,7 @@ function MakeCards(cards) {
 
         for (let k = 0; k < card.parent_platforms.length; k++) {
             let platform = card.parent_platforms[k].platform;
-            if (platform.name.indexOf("PlayStation") > -1) {
+            if (platform.slug.indexOf("playstation") > -1) {
                 newCard += `<svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.5 0.149317L6.5 12.0296L9.07955 12.8818L9.07955 2.92038C9.07955 2.45098 9.28024 2.13932 9.60212 2.2465C10.023 2.36823 10.1048 2.80063 10.1048 3.2648L10.1048 7.24326C11.7104 8.05369 12.9745 7.24283 12.9745 5.10456C12.9745 2.91953 12.2334 1.94614 10.0527 1.16352C9.19249 0.864854 7.59836 0.360857 6.5 0.149317Z" fill="white"/>
                     <path d="M9.75 11.1429L13.6492 9.45771C14.0903 9.25915 14.1578 8.9894 13.8008 8.84764C13.4382 8.70325 12.791 8.74457 12.3452 8.93895L9.75 10.0506V8.27688L9.89861 8.21729C9.89861 8.21729 10.6498 7.89415 11.7064 7.75502C12.7609 7.61465 14.0541 7.77328 15.0706 8.2385C16.2156 8.68019 16.3439 9.32446 16.0542 9.77281C15.7603 10.2165 15.0478 10.5375 15.0478 10.5375L9.75 12.8484" fill="white"/>
@@ -182,15 +205,22 @@ function MakeCards(cards) {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1271 12.7978C16.0247 12.8989 15.8903 12.9561 15.7455 12.9561C15.6008 12.9561 15.462 12.8989 15.3594 12.7978C15.2582 12.6948 15.2021 12.5603 15.2021 12.4154C15.2021 12.1153 15.4451 11.8727 15.7455 11.8727C15.8903 11.8727 16.0247 11.928 16.1271 12.0314C16.2284 12.1324 16.2855 12.2692 16.2855 12.4154C16.2855 12.5603 16.2284 12.6948 16.1271 12.7978ZM15.2934 12.4154C15.2934 12.292 15.3396 12.1788 15.4239 12.095C15.5104 12.0092 15.6257 11.963 15.7455 11.963C15.8655 11.963 15.9779 12.0092 16.0622 12.095C16.1473 12.1788 16.1932 12.292 16.1932 12.4154C16.1932 12.6627 15.9922 12.8634 15.7455 12.8634C15.6257 12.8634 15.5104 12.8177 15.4239 12.7331C15.3396 12.6477 15.2934 12.5358 15.2934 12.4154ZM15.9927 12.6405C15.9976 12.6544 16.0034 12.6627 16.0118 12.6651L16.0193 12.6694V12.7038H15.9018L15.8996 12.6969L15.8916 12.6761C15.8903 12.6651 15.8887 12.6508 15.8871 12.6267L15.8819 12.5325C15.8805 12.4991 15.8696 12.4796 15.8494 12.4667C15.8345 12.4617 15.8141 12.4579 15.7837 12.4579H15.6205V12.7038H15.5134V12.0997H15.7941C15.8399 12.0997 15.8785 12.1078 15.908 12.1204C15.9672 12.1482 15.9976 12.1984 15.9976 12.269C15.9976 12.3037 15.9889 12.3362 15.9741 12.3601C15.9612 12.377 15.946 12.3924 15.9295 12.4075L15.9339 12.4106C15.9451 12.4185 15.9563 12.4263 15.9628 12.4378C15.9778 12.4543 15.9846 12.482 15.9858 12.5177L15.9885 12.5946C15.9889 12.6143 15.9905 12.6296 15.9927 12.6405ZM15.8661 12.3435C15.8835 12.3323 15.8916 12.31 15.8916 12.276C15.8916 12.2401 15.8792 12.2162 15.8549 12.2042C15.8399 12.1984 15.8214 12.1942 15.7964 12.1942H15.6205V12.3639H15.7867C15.8198 12.3639 15.846 12.3571 15.8661 12.3435Z" fill="white"/>
                     </svg>`;
             }
-            if (platform.name.indexOf("Xbox") > -1) {
+            if (platform.slug.indexOf("xbox") > -1) {
 
                 newCard += `<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 0C7.75357 0 8.79048 0.40056 9.73452 1.07423C9.75 1.07423 9.75 1.09244 9.75 1.11064C9.75 1.12885 9.73452 1.12885 9.71905 1.12885C8.5119 0.819328 6.68571 2.03922 6.51548 2.16667H6.5H6.48452C6.31429 2.03922 4.4881 0.819328 3.28095 1.12885C3.26548 1.12885 3.25 1.12885 3.25 1.11064C3.25 1.09244 3.25 1.07423 3.26548 1.07423C4.20952 0.40056 5.24643 0 6.5 0ZM10.6537 11.4392C11.6287 10.4302 8.40504 6.86712 6.5023 5.41667C6.5023 5.41667 6.48658 5.41667 6.48658 5.43243C4.59957 6.86712 1.3602 10.4302 2.35088 11.4392C3.45164 12.4167 4.91407 13 6.5023 13C8.09054 13 9.53724 12.4167 10.6537 11.4392ZM1.78082 2.19751C1.7734 2.19751 1.76969 2.20158 1.76598 2.20566C1.76227 2.20973 1.75856 2.2138 1.75114 2.2138C0.667808 3.40327 0 5.04896 0 6.8576C0 8.34035 0.460046 9.72534 1.21689 10.817C1.21689 10.8333 1.23174 10.8333 1.24658 10.8333C1.26142 10.8333 1.26142 10.817 1.24658 10.8007C0.78653 9.25282 3.11644 5.52149 4.31849 3.95726L4.33333 3.94097C4.33333 3.93257 4.33333 3.9285 4.3313 3.92653C4.32939 3.92467 4.32568 3.92467 4.31849 3.92467C2.49315 1.93681 1.8847 2.14863 1.78082 2.19751ZM8.66667 3.93424L8.68151 3.91793C10.5068 1.94443 11.1153 2.15646 11.2043 2.18908C11.2105 2.18908 11.2141 2.18908 11.2173 2.19025C11.2217 2.1919 11.2253 2.19586 11.234 2.20539C12.3322 3.39602 13 5.04332 13 6.85372C13 8.33792 12.54 9.72426 11.7831 10.817C11.7831 10.8333 11.7683 10.8333 11.7534 10.8333V10.8007C12.1986 9.25127 9.88356 5.5163 8.68151 3.95055C8.66667 3.95055 8.66667 3.93424 8.66667 3.93424Z" fill="white"/>
                     </svg>`;
             }
-            if (platform.name.indexOf("PC") > -1) {
+            if (platform.slug.indexOf("pc") > -1) {
                 newCard += `<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.95833H5.95833V0.998704L13 0V5.95833ZM5.41667 1.08333V5.95833H0V1.80612L5.41667 1.08333ZM5.41667 6.5H0V11.1145L5.41667 11.9167V6.5ZM5.95833 11.912V6.5H13V13L5.95833 11.912Z" fill="white"/>
+                </svg>`;
+            }
+            if (platform.slug.indexOf("nintendo") > -1) {
+                newCard += `<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.67443 13H7.67506C7.62406 13 7.58325 12.9591 7.58325 12.908V0.081761C7.58325 0.0408805 7.61385 0 7.66486 0H9.67443C11.5106 0 12.9999 1.49214 12.9999 3.33176V9.66824C12.9999 11.5079 11.5106 13 9.67443 13ZM11.4596 7.15409C11.4596 6.42846 10.8679 5.83569 10.1437 5.83569C9.41941 5.83569 8.83796 6.42846 8.82776 7.15409C8.82776 7.87972 9.41941 8.47248 10.1437 8.47248C10.8679 8.47248 11.4596 7.87972 11.4596 7.15409Z" fill="white"/>
+                <path d="M2.16675 4.33333C2.16675 4.92917 2.65425 5.41667 3.25008 5.41667C3.84591 5.41667 4.33341 4.92917 4.33341 4.33333C4.33341 3.7375 3.84591 3.25 3.25008 3.25C2.64522 3.25 2.16675 3.72847 2.16675 4.33333Z" fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.45677 0H6.40457C6.45759 0 6.5 0.0408805 6.5 0.0919811V12.908C6.5 12.9591 6.45759 13 6.40457 13H3.45677C1.54812 13 0 11.5079 0 9.66824V3.33176C0 1.49214 1.54812 0 3.45677 0ZM3.45677 11.9575H5.41843V1.04245H3.45677C2.82055 1.04245 2.22675 1.28774 1.7814 1.71698C1.32545 2.14623 1.08157 2.71855 1.08157 3.33176V9.66824C1.08157 10.2814 1.33605 10.8538 1.7814 11.283C2.22675 11.7225 2.82055 11.9575 3.45677 11.9575Z" fill="white"/>
                 </svg>`;
             }
 
@@ -215,8 +245,16 @@ function MakeCards(cards) {
                   </svg></figure>
                                 </a>
                             </div>
-                        </div>
-                    </li>`;
+                        </div>`;
+
+        if (horizontal) {
+            newCard += `<p class="game-card-description hidden">`;
+        } else {
+            newCard += `<p class="game-card-description">`;
+        }
+
+        newCard += "hola me estoy viendo como descripcion" //AddDescription();
+        newCard += `</p></li>`;
         document.querySelector("#card-list").innerHTML += newCard;
 
     }
