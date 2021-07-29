@@ -846,6 +846,7 @@
         width: 697px;
         border-radius: 10px;
         margin-bottom: 24px;
+        cursor: pointer;
     }
     
     .game-cards-v-display .game-card-info-left {
@@ -934,14 +935,16 @@
         position: fixed;
         z-index: 9999;
         top: 0;
-        width: 100%;
+        width: 0%;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.784937);
+        transition: all 0.6s;
     }
     
     .modal-container {
         display: flex;
         justify-content: center;
+        transition: all 0.6s;
     }
     
     .modal-background-img {

@@ -1,6 +1,8 @@
 let page = 1;
 let horizontal = true;
 let cardsDetails = [];
+let displayVButton = document.querySelector("#vertical-display-button");
+let displayHButton = document.querySelector("#horizontal-display-button");
 window.scrollTo(0, 0);
 
 Events();
@@ -12,8 +14,8 @@ function Events() {
     document.querySelector("#search-icon").addEventListener("click", ShowSearchBar);
     //CardsAddClickEvent();
     document.querySelector("#searchbar").addEventListener("keyup", ReadSearch);
-    document.querySelector("#vertical-display-button").addEventListener("click", VerticalDisplay);
-    document.querySelector("#horizontal-display-button").addEventListener("click", HorizontalDisplay);
+    displayVButton.addEventListener("click", VerticalDisplay);
+    displayHButton.addEventListener("click", HorizontalDisplay);
     //document.querySelector("#searchbar").addEventListener("click", OpenSearchBar);
 }
 
@@ -22,6 +24,14 @@ function VerticalDisplay() {
         let container = document.querySelector("#card-list-container");
         container.classList.remove("game-cards-h-display");
         container.classList.add("game-cards-v-display");
+
+
+        displayVButton.classList.remove("main-display-not-selected");
+        displayVButton.classList.add("main-display-selected");
+        displayHButton.classList.remove("main-display-selected");
+        displayHButton.classList.add("main-display-not-selected");
+
+
 
         let descripcionesCards = document.querySelectorAll(".game-card-description");
         for (let j = 0; j < descripcionesCards.length; j++) {
@@ -41,6 +51,11 @@ function HorizontalDisplay() {
         let container = document.querySelector("#card-list-container");
         container.classList.add("game-cards-h-display");
         container.classList.remove("game-cards-v-display");
+
+        displayHButton.classList.remove("main-display-not-selected");
+        displayHButton.classList.add("main-display-selected");
+        displayVButton.classList.add("main-display-not-selected");
+        displayHButton.classList.remove("main-display-selected");
 
         let descripcionesCards = document.querySelectorAll(".game-card-description");
         for (let j = 0; j < descripcionesCards.length; j++) {
