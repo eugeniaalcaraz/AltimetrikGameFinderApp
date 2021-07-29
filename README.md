@@ -3,7 +3,7 @@
 How to initialize the app 
 
 Start Json Server Auth
-json-server db.json -m ./node_modules/json-server-auth
+json-server db.json -m ./node_modules/json-server-auth
 
 
 Accepted users for log in
