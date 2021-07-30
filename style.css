@@ -722,31 +722,44 @@
     .game-cards-h-display ul li {
         background-color: #303030;
         width: calc(100%/3 - 12px);
+        border: none;
         border-radius: 10px;
         margin-bottom: 24px;
         cursor: pointer;
+        justify-content: space-between;
+    }
+    
+    .game-card-image {
+        height: 205px;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
     }
     
     .game-card-image img {
         width: 100%;
-        height: 204px;
+        min-height: 100%;
         object-fit: cover;
         object-position: top;
         border-radius: 10px 10px 0 0;
     }
     
     .game-card-info-container {
+        align-self: center;
         display: flex;
-        justify-content: center;
-        margin: 20px auto;
+        justify-content: space-between;
+        box-sizing: border-box;
+        margin-top: 10px;
+        margin-bottom: 18px;
+        width: 90%;
+        flex-grow: 1;
     }
     
     .game-card-info-left {
-        padding-left: 20px;
         width: 70%;
         display: flex;
         flex-wrap: wrap;
-        align-content: center;
+        align-content: space-between;
     }
     
     .game-card-info-left h2 {
@@ -763,7 +776,6 @@
         justify-content: space-between;
         width: 100%;
         margin-top: 6px;
-        height: 19px;
         border-bottom: 1px solid #3D3D3D;
     }
     
@@ -773,11 +785,15 @@
         color: #939393;
     }
     
+    .game-card-p-container p:nth-child(2) {
+        text-align: end;
+        width: 60%;
+    }
+    
     .game-card-info-right {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        padding-right: 20px;
         align-items: right;
         align-content: center;
         justify-content: space-between;
@@ -787,7 +803,7 @@
         margin-top: 10px;
         margin-bottom: 0;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-content: center;
     }
     
@@ -834,8 +850,13 @@
         flex-wrap: wrap;
     }
     
+    .game-cards-v-display .game-card-image {
+        height: 58%;
+        overflow: hidden;
+    }
+    
     .game-cards-v-display img {
-        height: 300px;
+        object-fit: cover;
     }
     
     .game-cards-v-display ul {
@@ -849,16 +870,15 @@
     
     .game-cards-v-display ul li {
         background-color: #303030;
-        width: 697px;
+        width: 60%;
         border-radius: 10px;
         margin-bottom: 24px;
         cursor: pointer;
     }
     
     .game-cards-v-display .game-card-info-left {
-        padding-left: 40px;
-        margin-right: 40px;
-        width: 390px;
+        /* margin-right: 40px; */
+        width: 70%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -878,7 +898,6 @@
         display: flex;
         justify-content: space-between;
         width: 155px;
-        height: 19px;
         border-bottom: 1px solid #3D3D3D;
     }
     
@@ -888,8 +907,14 @@
         color: #FFFFFF;
     }
     
+    .game-cards-v-display .game-card-p-container {
+        flex-grow: 1;
+        margin-right: 40px;
+    }
+    
     .game-cards-v-display .game-card-description {
-        margin: 20px 74px 30px 39px;
+        margin-left: 5%;
+        width: 83%;
         font-size: 14px;
         line-height: 19px;
     }
@@ -1267,6 +1292,12 @@
         }
     }
     
+    @media screen and (max-width: 1199px) {
+        .game-cards-h-display ul li {
+            width: calc(100%/2 - 12px);
+        }
+    }
+    
     @media screen and (max-width: 1023px) {
         .header-container p {
             display: none;
@@ -1357,9 +1388,9 @@
         .game-cards-container {
             margin-left: 40px;
         }
-        .game-cards-h-display ul li {
+        /* .game-cards-h-display ul li {
             width: calc(100%/2 - 12px);
-        }
+        } */
         .game-cards-v-display ul {
             margin-top: 30px;
             margin-right: 40px;
@@ -1546,14 +1577,19 @@
         .game-cards-h-display ul li {
             width: 100%;
             border-radius: 0;
+            height: auto;
+        }
+        .game-card-image {
+            height: 51%;
         }
         .game-card-image img {
             border-radius: 0;
-            height: 60%;
+            object-fit: cover;
         }
         .game-card-info-container {
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
         .game-card-info-left {
             width: 75%;
@@ -1569,6 +1605,9 @@
         }
         .game-card-p-container {
             width: 100%;
+        }
+        .game-card-description {
+            display: none;
         }
         .modal-info {
             padding-top: 35px;
