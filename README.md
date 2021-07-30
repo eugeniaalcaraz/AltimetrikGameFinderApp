@@ -10,7 +10,7 @@
 - Add linux, mac & android platform icons
 - Amend Window scroll when clicking on a modal
 - ~~Active - Home anchor~~
-- Login carousel
+- ~~Login carousel~~
 - Login autocomplete styling
 - Show error messages when fetching doesnt work
 
@@ -21,6 +21,7 @@
 - Restrict description height
 - Add click event to the header "GameFinder" logo
 - Log out
+- Add click event to login carousel dots
 
 
 
@@ -46,6 +47,4 @@ Accepted users:
   "password": "hola"
 }
 ```
-
-
 

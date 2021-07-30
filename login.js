@@ -1,3 +1,6 @@
+let slides = document.querySelectorAll(".carousel-image");
+let dots = document.querySelectorAll(".dot");
+let slidePosition = 0;
 Events();
 
 function Events() {
@@ -6,6 +9,8 @@ function Events() {
     document.querySelector("#user-form").addEventListener("submit", LoadMain);
     document.querySelector("#login-input-pass").addEventListener("click", RemoveError);
     document.querySelector("#login-input-email").addEventListener("click", RemoveError);
+    StartCarousel();
+
 
 }
 
@@ -120,18 +125,31 @@ function RemoveError() {
 
 
 // --------------- Carrousel ---------------- //
-/* var slideIndex = 0;
-showSlides();
 
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
+function StartCarousel() {
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.opacity = "0%";
+
+
+    }
+    for (let j = 0; j < dots.length; j++) {
+        dots[j].classList.remove("dot-active");
+    }
+
+
+    document.slide.src = slides[slidePosition];
+
+    if (slidePosition < slides.length - 1) {
+        slidePosition++;
+    } else {
+        slidePosition = 0;
+    }
+
+
+    slides[slidePosition].style.opacity = "100%";
+    dots[slidePosition].classList.add("dot-active");
+
+
+    setTimeout(StartCarousel, 2500);
 }
-*/
