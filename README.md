@@ -12,7 +12,7 @@
 - Active - Home anchor
 - Login carousel
 - Login autocomplete styling
-
+- Show error messages when fetching doesnt work
 
 ## WISH LIST
 
