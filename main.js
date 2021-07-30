@@ -17,6 +17,7 @@ function Events() {
     document.querySelector("#searchbar").addEventListener("keyup", ReadSearch);
     displayVButton.addEventListener("click", VerticalDisplay);
     displayHButton.addEventListener("click", HorizontalDisplay);
+    document.querySelector("#home-anchor").classList.add("link-active");
 
 }
 
@@ -438,6 +439,7 @@ function ReadSearch(e) {
             searching = true;
             searchString = e.target.value;
             document.querySelector("#card-list").innerHTML = "";
+            document.querySelector("#home-anchor").classList.remove("link-active");
             page = 1;
             SearchGameByName(searchString);
             document.activeElement.blur();
