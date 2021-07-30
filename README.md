@@ -10,7 +10,8 @@
 - Add linux, mac & android platform icons
 - Amend Window scroll when clicking on a modal
 - Active - Home anchor
-
+- Login carousel
+- Login autocomplete styling
 
 
 ## WISH LIST
