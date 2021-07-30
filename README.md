@@ -5,11 +5,11 @@
 ## TO DO
 
 - Adjust css of Modal & cards
-- Add description & click event when searching
-- Amend page# when searching
+- ~~Add description & click event when searching~~
+- ~~Amend page# when searching~~
 - Add linux, mac & android platform icons
 - Amend Window scroll when clicking on a modal
-- Active - Home anchor
+- ~~Active - Home anchor~~
 - Login carousel
 - Login autocomplete styling
 - Show error messages when fetching doesnt work
@@ -46,4 +46,6 @@ Accepted users:
   "password": "hola"
 }
 ```
+
+
 
