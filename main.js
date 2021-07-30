@@ -1,4 +1,6 @@
 let page = 1;
+let searching = false;
+let searchString = "";
 let horizontal = true;
 let cardsDetails = [];
 let displayVButton = document.querySelector("#vertical-display-button");
@@ -39,9 +41,8 @@ function ShowCards(page) {
             GetGameDetails(cards);
             MakeCards(cards);
 
-        }
-        if (response.status === 400) {
-            console.log(response.status);
+        } else {
+            console.log(response.status); //show error
         }
     })
 
@@ -145,6 +146,7 @@ function MakeCards(cards) {
     CardsAddClickEvent();
     AddScrollEvent();
     page++;
+
 }
 
 function GetGameDetails(cards) {
@@ -433,7 +435,11 @@ function ReadSearch(e) {
     document.querySelector(".search-suggestions").innerHTML += `<p>${e.target.value}</p>`;
     if (e.keyCode === 13) {
         if (e.target.value.trim() !== "") {
-            SearchGameByName(e.target.value);
+            searching = true;
+            searchString = e.target.value;
+            document.querySelector("#card-list").innerHTML = "";
+            page = 1;
+            SearchGameByName(searchString);
             document.activeElement.blur();
         } else {
             console.log("vacio");
@@ -444,8 +450,8 @@ function ReadSearch(e) {
 function SearchGameByName(string) {
 
 
-    let uri = `https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10&search=${string}`;
-    document.querySelector("#card-list").innerHTML = "";
+    let uri = `https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10&page=${page}&page_size=30&search=${string}`;
+
 
     fetch(uri, {
         method: "GET",
@@ -464,7 +470,7 @@ function SearchGameByName(string) {
 
         }
         if (response.status === 400) {
-            console.log(response.status);
+            console.log(response.status); // show error message
         }
     })
 
@@ -481,7 +487,8 @@ function AddScrollEvent() {
         let percentageScrolled = Math.floor((scrolled / scrollHigh) * 100);
 
         if (percentageScrolled >= 60 && !(needMoreCards)) {
-            ShowCards(page);
+            if (!searching) ShowCards(page);
+            if (searching) SearchGameByName(searchString);
             needMoreCards = true;
         }
 
