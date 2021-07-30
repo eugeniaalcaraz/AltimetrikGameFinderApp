@@ -9,6 +9,8 @@ function Events() {
 
 }
 
+// --------------- Password visual control ---------------- //
+
 function ShowPass() {
     document.querySelector("#login-input-pass").setAttribute("type", "text");
     document.querySelector("#login-link-showPass").style.display = "none";
@@ -21,7 +23,7 @@ function HidePass() {
     document.querySelector("#login-link-hidePass").style.display = "none";
 }
 
-
+// --------------- Call to Json server & redirection to main ---------------- //
 function LoadMain(evt) {
 
     evt.preventDefault();
@@ -38,21 +40,16 @@ function LoadMain(evt) {
         document.querySelector("#pass-error-message").innerHTML = error;
         document.querySelector("#pass-container").classList.add("error");
         document.querySelector("#login-input-pass").classList.add("error");
-        //snackbarError.style.top = "-80px";
-
-
     }
+
     if (!EmailFromat(email)) {
         error = "Enter a valid email";
         document.querySelector("#email-error-message").innerHTML = error;
         document.querySelector("#email-container").classList.add("error");
         document.querySelector("#login-input-email").classList.add("error");
-        //snackbarError.style.top = "-80px";
-
     }
 
     if (error === "") {
-
         fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
@@ -66,7 +63,7 @@ function LoadMain(evt) {
 
         }).then(async(response) => {
             let responseText = await response.json();
-            console.log(responseText);
+            //console.log(responseText);
             if (response.status === 200) {
                 document.cookie = "authToken-" + responseText.accessToken;
                 //console.log(responseText);
@@ -74,8 +71,6 @@ function LoadMain(evt) {
                 setTimeout(function() {
                     window.location.href = "http://127.0.0.1:5500/main.html";
                 }, 1000)
-
-
             }
             if (response.status === 400) {
                 //console.log(responseText);
@@ -86,15 +81,12 @@ function LoadMain(evt) {
                 document.querySelector("#login-input-pass").classList.add("error");
                 document.querySelector("#email-container").classList.add("error");
                 document.querySelector("#login-input-email").classList.add("error");
-
             }
         })
-
     }
-
-
 }
 
+// --------------- Email validation ---------------- //
 function EmailFromat(email) {
     let valid = false;
     if (email.indexOf("@") > -1) {
@@ -107,6 +99,7 @@ function EmailFromat(email) {
     return valid;
 }
 
+// --------------- Clean input erros ---------------- //
 function RemoveError() {
 
     document.querySelector("#pass-container").classList.remove("error");
@@ -125,6 +118,8 @@ function RemoveError() {
 
 }
 
+
+// --------------- Carrousel ---------------- //
 /* var slideIndex = 0;
 showSlides();
 

@@ -12,101 +12,13 @@ function Events() {
     document.querySelector("#burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#nav-burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#search-icon").addEventListener("click", ShowSearchBar);
-    //CardsAddClickEvent();
     document.querySelector("#searchbar").addEventListener("keyup", ReadSearch);
     displayVButton.addEventListener("click", VerticalDisplay);
     displayHButton.addEventListener("click", HorizontalDisplay);
-    //document.querySelector("#searchbar").addEventListener("click", OpenSearchBar);
-}
-
-function VerticalDisplay() {
-    if (horizontal) {
-        let container = document.querySelector("#card-list-container");
-        container.classList.remove("game-cards-h-display");
-        container.classList.add("game-cards-v-display");
-
-
-        displayVButton.classList.remove("main-display-not-selected");
-        displayVButton.classList.add("main-display-selected");
-        displayHButton.classList.remove("main-display-selected");
-        displayHButton.classList.add("main-display-not-selected");
-
-
-
-        let descripcionesCards = document.querySelectorAll(".game-card-description");
-        for (let j = 0; j < descripcionesCards.length; j++) {
-            let card = descripcionesCards[j];
-            let cardId = card.getAttribute("numero");
-            card.classList.remove("hidden");
-            AddDescription(cardId);
-        }
-
-        horizontal = false;
-
-    }
-}
-
-function HorizontalDisplay() {
-    if (!horizontal) {
-        let container = document.querySelector("#card-list-container");
-        container.classList.add("game-cards-h-display");
-        container.classList.remove("game-cards-v-display");
-
-        displayHButton.classList.remove("main-display-not-selected");
-        displayHButton.classList.add("main-display-selected");
-        displayVButton.classList.add("main-display-not-selected");
-        displayHButton.classList.remove("main-display-selected");
-
-        let descripcionesCards = document.querySelectorAll(".game-card-description");
-        for (let j = 0; j < descripcionesCards.length; j++) {
-            descripcionesCards[j].classList.add("hidden");
-        }
-
-        horizontal = true;
-    }
-}
-
-function ReadSearch(e) {
-    console.log(e.target.value);
-    document.querySelector(".search-suggestions").innerHTML += `<p>${e.target.value}</p>`;
-    if (e.keyCode === 13) {
-        if (e.target.value.trim() !== "") {
-            SearchGameByName(e.target.value);
-            document.activeElement.blur();
-        } else {
-            console.log("vacio");
-        }
-    }
-}
-
-function SearchGameByName(string) {
-
-
-    let uri = `https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10&search=${string}`;
-    document.querySelector("#card-list").innerHTML = "";
-
-    fetch(uri, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "User-Agent": "Eugenia Alcaraz BFEDA"
-        },
-
-    }).then(async(response) => {
-        let cards = await response.json();
-
-        if (response.status === 200) {
-            GetGameDetails(cards);
-            MakeCards(cards);
-
-        }
-        if (response.status === 400) {
-            console.log(response.status);
-        }
-    })
 
 }
+
+// --------------- Cards ---------------- 
 
 function ShowCards(page) {
 
@@ -134,54 +46,6 @@ function ShowCards(page) {
     })
 
 }
-
-function GetGameDetails(cards) {
-
-    for (let i = 0; i < cards.results.length; i++) {
-        let gameId = cards.results[i].id;
-        let gamePics = cards.results[i].short_screenshots;
-        // validar que el Id no este en el array ya -- if (gameId)
-        let uri = `https://api.rawg.io/api/games/${gameId}?key=8854630ec3f74ac487342aced66aef10`;
-
-        fetch(uri, {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                "User-Agent": "Eugenia Alcaraz BFEDA"
-            },
-
-        }).then(async(response) => {
-            let game = await response.json();
-
-            if (response.status === 200) {
-
-                let oneGame = new Game();
-                oneGame.Id = gameId;
-                oneGame.Name = game.name;
-                oneGame.BackgroundPic = game.background_image;
-                oneGame.ReleaseDate = game.released;
-                oneGame.Genres = game.genres;
-                oneGame.Platforms = game.parent_platforms;
-                oneGame.Descr = game.description;
-                oneGame.Pics = gamePics;
-                oneGame.Developers = game.developers;
-                oneGame.Publishers = game.publishers;
-                oneGame.Age;
-                oneGame.Website = game.website;
-
-                cardsDetails.push(oneGame);
-            }
-
-            if (response.status === 400) {
-                console.log(response.status);
-            }
-        })
-    }
-
-
-}
-
 
 function MakeCards(cards) {
 
@@ -283,6 +147,53 @@ function MakeCards(cards) {
     page++;
 }
 
+function GetGameDetails(cards) {
+
+    for (let i = 0; i < cards.results.length; i++) {
+        let gameId = cards.results[i].id;
+        let gamePics = cards.results[i].short_screenshots;
+        // validar que el Id no este en el array ya -- if (gameId)
+        let uri = `https://api.rawg.io/api/games/${gameId}?key=8854630ec3f74ac487342aced66aef10`;
+
+        fetch(uri, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "User-Agent": "Eugenia Alcaraz BFEDA"
+            },
+
+        }).then(async(response) => {
+            let game = await response.json();
+
+            if (response.status === 200) {
+
+                let oneGame = new Game();
+                oneGame.Id = gameId;
+                oneGame.Name = game.name;
+                oneGame.BackgroundPic = game.background_image;
+                oneGame.ReleaseDate = game.released;
+                oneGame.Genres = game.genres;
+                oneGame.Platforms = game.parent_platforms;
+                oneGame.Descr = game.description;
+                oneGame.Pics = gamePics;
+                oneGame.Developers = game.developers;
+                oneGame.Publishers = game.publishers;
+                oneGame.Age;
+                oneGame.Website = game.website;
+
+                cardsDetails.push(oneGame);
+            }
+
+            if (response.status === 400) {
+                console.log(response.status);
+            }
+        })
+    }
+
+
+}
+
 function AddDescription(id) {
 
     let description = "-"
@@ -295,23 +206,6 @@ function AddDescription(id) {
     document.querySelector(`#description-of-${id}`).innerHTML = description;
 };
 
-function AddScrollEvent() {
-
-    let needMoreCards = false;
-    window.addEventListener("scroll", () => {
-
-        let scrollHigh = document.documentElement.scrollHeight - window.innerHeight;
-        let scrolled = window.scrollY;
-        let percentageScrolled = Math.floor((scrolled / scrollHigh) * 100);
-
-        if (percentageScrolled >= 60 && !(needMoreCards)) {
-            ShowCards(page);
-            needMoreCards = true;
-        }
-
-    });
-}
-
 function CardsAddClickEvent() {
 
     let cards = document.querySelectorAll(".card");
@@ -321,45 +215,7 @@ function CardsAddClickEvent() {
     }
 }
 
-function ShowNav() {
-
-    let nav = document.querySelector(".nav-aside");
-    let leaveNav = document.querySelector(".leave-nav");
-    if (nav.style.left !== "0px") {
-        nav.style.left = "0px";
-
-        leaveNav.classList.remove("hidden");
-        leaveNav.addEventListener("click", function() {
-            nav.style.left = "-1000px";
-            leaveNav.classList.add("hidden");
-        })
-    } else {
-        nav.style.left = "-1000px";
-        leaveNav.classList.add("hidden");
-    }
-
-
-}
-
-function ShowSearchBar() {
-
-    let header = document.querySelector("header");
-    if (header.style.height === "166px") {
-        header.style.height = "104px";
-
-    } else {
-        header.style.height = "166px";
-
-    }
-
-}
-
-function ShowModal() {
-    let gameId = Number(this.getAttribute("id"));
-    SearchGameById(gameId);
-    console.log(gameId);
-
-}
+// --------------- Modal -------------------- 
 
 function SearchGameById(id) {
 
@@ -369,29 +225,12 @@ function SearchGameById(id) {
             MakeModal(gameDetails);
         }
     }
+}
 
-    // let uri = `https://api.rawg.io/api/games/${id}?key=8854630ec3f74ac487342aced66aef10`
-
-    // fetch(uri, {
-    //     method: "GET",
-    //     headers: {
-    //         Accept: "application/json",
-    //         "Content-Type": "application/json",
-    //         "User-Agent": "Eugenia Alcaraz BFEDA"
-    //     },
-
-    // }).then(async(response) => {
-    //     let game = await response.json();
-
-    //     if (response.status === 200) {
-    //         MakeModal(game);
-
-
-    //     }
-    //     if (response.status === 400) {
-    //         console.log(response.status);
-    //     }
-    // })
+function ShowModal() {
+    let gameId = Number(this.getAttribute("id"));
+    SearchGameById(gameId);
+    console.log(gameId);
 
 }
 
@@ -585,4 +424,152 @@ function MakeModal(game) {
         modal.classList.add("hidden");
 
     })
+}
+
+// --------------- Search Functionallity ---------------- 
+
+function ReadSearch(e) {
+    console.log(e.target.value);
+    document.querySelector(".search-suggestions").innerHTML += `<p>${e.target.value}</p>`;
+    if (e.keyCode === 13) {
+        if (e.target.value.trim() !== "") {
+            SearchGameByName(e.target.value);
+            document.activeElement.blur();
+        } else {
+            console.log("vacio");
+        }
+    }
+}
+
+function SearchGameByName(string) {
+
+
+    let uri = `https://api.rawg.io/api/games?key=8854630ec3f74ac487342aced66aef10&search=${string}`;
+    document.querySelector("#card-list").innerHTML = "";
+
+    fetch(uri, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "User-Agent": "Eugenia Alcaraz BFEDA"
+        },
+
+    }).then(async(response) => {
+        let cards = await response.json();
+
+        if (response.status === 200) {
+            GetGameDetails(cards);
+            MakeCards(cards);
+
+        }
+        if (response.status === 400) {
+            console.log(response.status);
+        }
+    })
+
+}
+
+// ---------- Infinite Scroll ---------
+function AddScrollEvent() {
+
+    let needMoreCards = false;
+    window.addEventListener("scroll", () => {
+
+        let scrollHigh = document.documentElement.scrollHeight - window.innerHeight;
+        let scrolled = window.scrollY;
+        let percentageScrolled = Math.floor((scrolled / scrollHigh) * 100);
+
+        if (percentageScrolled >= 60 && !(needMoreCards)) {
+            ShowCards(page);
+            needMoreCards = true;
+        }
+
+    });
+}
+
+/////////////////////////////// VISUAL 
+
+//  ----- Displays ------- 
+
+function VerticalDisplay() {
+    if (horizontal) {
+        let container = document.querySelector("#card-list-container");
+        container.classList.remove("game-cards-h-display");
+        container.classList.add("game-cards-v-display");
+
+
+        displayVButton.classList.remove("main-display-not-selected");
+        displayVButton.classList.add("main-display-selected");
+        displayHButton.classList.remove("main-display-selected");
+        displayHButton.classList.add("main-display-not-selected");
+
+
+
+        let descripcionesCards = document.querySelectorAll(".game-card-description");
+        for (let j = 0; j < descripcionesCards.length; j++) {
+            let card = descripcionesCards[j];
+            let cardId = card.getAttribute("numero");
+            card.classList.remove("hidden");
+            AddDescription(cardId);
+        }
+
+        horizontal = false;
+
+    }
+}
+
+function HorizontalDisplay() {
+    if (!horizontal) {
+        let container = document.querySelector("#card-list-container");
+        container.classList.add("game-cards-h-display");
+        container.classList.remove("game-cards-v-display");
+
+        displayHButton.classList.remove("main-display-not-selected");
+        displayHButton.classList.add("main-display-selected");
+        displayVButton.classList.add("main-display-not-selected");
+        displayHButton.classList.remove("main-display-selected");
+
+        let descripcionesCards = document.querySelectorAll(".game-card-description");
+        for (let j = 0; j < descripcionesCards.length; j++) {
+            descripcionesCards[j].classList.add("hidden");
+        }
+
+        horizontal = true;
+    }
+}
+
+//  ------ Nav & search bar in small devices ------
+
+function ShowNav() {
+
+    let nav = document.querySelector(".nav-aside");
+    let leaveNav = document.querySelector(".leave-nav");
+    if (nav.style.left !== "0px") {
+        nav.style.left = "0px";
+
+        leaveNav.classList.remove("hidden");
+        leaveNav.addEventListener("click", function() {
+            nav.style.left = "-1000px";
+            leaveNav.classList.add("hidden");
+        })
+    } else {
+        nav.style.left = "-1000px";
+        leaveNav.classList.add("hidden");
+    }
+
+
+}
+
+function ShowSearchBar() {
+
+    let header = document.querySelector("header");
+    if (header.style.height === "166px") {
+        header.style.height = "104px";
+
+    } else {
+        header.style.height = "166px";
+
+    }
+
 }
