@@ -32,11 +32,11 @@ too hacky try to find another approach, if it is an animation you can change tha
 
 ## TO DO
 
-- Adjust css of Modal & cards
+- ~~Adjust css of Modal & cards~~
 - ~~Add description & click event when searching~~
 - ~~Amend page# when searching~~
 - Add linux, mac & android platform icons
-- Amend Window scroll when clicking on a modal
+- ~~Amend Window scroll when clicking on a modal~~
 - ~~Active - Home anchor~~
 - ~~Login carousel~~
 - Login autocomplete styling
