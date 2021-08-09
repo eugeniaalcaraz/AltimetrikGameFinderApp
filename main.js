@@ -2,6 +2,7 @@ let page = 1;
 let searching = false;
 let searchString = "";
 let horizontal = true;
+let modalOpen = false;
 let cardsDetails = [];
 let displayVButton = document.querySelector("#vertical-display-button");
 let displayHButton = document.querySelector("#horizontal-display-button");
@@ -145,7 +146,7 @@ function MakeCards(cards) {
 
     }
     CardsAddClickEvent();
-    //AddScrollEvent();
+    AddScrollEvent();
     page++;
 
 }
@@ -233,7 +234,7 @@ function SearchGameById(id) {
 function ShowModal() {
     let gameId = Number(this.getAttribute("id"));
     SearchGameById(gameId);
-    console.log(gameId);
+    modalOpen = true;
 
 }
 
@@ -321,7 +322,7 @@ function MakeModal(game) {
             <a href="">
                 Write a review<p><strong>+</strong></p>
             </a>
-        </div></div><figure class="modal-gallery">`;
+        </div><figure class="modal-gallery">`;
 
     for (let z = 0; z <= 4; z++) {
         let picture = game.Pics[z];
@@ -400,7 +401,7 @@ function MakeModal(game) {
                 <p>Website</p>
                 <a class="modal-detail-link">${game.Website}</a>
                 </div>`;
-    modalInfo += `</div></div>`;
+    modalInfo += `</div></div></div>`;
 
 
 
@@ -417,12 +418,14 @@ function MakeModal(game) {
         cardDisplay.classList.remove("hidden");
         modalBack.classList.add("hidden");
         modal.classList.add("hidden");
+        modalOpen = false;
 
     })
     modalBack.addEventListener("click", () => {
         cardDisplay.classList.remove("hidden");
         modalBack.classList.add("hidden");
         modal.classList.add("hidden");
+        modalOpen = false;
     });
 
     document.addEventListener("keyup", (e) => {
@@ -430,6 +433,7 @@ function MakeModal(game) {
             cardDisplay.classList.remove("hidden");
             modalBack.classList.add("hidden");
             modal.classList.add("hidden");
+            modalOpen = false;
         }
 
     });
@@ -490,24 +494,28 @@ function ChangeHeader(string) {
     document.querySelector("#main-header-descr").innerHTML = string;
 }
 
-// ---------- Infinite Scroll ---------
-// function AddScrollEvent() {
+//---------- Infinite Scroll ---------
+function AddScrollEvent() {
 
-//     let needMoreCards = false;
-//     window.addEventListener("scroll", () => {
+    let needMoreCards = false;
+    window.addEventListener("scroll", () => {
 
-//         let scrollHigh = document.documentElement.scrollHeight - window.innerHeight;
-//         let scrolled = window.scrollY;
-//         let percentageScrolled = Math.floor((scrolled / scrollHigh) * 100);
+        let scrollHigh = document.documentElement.scrollHeight - window.innerHeight;
+        let scrolled = window.scrollY;
+        let percentageScrolled = Math.floor((scrolled / scrollHigh) * 100);
 
-//         if (percentageScrolled >= 60 && !(needMoreCards)) {
-//             if (!searching) ShowCards(page);
-//             if (searching) SearchGameByName(searchString);
-//             needMoreCards = true;
-//         }
+        if (percentageScrolled >= 60 && !(needMoreCards) && !modalOpen) {
 
-//     });
-// }
+
+            if (!searching) ShowCards(page);
+            if (searching) SearchGameByName(searchString);
+            needMoreCards = true;
+
+
+        }
+
+    });
+}
 
 /////////////////////////////// VISUAL 
 
