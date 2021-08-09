@@ -1,21 +1,25 @@
 let page = 1;
 let searching = false;
+let searchSuggestion = false;
 let searchString = "";
 let horizontal = true;
 let modalOpen = false;
 let cardsDetails = [];
+
 let displayVButton = document.querySelector("#vertical-display-button");
 let displayHButton = document.querySelector("#horizontal-display-button");
 window.scrollTo(0, 0);
 
+
 Events();
+
 
 function Events() {
     ShowCards(page);
     document.querySelector("#burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#nav-burger-icon").addEventListener("click", ShowNav);
     document.querySelector("#search-icon").addEventListener("click", ShowSearchBar);
-    document.querySelector("#searchbar").addEventListener("keyup", ReadSearch);
+    document.querySelector("#searchbar").addEventListener("keyup", ReadSearchKey);
     displayVButton.addEventListener("click", VerticalDisplay);
     displayHButton.addEventListener("click", HorizontalDisplay);
     document.querySelector("#home-anchor").classList.add("link-active");
@@ -441,9 +445,9 @@ function MakeModal(game) {
 
 // --------------- Search Functionallity ---------------- 
 
-function ReadSearch(e) {
-    console.log(e.target.value);
-    document.querySelector(".search-suggestions").innerHTML += `<p>${e.target.value}</p>`;
+function ReadSearchKey(e) {
+
+
     if (e.keyCode === 13) {
         if (e.target.value.trim() !== "") {
             searching = true;
@@ -459,6 +463,39 @@ function ReadSearch(e) {
         }
     }
 }
+
+function searchSuggestions() {
+    let searchString = document.querySelector("#searchbar").value;
+    console.log(searchString);
+    searchSuggestion = true;
+    if (searchString !== "") {
+        SearchGameByName(searchString);
+    } else {
+        document.querySelector(".search-suggestions").innerHTML = "";
+    }
+
+}
+
+function debounce(fn, wait) {
+    var timeout;
+    var debounced = function() {
+        var args = arguments,
+            context = this;
+
+        function later() {
+            fn.apply(context, args);
+        }
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(later, wait);
+    }
+    return debounced;
+}
+
+var debouncedRead = debounce(searchSuggestions, 300);
+
+document.querySelector("#searchbar").addEventListener("keyup", debouncedRead);
 
 function SearchGameByName(string) {
 
@@ -478,8 +515,21 @@ function SearchGameByName(string) {
         let cards = await response.json();
 
         if (response.status === 200) {
-            GetGameDetails(cards);
-            MakeCards(cards);
+
+            if (!searchSuggestion) {
+                GetGameDetails(cards);
+                MakeCards(cards);
+            }
+            if (searchSuggestion) {
+                document.querySelector(".search-suggestions").innerHTML = "";
+                for (let i = 0; i < 3; i++) {
+                    let gameName = cards.results[i].name;
+                    document.querySelector(".search-suggestions").innerHTML += `<p>${gameName}</p>`;
+                }
+                searchSuggestion = false;
+
+            }
+
 
         }
         if (response.status === 400) {
