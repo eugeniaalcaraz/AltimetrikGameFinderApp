@@ -970,20 +970,28 @@
         width: 100%;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.784937);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
         transition: all 0.6s;
     }
     
     .modal-container {
+        width: 100%;
         display: flex;
         justify-content: center;
         transition: all 0.6s;
+        position: relative;
+        padding-top: 8%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0);
+        overflow: scroll;
     }
     
     .modal-background-img {
-        position: absolute;
         z-index: 999999;
-        top: 120px;
-        width: 1082px;
+        position: absolute;
     }
     
     .modal-background-img img {
@@ -994,17 +1002,16 @@
     .modal-info {
         border-radius: 10px;
         width: 1082px;
-        position: absolute;
         z-index: 999999;
-        top: 120px;
         background-image: linear-gradient(#303030be, #303030);
-        padding-top: 35px;
-        padding-left: 79px;
-        padding-right: 91px;
-        padding-bottom: 65px;
+        /* padding-top: 35px;
+        /*padding-left: 79px;
+        padding-right: 91px; */
+        height: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        position: relative;
     }
     
     .modal-tags,
@@ -1018,8 +1025,8 @@
     
     .modal-close {
         position: absolute;
-        right: 20px;
-        top: 20px;
+        right: 2%;
+        top: 2%;
         cursor: pointer;
     }
     
@@ -1035,8 +1042,8 @@
         height: 20px;
     }
     
-    .modal-logos {
-        margin-right: 12px;
+    .modal-logos-container svg {
+        padding-right: 15px;
     }
     
     .modal-info h1 {
@@ -1134,7 +1141,14 @@
     }
     
     .modal-description {
-        margin-bottom: 32px;
+        /* margin-bottom: 32px; */
+    }
+    
+    .container-for-responsive-display {
+        position: static;
+        width: 100%;
+        padding: 0;
+        margin: 0;
     }
     
     .modal-links-reviews {
@@ -1154,7 +1168,6 @@
         padding-left: 11px;
         padding-bottom: 12px;
         padding-top: 12px;
-        height: 40px;
         width: 140px;
         margin-right: 24px;
         margin-bottom: 32px;
@@ -1188,6 +1201,7 @@
         font-size: 12px;
         line-height: 16px;
         color: #939393;
+        background-color: #EDAE74;
     }
     
     .modal-bottom-links p {
@@ -1196,7 +1210,7 @@
     
     .modal-detail-container {
         width: 50%;
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
     }
     
     .modal-detail-container p:nth-child(2) {

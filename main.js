@@ -145,7 +145,7 @@ function MakeCards(cards) {
 
     }
     CardsAddClickEvent();
-    AddScrollEvent();
+    //AddScrollEvent();
     page++;
 
 }
@@ -312,7 +312,7 @@ function MakeModal(game) {
 
     </div>
 
-    <p class="modal-description">${game.Descr}</p>
+    <div class="modal-description">${game.Descr}</div>
     <div class="container-for-responsive-display">
         <div class="modal-links-reviews">
             <a href="">Leave a comment <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -321,7 +321,7 @@ function MakeModal(game) {
             <a href="">
                 Write a review<p><strong>+</strong></p>
             </a>
-        </div><figure class="modal-gallery">`;
+        </div></div><figure class="modal-gallery">`;
 
     for (let z = 0; z <= 4; z++) {
         let picture = game.Pics[z];
@@ -406,15 +406,12 @@ function MakeModal(game) {
                 <p>Website</p><a class="modal-detail-link">${game.Website}</a></div>
 
         </div>
-    </div>
-
-
     </div>`;
 
 
     modalBack.classList.remove("hidden");
     modal.classList.remove("hidden");
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
 
     modal.innerHTML += modalInfo;
     if (smallDispositives.matches) {
@@ -479,23 +476,23 @@ function SearchGameByName(string) {
 }
 
 // ---------- Infinite Scroll ---------
-function AddScrollEvent() {
+// function AddScrollEvent() {
 
-    let needMoreCards = false;
-    window.addEventListener("scroll", () => {
+//     let needMoreCards = false;
+//     window.addEventListener("scroll", () => {
 
-        let scrollHigh = document.documentElement.scrollHeight - window.innerHeight;
-        let scrolled = window.scrollY;
-        let percentageScrolled = Math.floor((scrolled / scrollHigh) * 100);
+//         let scrollHigh = document.documentElement.scrollHeight - window.innerHeight;
+//         let scrolled = window.scrollY;
+//         let percentageScrolled = Math.floor((scrolled / scrollHigh) * 100);
 
-        if (percentageScrolled >= 60 && !(needMoreCards)) {
-            if (!searching) ShowCards(page);
-            if (searching) SearchGameByName(searchString);
-            needMoreCards = true;
-        }
+//         if (percentageScrolled >= 60 && !(needMoreCards)) {
+//             if (!searching) ShowCards(page);
+//             if (searching) SearchGameByName(searchString);
+//             needMoreCards = true;
+//         }
 
-    });
-}
+//     });
+// }
 
 /////////////////////////////// VISUAL 
 
