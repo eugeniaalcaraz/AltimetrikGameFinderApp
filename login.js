@@ -74,7 +74,7 @@ function LoadMain(evt) {
                 //console.log(responseText);
                 snackbarSuccess.style.top = "-80px";
                 setTimeout(function() {
-                    window.location.href = "http://127.0.0.1:5500/main.html";
+                    window.location.href = "main.html";
                 }, 1000)
             }
             if (response.status === 400) {

@@ -975,6 +975,7 @@
         align-items: center;
         flex-wrap: nowrap;
         transition: all 0.6s;
+        cursor: pointer;
     }
     
     .modal-container {
@@ -983,50 +984,52 @@
         justify-content: center;
         transition: all 0.6s;
         position: relative;
-        padding-top: 8%;
+        padding-top: 100px;
         height: 100%;
         background-color: rgba(0, 0, 0, 0);
         overflow: scroll;
     }
     
     .modal-background-img {
-        z-index: 999999;
-        position: absolute;
+        z-index: 999997;
+        position: fixed;
+        left: 12.5%;
+        width: 75%;
     }
     
     .modal-background-img img {
-        width: 1082px;
+        max-height: 794px;
+        width: 100%;
         border-radius: 10px 10px 0 0;
     }
     
-    .modal-info {
-        border-radius: 10px;
-        width: 1082px;
+    .modal-header-container {
+        position: fixed;
+        height: 150px;
+        width: 75%;
         z-index: 999999;
-        background-image: linear-gradient(#303030be, #303030);
-        /* padding-top: 35px;
-        /*padding-left: 79px;
-        padding-right: 91px; */
-        height: 100%;
+        background-color: #303030be;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        position: relative;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-radius: 10px 10px 0 0;
+        padding-left: 80px;
+        cursor: auto;
     }
     
-    .modal-tags,
-    .modal-links-container,
-    .modal-description,
-    .modal-links-reviews,
-    .modal-bottom-links {
-        width: 50%;
-        margin-right: 60px;
+    .modal-header-container h1 {
+        width: 100%;
+        font-weight: 800;
+        font-size: 60px;
+        line-height: 82px;
+        text-align: left;
+        /* padding-bottom: 45px; */
     }
     
     .modal-close {
         position: absolute;
         right: 2%;
-        top: 2%;
+        top: 13%;
         cursor: pointer;
     }
     
@@ -1046,12 +1049,29 @@
         padding-right: 15px;
     }
     
-    .modal-info h1 {
-        width: 100%;
-        font-weight: 800;
-        font-size: 60px;
-        line-height: 82px;
-        margin-bottom: 45px;
+    .modal-info {
+        cursor: auto;
+        margin-top: 150px;
+        height: 645px;
+        border-radius: 0 0 10px 10px;
+        width: 75%;
+        z-index: 999998;
+        background-image: linear-gradient(#303030be, #303030);
+        padding-left: 80px;
+        padding-top: 44px;
+        padding-bottom: 65px;
+        display: flex;
+        flex-wrap: wrap;
+        position: fixed;
+        overflow: scroll;
+    }
+    
+    .modal-tags,
+    .modal-links-container,
+    .modal-description,
+    .modal-links-reviews,
+    .modal-bottom-links {
+        width: calc(50% + 10px);
     }
     
     .modal-tags {
@@ -1140,10 +1160,6 @@
         bottom: 12px;
     }
     
-    .modal-description {
-        /* margin-bottom: 32px; */
-    }
-    
     .container-for-responsive-display {
         position: static;
         width: 100%;
@@ -1154,6 +1170,8 @@
     .modal-links-reviews {
         display: flex;
         align-content: center;
+        margin-top: 32px;
+        margin-bottom: 32px;
     }
     
     .modal-links-reviews a {
@@ -1201,7 +1219,6 @@
         font-size: 12px;
         line-height: 16px;
         color: #939393;
-        background-color: #EDAE74;
     }
     
     .modal-bottom-links p {
@@ -1210,7 +1227,7 @@
     
     .modal-detail-container {
         width: 50%;
-        /* margin-bottom: 20px; */
+        margin-bottom: 20px;
     }
     
     .modal-detail-container p:nth-child(2) {
@@ -1225,14 +1242,14 @@
     }
     
     .modal-gallery {
-        width: 390px;
+        width: 36%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         align-content: flex-start;
         position: absolute;
         right: 8%;
-        top: 190px;
+        top: 44px;
     }
     
     .modal-first-video {

@@ -246,7 +246,7 @@ function MakeModal(game) {
     let modalInfo = "";
 
     modalInfo += `<figure class="modal-background-img"><img src="${game.BackgroundPic}" alt=""></figure>
-        <div class="modal-info">
+        <div class="modal-header-container">
         <a class="modal-close"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 8C16 10.1217 15.1571 12.1566 13.6569 13.6569C12.1566 15.1571 10.1217 16 8 16C5.87827 16 3.84344 15.1571 2.34315 13.6569C0.842855 12.1566 0 10.1217 0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0C10.1217 0 12.1566 0.842855 13.6569 2.34315C15.1571 3.84344 16 5.87827 16 8ZM5.354 4.646C5.26011 4.55211 5.13278 4.49937 5 4.49937C4.86722 4.49937 4.73989 4.55211 4.646 4.646C4.55211 4.73989 4.49937 4.86722 4.49937 5C4.49937 5.13278 4.55211 5.26011 4.646 5.354L7.293 8L4.646 10.646C4.59951 10.6925 4.56264 10.7477 4.53748 10.8084C4.51232 10.8692 4.49937 10.9343 4.49937 11C4.49937 11.0657 4.51232 11.1308 4.53748 11.1916C4.56264 11.2523 4.59951 11.3075 4.646 11.354C4.73989 11.4479 4.86722 11.5006 5 11.5006C5.06574 11.5006 5.13084 11.4877 5.19158 11.4625C5.25232 11.4374 5.30751 11.4005 5.354 11.354L8 8.707L10.646 11.354C10.6925 11.4005 10.7477 11.4374 10.8084 11.4625C10.8692 11.4877 10.9343 11.5006 11 11.5006C11.0657 11.5006 11.1308 11.4877 11.1916 11.4625C11.2523 11.4374 11.3075 11.4005 11.354 11.354C11.4005 11.3075 11.4374 11.2523 11.4625 11.1916C11.4877 11.1308 11.5006 11.0657 11.5006 11C11.5006 10.9343 11.4877 10.8692 11.4625 10.8084C11.4374 10.7477 11.4005 10.6925 11.354 10.646L8.707 8L11.354 5.354C11.4005 5.30751 11.4374 5.25232 11.4625 5.19158C11.4877 5.13084 11.5006 5.06574 11.5006 5C11.5006 4.93426 11.4877 4.86916 11.4625 4.80842C11.4374 4.74768 11.4005 4.69249 11.354 4.646C11.3075 4.59951 11.2523 4.56264 11.1916 4.53748C11.1308 4.51232 11.0657 4.49937 11 4.49937C10.9343 4.49937 10.8692 4.51232 10.8084 4.53748C10.7477 4.56264 10.6925 4.59951 10.646 4.646L8 7.293L5.354 4.646Z" fill="white"/>
         </svg></a>
@@ -283,7 +283,7 @@ function MakeModal(game) {
 
     }
     modalInfo += `</figure>
-    <h1>${game.Name}</h1>
+    <h1>${game.Name}</h1></div><div class="modal-info">
     <div class="modal-tags">
         <p>${game.ReleaseDate}</p>
         <p><strong class="bold-green">#1</strong>TOP 2021</p>
@@ -343,10 +343,10 @@ function MakeModal(game) {
 
     }
 
-    modalInfo += `</figure>
-        <div class="modal-bottom-links">
-            <div class="modal-detail-container">
-                <p>Plattforms</p><a class="modal-detail-link">`;
+    modalInfo += `</figure>`;
+    modalInfo += `<div class="modal-bottom-links">
+                    <div class="modal-detail-container">
+                        <p>Plattforms</p><a class="modal-detail-link">`;
 
 
     for (let h = 0; h < game.Platforms.length; h++) {
@@ -357,27 +357,17 @@ function MakeModal(game) {
         }
     }
 
+    modalInfo += `</a></div>`;
 
-    modalInfo += `</a>
-            </div>
-            <div class="modal-detail-container">
-                <p>Genre</p><a class="modal-detail-link">`;
-    for (let y = 0; y < game.Genres.length; y++) {
-        let genre = game.Genres[y];
-        modalInfo += `${genre.name}`;
-        if (y < game.Genres.length - 1) {
-            modalInfo += `, `;
-        }
-    }
+    modalInfo += `<div class="modal-detail-container">
+                     <p>Release date</p>
+                     <p>${game.ReleaseDate}</p>
+                 </div>`;
 
-    modalInfo += `</a>
-            </div>
-            <div class="modal-detail-container">
-                <p>Release date</p>
-                <p>${game.ReleaseDate}</p>
-            </div>
-            <div class="modal-detail-container">
-                <p>Developer</p><a class="modal-detail-link">`;
+    modalInfo += `<div class="modal-detail-container">
+                 <p>Developer</p><a class="modal-detail-link">`;
+
+
     for (let f = 0; f < game.Developers.length; f++) {
         let developer = game.Developers[f];
         modalInfo += `${developer.name}`;
@@ -385,10 +375,12 @@ function MakeModal(game) {
             modalInfo += `, `;
         }
     }
+    modalInfo += `</a></div>`;
 
-    modalInfo += `</a></div>
-            <div class="modal-detail-container">
-                <p>Publisher</p><a class="modal-detail-link">`;
+    modalInfo += `<div class="modal-detail-container">
+                 <p>Publisher</p><a class="modal-detail-link">`;
+
+
     for (let a = 0; a < game.Publishers.length; a++) {
         let publisher = game.Publishers[a];
         modalInfo += `${publisher.name}`;
@@ -397,21 +389,24 @@ function MakeModal(game) {
         }
     }
 
-    modalInfo += `</a></div>
-            <div class="modal-detail-container">
-                <p>Age rating</p>
-                <p>Not rated</p>
-            </div>
-            <div class="modal-detail-container">
-                <p>Website</p><a class="modal-detail-link">${game.Website}</a></div>
+    modalInfo += `</a></div>`;
 
-        </div>
-    </div>`;
+    modalInfo += `<div class="modal-detail-container">
+                     <p>Age rating</p>
+                     <p>Not rated</p>
+                </div>`;
+
+    modalInfo += `<div class="modal-detail-container">
+                <p>Website</p>
+                <a class="modal-detail-link">${game.Website}</a>
+                </div>`;
+    modalInfo += `</div></div>`;
+
 
 
     modalBack.classList.remove("hidden");
     modal.classList.remove("hidden");
-    //window.scrollTo(0, 0);
+
 
     modal.innerHTML += modalInfo;
     if (smallDispositives.matches) {
@@ -424,6 +419,20 @@ function MakeModal(game) {
         modal.classList.add("hidden");
 
     })
+    modalBack.addEventListener("click", () => {
+        cardDisplay.classList.remove("hidden");
+        modalBack.classList.add("hidden");
+        modal.classList.add("hidden");
+    });
+
+    document.addEventListener("keyup", (e) => {
+        if ((e.key = 'Escape')) {
+            cardDisplay.classList.remove("hidden");
+            modalBack.classList.add("hidden");
+            modal.classList.add("hidden");
+        }
+
+    });
 }
 
 // --------------- Search Functionallity ---------------- 
@@ -440,6 +449,7 @@ function ReadSearch(e) {
             page = 1;
             SearchGameByName(searchString);
             document.activeElement.blur();
+            ChangeHeader(searchString);
         } else {
             console.log("vacio");
         }
@@ -473,6 +483,11 @@ function SearchGameByName(string) {
         }
     })
 
+}
+
+function ChangeHeader(string) {
+    document.querySelector("#main-header").innerHTML = "Search Results";
+    document.querySelector("#main-header-descr").innerHTML = string;
 }
 
 // ---------- Infinite Scroll ---------
