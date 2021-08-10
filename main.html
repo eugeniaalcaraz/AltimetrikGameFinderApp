@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="generic.css" rel="stylesheet" type="text/css" />
+    <link href="main.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap" rel="stylesheet">
@@ -17,7 +18,7 @@
 <body>
     <header>
         <div class="header-container">
-            <p>GAME<strong class="bold">FINDER</strong></p>
+            <p class="header-title">GAME<strong class="bold">FINDER</strong></p>
             <img class="burger-menu-icon" id="burger-icon" src="img/Burger.png" alt="">
             <figure id="search-icon" class="header-search"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
                 <style type="text/css">
@@ -33,8 +34,8 @@
                 <div class="search-suggestions"></div>
             </div>
 
-            <div class="header-session-details"><a href="">Logout</a>
-                <a href=""><img src="img/box-arrow-right.svg" alt="Logout"></a>
+            <div class="header-session-details"><a id="logout-text">Logout</a>
+                <a id="logout-icon"><img src="img/box-arrow-right.svg" alt="Logout"></a>
                 <img src="img/user.png" alt=""></div>
 
         </div>
@@ -164,6 +165,7 @@
                 </figure>
             </div>
             <div id="card-list-container" class="game-cards-h-display">
+                <img src="img/loader.gif" alt="" class="loader">
                 <ul id="card-list">
 
                 </ul>

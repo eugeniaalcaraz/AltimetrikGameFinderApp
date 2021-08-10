@@ -1,35 +1,35 @@
 let slides = document.querySelectorAll(".carousel-image");
-let dots = document.querySelectorAll(".dot");
+let dots = document.querySelectorAll(".carousel-dot");
 let slidePosition = 0;
-Events();
+events();
 
-function Events() {
-    document.querySelector("#login-link-showPass").addEventListener("click", ShowPass);
-    document.querySelector("#login-link-hidePass").addEventListener("click", HidePass);
-    document.querySelector("#user-form").addEventListener("submit", LoadMain);
-    document.querySelector("#login-input-pass").addEventListener("click", RemoveError);
-    document.querySelector("#login-input-email").addEventListener("click", RemoveError);
-    StartCarousel();
+function events() {
+    document.querySelector("#login-link-showPass").addEventListener("click", showPass);
+    document.querySelector("#login-link-hidePass").addEventListener("click", hidePass);
+    document.querySelector("#user-form").addEventListener("submit", loadMain);
+    document.querySelector("#login-input-pass").addEventListener("click", removeError);
+    document.querySelector("#login-input-email").addEventListener("click", removeError);
+    startCarousel();
 
 
 }
 
 // --------------- Password visual control ---------------- //
 
-function ShowPass() {
+function showPass() {
     document.querySelector("#login-input-pass").setAttribute("type", "text");
     document.querySelector("#login-link-showPass").style.display = "none";
     document.querySelector("#login-link-hidePass").style.display = "block";
 }
 
-function HidePass() {
+function hidePass() {
     document.querySelector("#login-input-pass").setAttribute("type", "password");
     document.querySelector("#login-link-showPass").style.display = "block";
     document.querySelector("#login-link-hidePass").style.display = "none";
 }
 
 // --------------- Call to Json server & redirection to main ---------------- //
-function LoadMain(evt) {
+function loadMain(evt) {
 
     evt.preventDefault();
 
@@ -47,7 +47,7 @@ function LoadMain(evt) {
         document.querySelector("#login-input-pass").classList.add("error");
     }
 
-    if (!EmailFromat(email)) {
+    if (!emailFormat(email)) {
         error = "Enter a valid email";
         document.querySelector("#email-error-message").innerHTML = error;
         document.querySelector("#email-container").classList.add("error");
@@ -92,12 +92,12 @@ function LoadMain(evt) {
 }
 
 // --------------- Email validation ---------------- //
-function EmailFromat(email) {
+function emailFormat(email) {
     let valid = false;
     if (email.indexOf("@") > -1) {
-        let positionArroba = email.indexOf("@");
+        let positionAt = email.indexOf("@");
         let positionPunto = email.indexOf(".");
-        if (positionArroba < positionPunto) {
+        if (positionAt < positionPunto) {
             valid = true;
         }
     }
@@ -105,7 +105,7 @@ function EmailFromat(email) {
 }
 
 // --------------- Clean input erros ---------------- //
-function RemoveError() {
+function removeError() {
 
     document.querySelector("#pass-container").classList.remove("error");
     document.querySelector("#email-container").classList.remove("error");
@@ -119,24 +119,19 @@ function RemoveError() {
 
     snackbarError.style.top = "-500px";
     snackbarAlert.style.top = "-500px";
-
-
 }
 
 
 // --------------- Carrousel ---------------- //
 
-function StartCarousel() {
+function startCarousel() {
 
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.opacity = "0%";
-
-
     }
     for (let j = 0; j < dots.length; j++) {
         dots[j].classList.remove("dot-active");
     }
-
 
     document.slide.src = slides[slidePosition];
 
@@ -146,10 +141,8 @@ function StartCarousel() {
         slidePosition = 0;
     }
 
-
     slides[slidePosition].style.opacity = "100%";
     dots[slidePosition].classList.add("dot-active");
 
-
-    setTimeout(StartCarousel, 2500);
+    setTimeout(startCarousel, 2500);
 }

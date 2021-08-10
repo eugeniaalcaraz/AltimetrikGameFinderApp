@@ -1,0 +1,459 @@
+/* ------------------- Login --------------------- */
+
+.login {
+    width: 1083px;
+    height: 660px;
+    margin: 180px auto 184px;
+    display: flex;
+}
+
+
+/* ---------------- form ----------------- */
+
+.form-container {
+    height: 660px;
+    width: 630px;
+    background-color: var(--darkgrey);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+}
+
+.form-container form {
+    margin: 34px auto;
+}
+
+.form-container h1 {
+    font-size: 45px;
+    letter-spacing: 2.8px;
+    line-height: 61.28px;
+    text-align: center;
+}
+
+
+/* ---------------- Inputs ----------------- */
+
+.login-input {
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid var(--lightgrey);
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--lightgrey);
+    height: 50px;
+    width: 278px;
+    padding-left: 20px;
+    position: absolute;
+}
+
+.login-input-container {
+    width: 330px;
+    height: 52px;
+    margin-top: 25px;
+    margin-bottom: 32px;
+    border: 1px solid var(--lightgrey);
+    box-sizing: border-box;
+    border-radius: 8px;
+    position: relative;
+}
+
+.login-input-container:focus-within,
+.login-input:focus {
+    border-color: var(--white);
+    color: var(--white);
+    outline: none;
+}
+
+.login-input-container:active,
+.login-input:active {
+    border-color: var(--white);
+    color: var(--white);
+    outline: none;
+}
+
+.login-error-message {
+    color: var(--red);
+    font-size: 14px;
+    line-height: 19px;
+    position: absolute;
+    bottom: -26px;
+    left: 0;
+}
+
+.error {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+.error svg path {
+    fill: var(--red);
+}
+
+.login-input-container svg {
+    margin: 16px 15px 0 16px;
+    width: 20px;
+}
+
+#login-key {
+    margin-top: 22px;
+}
+
+.login-show-password,
+.login-hide-password {
+    width: 20px;
+    position: absolute;
+    cursor: pointer;
+    right: 14px;
+    top: 20px;
+}
+
+.login-chbox-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 47px;
+}
+
+.remember-me-chbox {
+    display: flex;
+    align-items: center;
+}
+
+#remember-me-anchor {
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--lightgrey);
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+}
+
+#remember-me-anchor:checked {
+    background: #7CD235 url(img/Vector.svg) no-repeat center;
+    border: none;
+}
+
+#remember-me-anchor:focus {
+    outline: none;
+    border-color: var(--white);
+}
+
+.remember-me-chbox label {
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--lightgrey);
+    padding-left: 10px;
+    padding-top: 2px;
+    justify-content: center;
+}
+
+
+/* ---------------- Login button ----------------- */
+
+.login-btn {
+    width: 100px;
+    height: 40px;
+    background: var(--gradient);
+    border-radius: 8px;
+    border: none;
+    box-shadow: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    transition: all 0s;
+}
+
+.login-btn:hover {
+    background: var(--lightgreen);
+    color: #FFFFFF;
+}
+
+.login-btn:active {
+    background: var(--gradient);
+    border: none;
+    outline: none;
+}
+
+.login-btn:focus {
+    background: var(--gradient);
+    border: 1px solid var(--white);
+    outline: none;
+}
+
+
+/* ---------------- Registration Links ----------------- */
+
+.login-register-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.login-register-links a,
+.login-register-links a:visited {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.login-register-links a:hover {
+    color: var(--lightgreen);
+}
+
+.login-register-links a:active {
+    color: var(--darkgreen);
+}
+
+
+/* ---------------- Division Line ----------------- */
+
+.divider {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.divider p {
+    margin: 0;
+    width: 61px;
+    height: 19px;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+    color: var(--white);
+}
+
+.division-line {
+    width: 134px;
+    height: 9px;
+    border-bottom: 1px solid var(--white);
+}
+
+
+/* ---------------- API Links ----------------- */
+
+.login-api-container {
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: 40px;
+    width: 240px;
+    margin-top: 20px;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.facebook-container {
+    background-color: #263C68;
+}
+
+.twitter-container {
+    background-color: #00ACED;
+}
+
+.google-container {
+    background-color: #C7C7C7;
+}
+
+.login-api-link,
+.login-api-link:hover {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 0 8px 8px 0;
+    box-sizing: border-box;
+    height: 40px;
+    width: 190px;
+    padding: 13px 13px 10px 8px;
+}
+
+.facebook-link {
+    background-color: #3B5998;
+}
+
+.twitter-link {
+    background-color: #0695CB;
+}
+
+.google-link {
+    background-color: #9D9D9D;
+}
+
+.api-icon img {
+    padding: 11px 13px 11px 13px;
+}
+
+
+/* ---------------- Login side image & carrousel ----------------- */
+
+.div-carousel {
+    position: relative;
+    height: 660px;
+    width: 453px;
+    overflow: hidden;
+}
+
+.div-carousel figure img {
+    height: 660px;
+    width: 453px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0 10px 10px 0;
+    position: absolute;
+    right: 0px;
+    opacity: 100%;
+    transition: all 0.6s;
+}
+
+#ul-carousel {
+    margin: 0;
+    padding: 0;
+    width: 453px;
+    position: absolute;
+    left: 187px;
+    bottom: 48px;
+}
+
+.carousel-dot {
+    cursor: pointer;
+    height: 7px;
+    width: 7px;
+    background-color: var(--white);
+    opacity: 30%;
+    border-radius: 50%;
+    margin: 0 4px;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot-active,
+.carousel-dot:hover {
+    background-color: var(--white);
+    opacity: 100%;
+}
+
+
+/* ---------------- Snackbars ----------------------------- */
+
+.snackbar {
+    width: 630px;
+    height: 40px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.25);
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    position: absolute;
+    top: -500px;
+    left: 225px;
+    transition: all 0.5s;
+}
+
+.snackbar p {
+    margin: 0;
+    padding: 0;
+}
+
+.snackbar img {
+    width: 16px;
+    cursor: pointer;
+}
+
+#snackbar-success {
+    background-color: #88DA44;
+}
+
+#snackbar-alert {
+    background-color: #EDAE74;
+}
+
+#snackbar-error {
+    background-color: #ED7474;
+}
+
+
+/* ---------------- Login responsive breakpoints ----------------- */
+
+@media screen and (max-width:1024px) {
+    .login {
+        width: 100%;
+        height: 1024px;
+        margin: 0;
+        background-color: var(--darkgrey);
+    }
+    #login-body {
+        background-color: var(--darkgrey);
+    }
+    .form-container {
+        margin: 70px auto 0px;
+    }
+    .div-carousel {
+        display: none;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .login {
+        width: 100%;
+        height: 100%;
+    }
+    #login-body {
+        background-color: var(--darkgrey);
+    }
+    .form-container {
+        margin: 10px auto 0px;
+    }
+    .form-container form {
+        margin-bottom: 0px;
+    }
+    .form-container h1 {
+        font-size: 35px;
+        line-height: 48px;
+    }
+    /* inputs */
+    .login-input {
+        width: 188px;
+        padding-left: 20px;
+        position: absolute;
+    }
+    .login-input-container {
+        width: 240px;
+        height: 52px;
+        margin: 32px auto;
+    }
+    .login-chbox-button-container {
+        margin-top: 15px;
+    }
+    .divider {
+        margin-top: 20px;
+    }
+    .division-line {
+        width: 89px;
+        height: 9px;
+        border-bottom: 1px solid var(--white);
+    }
+    .div-carousel {
+        display: none;
+    }
+}

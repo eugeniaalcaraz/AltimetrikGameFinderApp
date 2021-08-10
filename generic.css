@@ -1,0 +1,26 @@
+:root {
+    --white: #fff;
+    --black: #141414;
+    --darkgrey: #303030;
+    --lightgrey: #8F8F8F;
+    --darkgreen: #2BB34F;
+    --lightgreen: #7CD235;
+    --red: #E07979;
+    --gradient: linear-gradient(180deg, var(--lightgreen) 0%, var(--darkgreen) 100%);
+    /* Main */
+    --searchgrey: #A6A6A6;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    background-color: #141414;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.bold {
+    font-weight: 800;
+}
