@@ -6,7 +6,6 @@ let searchString = "";
 let horizontal = true;
 let modalOpen = false;
 let cardsDetails = [];
-
 let displayVButton = document.querySelector("#vertical-display-button");
 let displayHButton = document.querySelector("#horizontal-display-button");
 window.scrollTo(0, 0);
@@ -142,21 +141,7 @@ function makeCards(cards) {
 
         newCard += `<p>#${rating}</p>
         <a href="">
-            <figure><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-                       <style type="text/css">
-                           .st0{fill:#FFFFFF;}
-                       </style>
-                       <path class="st0" d="M8,4c0.3,0,0.5,0.2,0.5,0.5v3h3C11.8,7.5,12,7.7,12,8c0,0.3-0.2,0.5-0.5,0.5h-3v3C8.5,11.8,8.3,12,8,12
-                           c-0.3,0-0.5-0.2-0.5-0.5v-3h-3C4.2,8.5,4,8.3,4,8c0-0.3,0.2-0.5,0.5-0.5h3v-3C7.5,4.2,7.7,4,8,4z"/>
-                       </svg><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-                  <style type="text/css">
-                      .st0{fill:#FFFFFF;}
-                  </style>
-                  <path class="st0" d="M3,2.5C3,1.1,4.1,0,5.5,0S8,1.1,8,2.5C8,1.1,9.1,0,10.5,0S13,1.1,13,2.5v0c0,0.1,0,0.3,0,0.5h2c0.6,0,1,0.4,1,1
-                      v1c0,0.6-0.4,1-1,1H1C0.4,6,0,5.6,0,5V4c0-0.6,0.4-1,1-1h2C3,2.8,3,2.7,3,2.5L3,2.5z M4.1,3H7V2.5C7,1.7,6.3,1,5.5,1S4,1.7,4,2.5
-                      C4,2.6,4,2.8,4.1,3C4.1,3,4.1,3,4.1,3z M9,3h2.9c0,0,0,0,0-0.1c0-0.2,0-0.3,0-0.4C12,1.7,11.3,1,10.5,1S9,1.7,9,2.5V3z M15,7v7.5
-                      c0,0.8-0.7,1.5-1.5,1.5l0,0H9V7H15z M2.5,16C1.7,16,1,15.3,1,14.5l0,0V7h6v9H2.5z"/>
-                  </svg></figure>
+            <figure>${cardButtonSvgs}</figure>
                                 </a>
                             </div>
                         </div>`;
@@ -287,9 +272,7 @@ function makeModal(game) {
 
     modalInfo += `<figure class="modal-background-img"><img src="${game.BackgroundPic || "img/not_found.jpg"}" alt=""></figure>
         <div class="modal-header-container">
-        <a class="modal-close"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 8C16 10.1217 15.1571 12.1566 13.6569 13.6569C12.1566 15.1571 10.1217 16 8 16C5.87827 16 3.84344 15.1571 2.34315 13.6569C0.842855 12.1566 0 10.1217 0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0C10.1217 0 12.1566 0.842855 13.6569 2.34315C15.1571 3.84344 16 5.87827 16 8ZM5.354 4.646C5.26011 4.55211 5.13278 4.49937 5 4.49937C4.86722 4.49937 4.73989 4.55211 4.646 4.646C4.55211 4.73989 4.49937 4.86722 4.49937 5C4.49937 5.13278 4.55211 5.26011 4.646 5.354L7.293 8L4.646 10.646C4.59951 10.6925 4.56264 10.7477 4.53748 10.8084C4.51232 10.8692 4.49937 10.9343 4.49937 11C4.49937 11.0657 4.51232 11.1308 4.53748 11.1916C4.56264 11.2523 4.59951 11.3075 4.646 11.354C4.73989 11.4479 4.86722 11.5006 5 11.5006C5.06574 11.5006 5.13084 11.4877 5.19158 11.4625C5.25232 11.4374 5.30751 11.4005 5.354 11.354L8 8.707L10.646 11.354C10.6925 11.4005 10.7477 11.4374 10.8084 11.4625C10.8692 11.4877 10.9343 11.5006 11 11.5006C11.0657 11.5006 11.1308 11.4877 11.1916 11.4625C11.2523 11.4374 11.3075 11.4005 11.354 11.354C11.4005 11.3075 11.4374 11.2523 11.4625 11.1916C11.4877 11.1308 11.5006 11.0657 11.5006 11C11.5006 10.9343 11.4877 10.8692 11.4625 10.8084C11.4374 10.7477 11.4005 10.6925 11.354 10.646L8.707 8L11.354 5.354C11.4005 5.30751 11.4374 5.25232 11.4625 5.19158C11.4877 5.13084 11.5006 5.06574 11.5006 5C11.5006 4.93426 11.4877 4.86916 11.4625 4.80842C11.4374 4.74768 11.4005 4.69249 11.354 4.646C11.3075 4.59951 11.2523 4.56264 11.1916 4.53748C11.1308 4.51232 11.0657 4.49937 11 4.49937C10.9343 4.49937 10.8692 4.51232 10.8084 4.53748C10.7477 4.56264 10.6925 4.59951 10.646 4.646L8 7.293L5.354 4.646Z" fill="white"/>
-        </svg></a>
+        <a class="modal-close">${modalCloseSvg}</a>
     <figure class="modal-logos-container">`;
 
     for (let k = 0; k < game.Platforms.length; k++) {
@@ -317,7 +300,6 @@ function makeModal(game) {
         if (platform.slug.indexOf("android") > -1) {
             modalInfo += `${androidSvg}`;
         }
-
     }
     modalInfo += `</figure>
     <h1>${game.Name}</h1></div><div class="modal-info">
@@ -327,7 +309,6 @@ function makeModal(game) {
         <p><strong class="bold-green">#342</strong>RPG</p>
     </div>
     <div class="modal-links-container">
-
         <a href="" class="modal-link-transparent">
 
             <p>Where to<br><strong>buy</strong></p>
@@ -336,25 +317,13 @@ function makeModal(game) {
         </a>
         <a href="" class="modal-link-green">
             <p>Add to<br><strong>Wish list</strong></p>
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-                <style type="text/css">
-                .st0{fill:#FFFFFF;}
-                </style>
-                <path class="st0" d="M3,2.5C3,1.1,4.1,0,5.5,0S8,1.1,8,2.5C8,1.1,9.1,0,10.5,0S13,1.1,13,2.5v0c0,0.1,0,0.3,0,0.5h2c0.6,0,1,0.4,1,1
-                v1c0,0.6-0.4,1-1,1H1C0.4,6,0,5.6,0,5V4c0-0.6,0.4-1,1-1h2C3,2.8,3,2.7,3,2.5L3,2.5z M4.1,3H7V2.5C7,1.7,6.3,1,5.5,1S4,1.7,4,2.5
-                C4,2.6,4,2.8,4.1,3C4.1,3,4.1,3,4.1,3z M9,3h2.9c0,0,0,0,0-0.1c0-0.2,0-0.3,0-0.4C12,1.7,11.3,1,10.5,1S9,1.7,9,2.5V3z M15,7v7.5
-                c0,0.8-0.7,1.5-1.5,1.5l0,0H9V7H15z M2.5,16C1.7,16,1,15.3,1,14.5l0,0V7h6v9H2.5z"/>
-            </svg>
+            ${wishListSvg}
         </a>
-
     </div>
-
     <div class="modal-description">${game.Descr}</div>
     <div class="container-for-responsive-display">
         <div class="modal-links-reviews">
-            <a href="">Leave a comment <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 14C12.418 14 16 10.866 16 7C16 3.134 12.418 0 8 0C3.582 0 0 3.134 0 7C0 8.76 0.744 10.37 1.969 11.6C1.873 12.616 1.553 13.73 1.199 14.566C1.12 14.752 1.272 14.96 1.472 14.928C3.728 14.558 5.069 13.99 5.653 13.694C6.41859 13.8982 7.20765 14.0011 8 14ZM4 6C4.55228 6 5 6.44772 5 7C5 7.55228 4.55228 8 4 8C3.44772 8 3 7.55228 3 7C3 6.44772 3.44772 6 4 6ZM9 7C9 6.44772 8.55229 6 8 6C7.44772 6 7 6.44772 7 7C7 7.55228 7.44772 8 8 8C8.55229 8 9 7.55228 9 7ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7Z" fill="white"/>
-            </svg></a>
+            <a href="">Leave a comment ${leaveCommentSvg}</a>
             <a href="">
             <p>Write a review<strong>+</strong></p>
             </a>
@@ -372,9 +341,7 @@ function makeModal(game) {
             <img class="modal-last-image" src="${picture.image}" alt="">
             <span class="modal-viewMore">
         <p>View all</p>
-        <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 3.5C1.17157 3.5 0.5 2.82843 0.5 2C0.5 1.17157 1.17157 0.5 2 0.5C2.82843 0.5 3.5 1.17157 3.5 2C3.5 2.82843 2.82843 3.5 2 3.5ZM7 3.5C6.17157 3.5 5.5 2.82843 5.5 2C5.5 1.17157 6.17157 0.5 7 0.5C7.82843 0.5 8.5 1.17157 8.5 2C8.5 2.82843 7.82843 3.5 7 3.5ZM10.5 2C10.5 2.82843 11.1716 3.5 12 3.5C12.8284 3.5 13.5 2.82843 13.5 2C13.5 1.17157 12.8284 0.5 12 0.5C11.1716 0.5 10.5 1.17157 10.5 2Z" fill="white"/>
-            </svg></span></div>`;
+        ${viewAllSvg}</span></div>`;
         }
     }
 
@@ -392,7 +359,6 @@ function makeModal(game) {
     }
 
     modalInfo += `</a></div>`;
-
     modalInfo += `<div class="modal-detail-container">
         <p>Genre</p><a class="modal-detail-link">`;
 
@@ -413,7 +379,6 @@ function makeModal(game) {
     modalInfo += `<div class="modal-detail-container">
                  <p>Developer</p><a class="modal-detail-link">`;
 
-
     for (let f = 0; f < game.Developers.length; f++) {
         let developer = game.Developers[f];
         modalInfo += `${developer.name}`;
@@ -422,10 +387,8 @@ function makeModal(game) {
         }
     }
     modalInfo += `</a></div>`;
-
     modalInfo += `<div class="modal-detail-container">
                  <p>Publisher</p><a class="modal-detail-link">`;
-
 
     for (let a = 0; a < game.Publishers.length; a++) {
         let publisher = game.Publishers[a];
@@ -436,12 +399,10 @@ function makeModal(game) {
     }
 
     modalInfo += `</a></div>`;
-
     modalInfo += `<div class="modal-detail-container">
                      <p>Age rating</p>
                     <p>${game.Age.name}</p>
                 </div>`;
-
     modalInfo += `<div class="modal-detail-container">
                 <p>Website</p>
                 <a class="modal-detail-link">${game.Website}</a>
@@ -450,11 +411,12 @@ function makeModal(game) {
 
     modalBack.classList.remove("hidden");
     modal.classList.remove("hidden");
-
     modal.innerHTML += modalInfo;
+
     if (smallDispositives.matches) {
         cardDisplay.classList.add("hidden");
     }
+
     let closeModal = document.querySelector(".modal-close");
     closeModal.addEventListener("click", function() {
         cardDisplay.classList.remove("hidden");
@@ -533,7 +495,6 @@ function debounce(fn, wait) {
 }
 
 var debouncedRead = debounce(searchSuggestions, 300);
-
 document.querySelector("#searchbar").addEventListener("keyup", debouncedRead);
 
 function searchGameByName(string) {
@@ -632,7 +593,6 @@ function addScrollEvent() {
 /////////////////////////////// VISUAL 
 
 //  ----- Displays ------- 
-
 function verticalDisplay() {
     if (horizontal) {
         let container = document.querySelector("#card-list-container");
@@ -670,13 +630,11 @@ function horizontalDisplay() {
         for (let j = 0; j < descripcionesCards.length; j++) {
             descripcionesCards[j].classList.add("hidden");
         }
-
         horizontal = true;
     }
 }
 
 //  ------ Nav & search bar in small devices ------
-
 function showNav() {
 
     let nav = document.querySelector(".nav-aside");
