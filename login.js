@@ -1,6 +1,7 @@
 let slides = document.querySelectorAll(".carousel-image");
 let dots = document.querySelectorAll(".carousel-dot");
 let slidePosition = 0;
+
 events();
 
 function events() {
@@ -8,14 +9,16 @@ function events() {
     document.querySelector("#login-link-hidePass").addEventListener("click", hidePass);
     document.querySelector("#user-form").addEventListener("submit", loadMain);
     document.querySelector("#login-input-pass").addEventListener("click", removeError);
+    document.querySelector("#login-input-pass").addEventListener("blur", validatePass);
+    document.querySelector("#login-input-pass").innerHTML = "";
     document.querySelector("#login-input-email").addEventListener("click", removeError);
+    document.querySelector("#login-input-email").addEventListener("blur", validateEmail);
+    document.querySelector("#login-input-email").innerHTML = "";
     startCarousel();
-
-
+    addClickEventCarousel();
 }
 
 // --------------- Password visual control ---------------- //
-
 function showPass() {
     document.querySelector("#login-input-pass").setAttribute("type", "text");
     document.querySelector("#login-link-showPass").style.display = "none";
@@ -40,21 +43,7 @@ function loadMain(evt) {
     let snackbarAlert = document.querySelector("#snackbar-alert");
     let error = "";
 
-    if (password.length < 3) {
-        error = "Enter a valid password";
-        document.querySelector("#pass-error-message").innerHTML = error;
-        document.querySelector("#pass-container").classList.add("error");
-        document.querySelector("#login-input-pass").classList.add("error");
-    }
-
-    if (!emailFormat(email)) {
-        error = "Enter a valid email";
-        document.querySelector("#email-error-message").innerHTML = error;
-        document.querySelector("#email-container").classList.add("error");
-        document.querySelector("#login-input-email").classList.add("error");
-    }
-
-    if (error === "") {
+    if (validateEmail() && validatePass()) {
         fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
@@ -104,6 +93,34 @@ function emailFormat(email) {
     return valid;
 }
 
+function validateEmail() {
+    let email = document.querySelector("#login-input-email").value;
+    let error = "";
+    if (!emailFormat(email)) {
+        error = "Enter a valid email";
+        document.querySelector("#email-error-message").innerHTML = error;
+        document.querySelector("#email-container").classList.add("error");
+        document.querySelector("#login-input-email").classList.add("error");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validatePass() {
+    let password = document.querySelector("#login-input-pass").value;
+    let error = "";
+    if (password.length < 3) {
+        error = "Enter a valid password";
+        document.querySelector("#pass-error-message").innerHTML = error;
+        document.querySelector("#pass-container").classList.add("error");
+        document.querySelector("#login-input-pass").classList.add("error");
+        return false;
+    } else {
+        return true;
+    }
+}
+
 // --------------- Clean input erros ---------------- //
 function removeError() {
 
@@ -121,9 +138,7 @@ function removeError() {
     snackbarAlert.style.top = "-500px";
 }
 
-
 // --------------- Carrousel ---------------- //
-
 function startCarousel() {
 
     for (let i = 0; i < slides.length; i++) {
@@ -145,4 +160,33 @@ function startCarousel() {
     dots[slidePosition].classList.add("dot-active");
 
     setTimeout(startCarousel, 2500);
+}
+
+function changeSlide() {
+
+    let clickedButton = this.getAttribute("id");
+    slidePosition = clickedButton - 1;
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.opacity = "0%";
+    }
+    for (let j = 0; j < dots.length; j++) {
+        dots[j].classList.remove("dot-active");
+    }
+
+    document.slide.src = slides[slidePosition];
+
+    if (slidePosition < slides.length - 1) {
+        slidePosition++;
+    } else {
+        slidePosition = 0;
+    }
+    slides[slidePosition].style.opacity = "100%";
+    dots[slidePosition].classList.add("dot-active");
+}
+
+function addClickEventCarousel() {
+
+    dots.forEach((dot) => {
+        dot.addEventListener("click", changeSlide)
+    });
 }

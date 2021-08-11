@@ -24,3 +24,19 @@ body {
 .bold {
     font-weight: 800;
 }
+
+p::-moz-selection,
+input::-moz-selection,
+a::-moz-selection,
+h1::-moz-selection,
+strong::-moz-selection {
+    background: var(--lightgreen);
+}
+
+p::selection,
+input::selection,
+a::selection,
+h1::selection,
+strong::selection {
+    background: var(--lightgreen);
+}

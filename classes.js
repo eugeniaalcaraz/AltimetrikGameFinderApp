@@ -10,7 +10,7 @@ class Game {
         this.Pics = new Array();
         this.Developers = new Array();
         this.Publishers = new Array();
-        this.Age;
+        this.Age = new Array();;
         this.Website;
     }
 }
