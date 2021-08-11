@@ -36,8 +36,8 @@ function loadMain(evt) {
 
     evt.preventDefault();
 
-    let snackbarError = document.querySelector("#snackbar-error");
-    let snackbarSuccess = document.querySelector("#snackbar-success");
+    let snackbarError = document.querySelector(".snackbar-error");
+    let snackbarSuccess = document.querySelector(".snackbar-success");
     let error = "";
 
     if (validateEmail() && validatePass()) {
@@ -85,7 +85,7 @@ const callJsonServer = async() => {
     return data;
 };
 
-// --------------- Email validation ---------------- //
+// --------------- Validations ---------------- //
 function emailFormat(email) {
     let valid = false;
     if (email.indexOf("@") > -1) {
@@ -126,7 +126,7 @@ function validatePass() {
     }
 }
 
-// --------------- Clean input erros ---------------- //
+// --------------- Errors ---------------- //
 function removeError() {
 
     document.querySelector("#pass-container").classList.remove("error");
@@ -136,14 +136,12 @@ function removeError() {
     document.querySelector("#pass-error-message").innerHTML = "";
     document.querySelector("#email-error-message").innerHTML = "";
 
-    let snackbarError = document.querySelector("#snackbar-error");
-    let snackbarAlert = document.querySelector("#snackbar-alert");
-
+    let snackbarError = document.querySelector(".snackbar-error");
     snackbarError.style.top = "-500px";
-    snackbarAlert.style.top = "-500px";
+
 }
 
-// --------------- Carrousel ---------------- //
+// --------------- Carousel ---------------- //
 function startCarousel() {
 
     for (let i = 0; i < slides.length; i++) {

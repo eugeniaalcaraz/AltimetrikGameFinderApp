@@ -380,15 +380,15 @@
     cursor: pointer;
 }
 
-#snackbar-success {
+.snackbar-success {
     background-color: #88DA44;
 }
 
-#snackbar-alert {
+.snackbar-alert {
     background-color: #EDAE74;
 }
 
-#snackbar-error {
+.snackbar-error {
     background-color: #ED7474;
 }
 

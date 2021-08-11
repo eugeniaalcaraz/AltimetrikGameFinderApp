@@ -69,6 +69,7 @@ function makeCards(cards) {
 
     let newCard = "";
     let haveMac = false;
+    document.querySelector("#searchbar").value = "";
 
     for (let i = 0; i < cards.results.length; i++) {
         let card = cards.results[i];
@@ -345,7 +346,7 @@ function makeModal(game) {
         let picture = game.Pics[z];
 
         if (z === 0) {
-            modalInfo += `<img class="modal-first-video" src="${picture.image}" alt="">`;
+            modalInfo += `<img class="modal-first-video" src="img/video_placeholder.jpg" alt="">`;
         } else if (z > 0 && z < 4) {
             modalInfo += `<img class="modal-image" src="${picture.image}" alt=""></img>`;
         } else if (z === 4) {
@@ -460,7 +461,8 @@ function readSearchKey(e) {
 
     if (e.keyCode === 13) {
         if (e.target.value.trim() !== "") {
-            search(e.target.value);
+            string = e.target.value
+            search(string);
         } else {
             console.log("vacio");
         }
@@ -477,16 +479,16 @@ function suggestionsClickEvent() {
     }
 }
 
-function search(string) {
+function search(_string) {
     let smallDispositives = window.matchMedia("(max-width: 767px)");
     searching = true;
-    searchString = string;
+    searchString = _string;
     document.querySelector("#card-list").innerHTML = "";
     document.querySelector("#home-anchor").classList.remove("link-active");
     page = 1;
-    searchGameByName(string);
+    searchGameByName(_string);
     document.activeElement.blur();
-    changeHeader(string);
+    changeHeader(_string);
     document.querySelector(".loader").classList.remove("hidden");
     if (smallDispositives.matches) {
         showSearchBar();
@@ -498,7 +500,6 @@ function searchSuggestions() {
     console.log(searchString);
     searchSuggestion = true;
     if (searchString !== "") {
-
         searchGameByName(searchString);
     } else {
         document.querySelector(".search-suggestions").innerHTML = "";
@@ -532,6 +533,7 @@ function searchGameByName(string) {
         if (!searchSuggestion) {
             getGameDetails(data);
             makeCards(data);
+
         }
         if (searchSuggestion) {
             document.querySelector(".search-suggestions").innerHTML = "";

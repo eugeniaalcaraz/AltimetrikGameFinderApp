@@ -13,8 +13,8 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    color: #fff;
-    background-color: #141414;
+    color: var(--white);
+    background-color: var(--black);
 }
 
 .hidden {
