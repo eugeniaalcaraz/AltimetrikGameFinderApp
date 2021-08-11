@@ -7,7 +7,7 @@ events();
 function events() {
     document.querySelector("#login-link-showPass").addEventListener("click", showPass);
     document.querySelector("#login-link-hidePass").addEventListener("click", hidePass);
-    document.querySelector("#user-form").addEventListener("submit", loadMain);
+    document.querySelector("#user-form").addEventListener("submit", submitInfo);
     document.querySelector("#login-input-pass").addEventListener("click", removeError);
     document.querySelector("#login-input-pass").addEventListener("blur", validatePass);
     document.querySelector("#login-input-pass").innerHTML = "";
@@ -32,53 +32,107 @@ function hidePass() {
 }
 
 // --------------- Call to Json server & redirection to main ---------------- //
-function loadMain(evt) {
+// function loadMain(evt) {
+
+//     evt.preventDefault();
+
+
+//     let snackbarError = document.querySelector("#snackbar-error");
+//     let snackbarSuccess = document.querySelector("#snackbar-success");
+//     let snackbarAlert = document.querySelector("#snackbar-alert");
+//     let error = "";
+
+//     if (validateEmail() && validatePass()) {
+//         fetch("http://localhost:3000/login", {
+//             method: "POST",
+//             headers: {
+//                 Accept: "application/json",
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 email: `${email}`,
+//                 password: `${password}`,
+//             }),
+
+//         }).then(async(response) => {
+//             let responseText = await response.json();
+
+//             if (response.status === 200) {
+//                 document.cookie = "authToken-" + responseText.accessToken;
+
+//                 snackbarSuccess.style.top = "-80px";
+//                 setTimeout(function() {
+//                     window.location.href = "main.html";
+//                 }, 1000)
+//             }
+//             if (response.status === 400) {
+
+//                 snackbarError.style.top = "-80px";
+//                 error = "Incorrect email or password";
+//                 document.querySelector("#pass-error-message").innerHTML = error;
+//                 document.querySelector("#pass-container").classList.add("error");
+//                 document.querySelector("#login-input-pass").classList.add("error");
+//                 document.querySelector("#email-container").classList.add("error");
+//                 document.querySelector("#login-input-email").classList.add("error");
+//             }
+//         })
+//     }
+// }
+
+function submitInfo(evt) {
 
     evt.preventDefault();
 
-    let email = document.querySelector("#login-input-email").value;
-    let password = document.querySelector("#login-input-pass").value;
     let snackbarError = document.querySelector("#snackbar-error");
     let snackbarSuccess = document.querySelector("#snackbar-success");
     let snackbarAlert = document.querySelector("#snackbar-alert");
     let error = "";
 
     if (validateEmail() && validatePass()) {
-        fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: `${email}`,
-                password: `${password}`,
-            }),
+        callJsonServer().then(data => {
 
-        }).then(async(response) => {
-            let responseText = await response.json();
-            //console.log(responseText);
-            if (response.status === 200) {
-                document.cookie = "authToken-" + responseText.accessToken;
-                //console.log(responseText);
-                snackbarSuccess.style.top = "-80px";
-                setTimeout(function() {
-                    window.location.href = "main.html";
-                }, 1000)
-            }
-            if (response.status === 400) {
-                //console.log(responseText);
-                snackbarError.style.top = "-80px";
-                error = "Incorrect email or password";
-                document.querySelector("#pass-error-message").innerHTML = error;
-                document.querySelector("#pass-container").classList.add("error");
-                document.querySelector("#login-input-pass").classList.add("error");
-                document.querySelector("#email-container").classList.add("error");
-                document.querySelector("#login-input-email").classList.add("error");
-            }
-        })
+            document.cookie = "authToken-" + data.accessToken;
+            snackbarSuccess.style.top = "-80px";
+            setTimeout(function() {
+                window.location.href = "main.html";
+            }, 1000)
+
+        }).catch(err => {
+            snackbarError.style.top = "-80px";
+            error = "Incorrect email or password";
+            document.querySelector("#pass-error-message").innerHTML = error;
+            document.querySelector("#pass-container").classList.add("error");
+            document.querySelector("#login-input-pass").classList.add("error");
+            document.querySelector("#email-container").classList.add("error");
+            document.querySelector("#login-input-email").classList.add("error");
+        });
     }
 }
+
+const callJsonServer = async() => {
+
+    let email = document.querySelector("#login-input-email").value;
+    let password = document.querySelector("#login-input-pass").value;
+
+    const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            email: `${email}`,
+            password: `${password}`,
+        })
+    });
+
+    if (response.status !== 200) {
+        throw new Error();
+    }
+
+    const data = await response.json();
+    return data;
+};
 
 // --------------- Email validation ---------------- //
 function emailFormat(email) {
