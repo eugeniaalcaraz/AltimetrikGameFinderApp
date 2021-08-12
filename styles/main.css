@@ -535,9 +535,8 @@
          transition: all 0.6s;
          position: relative;
          padding-top: 100px;
-         height: 100%;
+         height: 1024px;
          background-color: rgba(0, 0, 0, 0);
-         overflow: scroll;
      }
      
      .modal-background-img {
@@ -573,6 +572,7 @@
          font-size: 60px;
          line-height: 82px;
          text-align: left;
+         text-overflow: ellipsis;
      }
      
      .modal-close {
@@ -616,6 +616,16 @@
          flex-wrap: wrap;
          position: fixed;
          overflow: scroll;
+     }
+     
+     .modal-description {
+         height: 90px;
+         overflow: scroll;
+     }
+     
+     .modal-description p {
+         height: 90px;
+         text-overflow: ellipsis;
      }
      
      .modal-tags,
@@ -723,7 +733,6 @@
          display: flex;
          align-content: center;
          margin-top: 32px;
-         margin-bottom: 32px;
      }
      
      .modal-links-reviews a {
@@ -765,7 +774,7 @@
      }
      
      .modal-bottom-links {
-         height: 100%;
+         /* height: 100%; */
          display: flex;
          flex-wrap: wrap;
          align-content: flex-start;
@@ -1014,6 +1023,7 @@
          .modal-header-container h1 {
              margin-bottom: 0;
              padding-bottom: 0;
+             text-overflow: ellipsis;
          }
          .modal-close {
              position: absolute;
@@ -1025,6 +1035,14 @@
              height: 25px;
              width: 25px;
          }
+         .modal-tags {
+             height: 27px;
+             width: 100%;
+         }
+         .modal-tags p {
+             height: 27px;
+             text-overflow: ellipsis;
+         }
          .modal-info {
              z-index: 999998;
              cursor: auto;
@@ -1034,7 +1052,7 @@
              top: 270px;
              padding-top: 44px;
              margin-top: 0;
-             overflow: scroll;
+             align-content: flex-start;
          }
          .modal-links-container,
          .modal-description {

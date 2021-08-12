@@ -47,7 +47,7 @@ function showCards() {
 
 async function getCards() {
 
-    let uri = `https://api.rawg.io/api/games?key=3c49833921b74137a3967c6723ac9167&page=${page}`;
+    let uri = `https://api.rawg.io/api/games?key=3c49833921b74137a3967c6723ac9167&page=${page}s`;
 
     const response = await fetch(uri, {
         method: "GET",
@@ -489,6 +489,8 @@ function search(_string) {
     searchGameByName(_string);
     document.activeElement.blur();
     changeHeader(_string);
+    document.querySelector(".fetch-error").classList.add("hidden");
+    document.querySelector(".fetch-error-description").innerHTML = "";
     document.querySelector(".loader").classList.remove("hidden");
     if (smallDispositives.matches) {
         showSearchBar();
