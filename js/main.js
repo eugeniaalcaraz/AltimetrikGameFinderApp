@@ -47,7 +47,7 @@ function showCards() {
 
 async function getCards() {
 
-    let uri = `https://api.rawg.io/api/games?key=3c49833921b74137a3967c6723ac9167&page=${page}s`;
+    let uri = `https://api.rawg.io/api/games?key=3c49833921b74137a3967c6723ac9167&page=${page}`;
 
     const response = await fetch(uri, {
         method: "GET",
