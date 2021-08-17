@@ -342,14 +342,13 @@ function makeModal(game) {
             </a>
         </div><figure class="modal-gallery">`;
 
-    for (let z = 0; z <= 4; z++) {
+    modalInfo += `<img class="modal-first-video" src="img/video_placeholder.jpg" alt="">`;
+    for (let z = 0; z <= 3; z++) {
         let picture = game.Pics[z];
 
-        if (z === 0) {
-            modalInfo += `<img class="modal-first-video" src="img/video_placeholder.jpg" alt="">`;
-        } else if (z > 0 && z < 4) {
+        if (z < 3) {
             modalInfo += `<img class="modal-image" src="${picture.image}" alt=""></img>`;
-        } else if (z === 4) {
+        } else if (z === 3) {
             modalInfo += `<div class="modal-image">
             <img class="modal-last-image" src="${picture.image}" alt="">
             <span class="modal-viewMore">
@@ -403,22 +402,28 @@ function makeModal(game) {
     modalInfo += `<div class="modal-detail-container">
                  <p>Publisher</p><a class="modal-detail-link">`;
 
-    for (let a = 0; a < game.Publishers.length; a++) {
-        let publisher = game.Publishers[a];
-        modalInfo += `${publisher.name}`;
-        if (a < game.Publishers.length - 1) {
-            modalInfo += `, `;
+    if (game.Publishers.length > 0) {
+        for (let a = 0; a < game.Publishers.length; a++) {
+            let publisher = game.Publishers[a];
+            modalInfo += `${publisher.name}`;
+            if (a < game.Publishers.length - 1) {
+                modalInfo += `, `;
+            }
         }
+    } else {
+        modalInfo += `No registered publishers`;
     }
+
 
     modalInfo += `</a></div>`;
     modalInfo += `<div class="modal-detail-container">
                      <p>Age rating</p>
-                    <p>${game.Age.name}</p>
+
+                    <p>${game.Age!=null? game.Age.name : "Not rated"}</p>
                 </div>`;
     modalInfo += `<div class="modal-detail-container">
                 <p>Website</p>
-                <a class="modal-detail-link">${game.Website}</a>
+                <a class="modal-detail-link">${game.Website || "No website registered"}</a>
                 </div>`;
     modalInfo += `</div></div></div>`;
 
@@ -438,7 +443,7 @@ function makeModal(game) {
         modalOpen = false;
 
     })
-    modalBack.addEventListener("click", () => {
+    modalBack.addEventListener("click", function() {
         cardDisplay.classList.remove("hidden");
         modalBack.classList.add("hidden");
         modal.classList.add("hidden");
@@ -463,8 +468,6 @@ function readSearchKey(e) {
         if (e.target.value.trim() !== "") {
             string = e.target.value
             search(string);
-        } else {
-            console.log("vacio");
         }
     }
 }
@@ -499,7 +502,7 @@ function search(_string) {
 
 function searchSuggestions() {
     let searchString = document.querySelector("#searchbar").value;
-    console.log(searchString);
+    //console.log(searchString);
     searchSuggestion = true;
     if (searchString !== "") {
         searchGameByName(searchString);

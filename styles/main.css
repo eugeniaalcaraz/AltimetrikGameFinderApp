@@ -1130,6 +1130,9 @@
              overflow: hidden;
              transition: all 0.6s;
          }
+         .header-container svg path {
+             fill: var(--white);
+         }
          .header-searchbar {
              margin-top: 23px;
          }
