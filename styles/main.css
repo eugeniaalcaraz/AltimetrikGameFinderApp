@@ -319,13 +319,17 @@
          font-weight: 800;
          font-size: 23px;
          line-height: 31px;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
      }
      
      .game-card-p-container {
          display: flex;
          justify-content: space-between;
          width: 100%;
-         margin-top: 6px;
+         height: 20px;
+         margin-top: 6.5px;
          border-bottom: 1px solid #3D3D3D;
      }
      
@@ -333,6 +337,10 @@
          font-size: 12px;
          line-height: 16px;
          color: #939393;
+         height: 16px;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
      }
      
      .game-card-p-container p:nth-child(2) {
@@ -448,8 +456,12 @@
      .game-cards-v-display .game-card-p-container {
          display: flex;
          justify-content: space-between;
-         width: 155px;
+         width: 25%;
          border-bottom: 1px solid #3D3D3D;
+     }
+     
+     .game-cards-v-display .game-card-p-container p {
+         width: calc(50% - 8px);
      }
      
      .game-cards-v-display .game-card-p-container p:nth-child(2) {
@@ -535,7 +547,7 @@
          transition: all 0.6s;
          position: relative;
          padding-top: 100px;
-         height: 1024px;
+         height: 100%;
          background-color: rgba(0, 0, 0, 0);
      }
      
@@ -547,14 +559,16 @@
      }
      
      .modal-background-img img {
-         max-height: 794px;
+         max-height: 790px;
          width: 100%;
          border-radius: 10px 10px 0 0;
+         object-fit: cover;
+         object-position: top;
      }
      
      .modal-header-container {
          position: fixed;
-         height: 150px;
+         height: 145px;
          width: 75%;
          z-index: 999999;
          background-color: #303030be;
@@ -564,15 +578,19 @@
          border-radius: 10px 10px 0 0;
          padding-left: 80px;
          cursor: auto;
+         overflow: hidden;
      }
      
      .modal-header-container h1 {
-         width: 100%;
+         width: 95%;
+         height: 80px;
          font-weight: 800;
          font-size: 60px;
          line-height: 82px;
          text-align: left;
          text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
      }
      
      .modal-close {
@@ -603,19 +621,19 @@
      
      .modal-info {
          cursor: auto;
-         margin-top: 150px;
-         height: 645px;
+         margin-top: 145px;
+         height: 65%;
          border-radius: 0 0 10px 10px;
          width: 75%;
          z-index: 999998;
          background-image: linear-gradient(#303030be, #303030);
          padding-left: 80px;
          padding-top: 44px;
-         padding-bottom: 65px;
          display: flex;
          flex-wrap: wrap;
          position: fixed;
          overflow: scroll;
+         align-content: flex-start;
      }
      
      .modal-description {
@@ -624,8 +642,8 @@
      }
      
      .modal-description p {
-         height: 90px;
-         text-overflow: ellipsis;
+         margin: 0;
+         padding: 0;
      }
      
      .modal-tags,
@@ -646,10 +664,14 @@
          font-size: 16px;
          color: #303030;
          margin-right: 20px;
+         margin-bottom: 0;
          padding-left: 8px;
          padding-right: 8px;
          padding-bottom: 2px;
          text-align: center;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
      }
      
      .modal-tags p:nth-child(1) {
@@ -691,6 +713,9 @@
      
      .modal-links-container p {
          text-align: left;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
      }
      
      .modal-link-transparent {
@@ -774,14 +799,12 @@
      }
      
      .modal-bottom-links {
-         /* height: 100%; */
          display: flex;
          flex-wrap: wrap;
          align-content: flex-start;
          font-size: 12px;
          line-height: 16px;
          color: #939393;
-         margin-bottom: 65px;
      }
      
      .modal-bottom-links p {
@@ -811,7 +834,7 @@
          justify-content: space-between;
          align-content: flex-start;
          position: absolute;
-         right: 8%;
+         right: 6%;
          top: 44px;
      }
      
@@ -824,6 +847,8 @@
          height: 104px;
          margin-top: 16px;
          position: relative;
+         object-fit: cover;
+         object-position: top;
      }
      
      .modal-last-image {
@@ -1049,7 +1074,7 @@
              height: 100%;
              width: 100%;
              padding-left: 30px;
-             top: 270px;
+             top: 265px;
              padding-top: 44px;
              margin-top: 0;
              align-content: flex-start;
@@ -1259,8 +1284,8 @@
              width: 100%;
              padding-left: 40px;
              padding-right: 40px;
-             top: 254px;
-             padding-top: 44px;
+             top: 249px;
+             padding-top: 36px;
              margin-top: 0;
              overflow: scroll;
              justify-content: space-between;
@@ -1278,6 +1303,7 @@
          .modal-tags p {
              padding-left: 3px;
              padding-right: 3px;
+             margin-bottom: 15px;
              width: 125px;
              box-sizing: border-box;
          }
@@ -1291,7 +1317,7 @@
          }
          .modal-links-container a,
          .modal-links-container a:visited {
-             margin-bottom: 0;
+             margin-bottom: 10px;
              margin-right: 0;
          }
          .modal-link-transparent,

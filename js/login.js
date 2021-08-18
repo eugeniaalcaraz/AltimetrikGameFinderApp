@@ -1,6 +1,9 @@
 let slides = document.querySelectorAll(".carousel-image");
 let dots = document.querySelectorAll(".carousel-dot");
 let slidePosition = 0;
+let snackbarError = document.querySelector(".snackbar-error");
+let snackbarSuccess = document.querySelector(".snackbar-success");
+let snackbarAlert = document.querySelector(".snackbar-alert");
 
 events();
 
@@ -16,6 +19,7 @@ function events() {
     document.querySelector("#login-input-email").innerHTML = "";
     startCarousel();
     addClickEventCarousel();
+    addSnackbarClickEvent();
 }
 
 // --------------- Password visual control ---------------- //
@@ -35,9 +39,6 @@ function hidePass() {
 function loadMain(evt) {
 
     evt.preventDefault();
-
-    let snackbarError = document.querySelector(".snackbar-error");
-    let snackbarSuccess = document.querySelector(".snackbar-success");
     let error = "";
 
     if (validateEmail() && validatePass()) {
@@ -107,9 +108,10 @@ function validateEmail() {
         document.querySelector("#email-container").classList.add("error");
         document.querySelector("#login-input-email").classList.add("error");
         return false;
-    } else {
-        return true;
     }
+    snackbarError.style.top = "-500px";
+    return true;
+
 }
 
 function validatePass() {
@@ -121,24 +123,34 @@ function validatePass() {
         document.querySelector("#pass-container").classList.add("error");
         document.querySelector("#login-input-pass").classList.add("error");
         return false;
-    } else {
-        return true;
     }
+    snackbarError.style.top = "-500px";
+    return true;
+
 }
 
 // --------------- Errors ---------------- //
 function removeError() {
-
     document.querySelector("#pass-container").classList.remove("error");
     document.querySelector("#email-container").classList.remove("error");
     document.querySelector("#login-input-pass").classList.remove("error");
     document.querySelector("#login-input-email").classList.remove("error");
     document.querySelector("#pass-error-message").innerHTML = "";
     document.querySelector("#email-error-message").innerHTML = "";
-
-    let snackbarError = document.querySelector(".snackbar-error");
     snackbarError.style.top = "-500px";
+}
 
+function addSnackbarClickEvent() {
+    let snackbarExitButtons = document.querySelectorAll(".exit-snackbar");
+    for (let i = 0; i < snackbarExitButtons.length; i++) {
+        snackbarExitButtons[i].addEventListener("click", closeSnackbar);
+    }
+}
+
+function closeSnackbar() {
+    snackbarError.style.top = "-500px";
+    snackbarSuccess.style.top = "-500px";
+    snackbarAlert.style.top = "-500px";
 }
 
 // --------------- Carousel ---------------- //
