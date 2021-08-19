@@ -283,6 +283,8 @@ function showModal() {
     let gameId = Number(this.getAttribute("id"));
     searchGameById(gameId);
     modalOpen = true;
+    document.body.style.overflowY = "hidden";
+
 }
 
 function makeModal(game) {
@@ -451,33 +453,31 @@ function makeModal(game) {
         cardDisplay.classList.add("hidden");
     }
 
-    let closeModal = document.querySelector(".modal-close");
-    closeModal.addEventListener("click", function() {
-        cardDisplay.classList.remove("hidden");
-        modalBack.classList.add("hidden");
-        modal.classList.add("hidden");
-        modalOpen = false;
+    let closeModalIcon = document.querySelector(".modal-close");
+    closeModalIcon.addEventListener("click", function() {
+        closeModal();
 
     })
     modalBack.addEventListener("click", function() {
-        cardDisplay.classList.remove("hidden");
-        modalBack.classList.add("hidden");
-        modal.classList.add("hidden");
-        modalOpen = false;
+        closeModal();
     });
 
     document.addEventListener("keyup", (e) => {
         if ((e.key = 'Escape')) {
-            cardDisplay.classList.remove("hidden");
-            modalBack.classList.add("hidden");
-            modal.classList.add("hidden");
-            modalOpen = false;
+            closeModal();
         }
     });
+
+    function closeModal() {
+        cardDisplay.classList.remove("hidden");
+        modalBack.classList.add("hidden");
+        modal.classList.add("hidden");
+        modalOpen = false;
+        document.body.style.overflowY = "scroll";
+    }
 }
 
 // --------------- Search Functionallity ---------------- 
-
 function readSearchKey(e) {
 
     if (e.keyCode === 13) {
@@ -518,7 +518,6 @@ function search(_string) {
 
 function searchSuggestions() {
     let searchString = document.querySelector("#searchbar").value;
-    //console.log(searchString);
     searchSuggestion = true;
     if (searchString !== "") {
         searchGameByName(searchString);

@@ -633,13 +633,13 @@
          display: flex;
          flex-wrap: wrap;
          position: fixed;
-         overflow: scroll;
+         overflow-y: scroll;
          align-content: flex-start;
      }
      
      .modal-description {
          height: 90px;
-         overflow: scroll;
+         overflow-y: scroll;
      }
      
      .modal-description p {
@@ -1043,7 +1043,6 @@
              padding-left: 30px;
              padding-top: 40px;
              cursor: auto;
-             overflow: scroll;
              justify-content: flex-start;
          }
          .modal-header-container h1 {
@@ -1288,7 +1287,7 @@
              top: 249px;
              padding-top: 36px;
              margin-top: 0;
-             overflow: scroll;
+             overflow-y: scroll;
              justify-content: space-between;
          }
          .modal-tags,
@@ -1300,6 +1299,7 @@
              align-items: center;
              justify-content: space-between;
              margin-bottom: 0;
+             height: 110px;
          }
          .modal-tags p {
              padding-left: 3px;
@@ -1307,6 +1307,7 @@
              margin-bottom: 15px;
              width: 125px;
              box-sizing: border-box;
+             height: 27px;
          }
          .modal-tags p:last-child {
              margin-bottom: 0;
@@ -1331,6 +1332,7 @@
          .modal-description {
              width: 100%;
              margin-top: 32px;
+             height: 187px;
          }
          .container-for-responsive-display {
              height: 100%;
