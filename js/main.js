@@ -8,6 +8,13 @@ let modalOpen = false;
 let cardsDetails = [];
 let displayVButton = document.querySelector("#vertical-display-button");
 let displayHButton = document.querySelector("#horizontal-display-button");
+let mobileDevice = window.matchMedia("(max-width: 767px)");
+let tabletDevice = window.matchMedia("(max-width: 1023px)");
+let laptopDevice = window.matchMedia("(max-width: 1279px)");
+let desktopDevice = window.matchMedia("(max-width: 1439px)");
+let bigScreenDevice = window.matchMedia("(min-width: 1440px)");
+
+
 window.scrollTo(0, 0);
 
 events();
@@ -73,15 +80,23 @@ function makeCards(cards) {
 
     for (let i = 0; i < cards.results.length; i++) {
         let card = cards.results[i];
-
+        let nameLength = card.name.length;
         newCard = `<li class="card" id="${card.id}">
         <figure class="game-card-image">
             <img src="${card.background_image || "img/not_found.jpg"}" alt="">
         </figure>
         <div class="game-card-info-container">
-            <div class="game-card-info-left">
-            <h2>${card.name}</h2>
-            <div class="game-card-p-container">
+            <div class="game-card-info-left">`;
+
+        if (((mobileDevice || bigScreenDevice) && nameLength > 20) || ((tabletDevice || desktopDevice) && nameLength > 15) || (laptopDevice && nameLength > 10)) {
+
+            newCard += `<h2 class="show-text" text-content="${card.name}">${card.name}</h2>`;
+
+        } else {
+            newCard += `<h2>${card.name}</h2>`;
+        }
+
+        newCard += `<div class="game-card-p-container">
                 <p>Release date</p>`;
 
         let releasedDate = new Date(card.released);
@@ -161,6 +176,7 @@ function makeCards(cards) {
         newCard += `</p></li>`;
         document.querySelector(".loader").classList.add("hidden");
         document.querySelector("#card-list").innerHTML += newCard;
+
     }
     cardsAddClickEvent();
     addScrollEvent();
@@ -170,6 +186,7 @@ function makeCards(cards) {
         stopScrolling = true;
     }
 }
+
 
 function getGameDetails(cards) {
 
@@ -272,7 +289,6 @@ function makeModal(game) {
     let modalBack = document.querySelector(".modal-black");
     let modal = document.querySelector(".modal-container");
     let cardDisplay = document.querySelector(".game-cards-container");
-    let smallDispositives = window.matchMedia("(max-width: 1023px)");
     modal.innerHTML = "";
     let modalInfo = "";
     let haveMac = false;
@@ -431,7 +447,7 @@ function makeModal(game) {
     modal.classList.remove("hidden");
     modal.innerHTML += modalInfo;
 
-    if (smallDispositives.matches) {
+    if (tabletDevice.matches) {
         cardDisplay.classList.add("hidden");
     }
 
@@ -483,7 +499,7 @@ function suggestionsClickEvent() {
 }
 
 function search(_string) {
-    let smallDispositives = window.matchMedia("(max-width: 767px)");
+
     searching = true;
     searchString = _string;
     document.querySelector("#card-list").innerHTML = "";
@@ -495,7 +511,7 @@ function search(_string) {
     document.querySelector(".fetch-error").classList.add("hidden");
     document.querySelector(".fetch-error-description").innerHTML = "";
     document.querySelector(".loader").classList.remove("hidden");
-    if (smallDispositives.matches) {
+    if (mobileDevice.matches) {
         showSearchBar();
     }
 }
@@ -588,8 +604,8 @@ function growHeaderContainer() {
 
     let header = document.querySelector("header");
     let headerContainer = document.querySelector(".header-container");
-    let smallDispositives = window.matchMedia("(max-width: 767px)");
-    if (smallDispositives.matches) {
+
+    if (mobileDevice.matches) {
         header.style.height = "290px";
         headerContainer.style.overflow = "visible";
     }

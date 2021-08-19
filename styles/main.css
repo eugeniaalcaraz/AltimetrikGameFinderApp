@@ -310,6 +310,7 @@
          display: flex;
          flex-wrap: wrap;
          align-content: space-between;
+         position: relative;
      }
      
      .game-card-info-left h2 {
@@ -1403,4 +1404,33 @@
      
      .fetch-error img {
          height: 180px;
+     }
+     /* Tool tips*/
+     
+     .show-text:after {
+         opacity: 0;
+         font-style: normal;
+         font-weight: normal;
+         font-size: 12px;
+         line-height: 16px;
+         visibility: hidden;
+         position: absolute;
+         content: attr(text-content);
+         padding: 6px 10px;
+         top: -40%;
+         left: 50%;
+         transform: translateX(-50%) translateY(-50%);
+         background: var(--darkgrey);
+         color: var(--white);
+         white-space: nowrap;
+         z-index: 2;
+         border-radius: 2px;
+         transition: opacity 0.6s cubic-bezier(.64, .09, .08, 1), transform 0.6s cubic-bezier(.64, .09, .08, 1);
+     }
+     
+     .show-text:hover:after {
+         display: block;
+         opacity: 1;
+         visibility: visible;
+         transform: translateX(-50%) translateY(0);
      }
