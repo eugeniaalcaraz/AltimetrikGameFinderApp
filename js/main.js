@@ -13,8 +13,6 @@ let tabletDevice = window.matchMedia("(max-width: 1023px)");
 let laptopDevice = window.matchMedia("(max-width: 1279px)");
 let desktopDevice = window.matchMedia("(max-width: 1439px)");
 let bigScreenDevice = window.matchMedia("(min-width: 1440px)");
-
-
 window.scrollTo(0, 0);
 
 events();
@@ -31,6 +29,7 @@ function events() {
     document.querySelector("#logout-text").addEventListener("click", logout);
     document.querySelector("#logout-icon").addEventListener("click", logout);
     document.querySelector("#searchbar").addEventListener("click", growHeaderContainer);
+
 }
 
 // --------------- Cards ---------------- 

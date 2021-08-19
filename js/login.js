@@ -5,6 +5,7 @@ let snackbarError = document.querySelector(".snackbar-error");
 let snackbarSuccess = document.querySelector(".snackbar-success");
 let snackbarAlert = document.querySelector(".snackbar-alert");
 
+
 events();
 
 function events() {
@@ -45,13 +46,13 @@ function loadMain(evt) {
         callJsonServer().then(data => {
 
             document.cookie = "authToken-" + data.accessToken;
-            snackbarSuccess.style.top = "-80px";
+            snackbarSuccess.classList.add("show-snackbar");
             setTimeout(function() {
                 window.location.href = "main.html";
             }, 1000)
 
         }).catch(err => {
-            snackbarError.style.top = "-80px";
+            snackbarError.classList.add("show-snackbar");
             error = "Incorrect email or password";
             document.querySelector("#pass-error-message").innerHTML = error;
             document.querySelector("#pass-container").classList.add("error");
@@ -109,7 +110,7 @@ function validateEmail() {
         document.querySelector("#login-input-email").classList.add("error");
         return false;
     }
-    snackbarError.style.top = "-500px";
+    snackbarError.classList.remove("show-snackbar");
     return true;
 
 }
@@ -124,7 +125,7 @@ function validatePass() {
         document.querySelector("#login-input-pass").classList.add("error");
         return false;
     }
-    snackbarError.style.top = "-500px";
+    snackbarError.classList.remove("show-snackbar");
     return true;
 
 }
@@ -137,7 +138,7 @@ function removeError() {
     document.querySelector("#login-input-email").classList.remove("error");
     document.querySelector("#pass-error-message").innerHTML = "";
     document.querySelector("#email-error-message").innerHTML = "";
-    snackbarError.style.top = "-500px";
+    snackbarError.classList.remove("show-snackbar");
 }
 
 function addSnackbarClickEvent() {
@@ -148,9 +149,9 @@ function addSnackbarClickEvent() {
 }
 
 function closeSnackbar() {
-    snackbarError.style.top = "-500px";
-    snackbarSuccess.style.top = "-500px";
-    snackbarAlert.style.top = "-500px";
+    snackbarError.classList.remove("show-snackbar");
+    snackbarSuccess.classList.remove("show-snackbar");
+    snackbarAlert.classList.remove("show-snackbar");
 }
 
 // --------------- Carousel ---------------- //
