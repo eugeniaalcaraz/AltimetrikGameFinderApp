@@ -23,6 +23,7 @@ function events() {
     document.querySelector("#nav-burger-icon").addEventListener("click", showNav);
     document.querySelector("#search-icon").addEventListener("click", showSearchBar);
     document.querySelector("#searchbar").addEventListener("keyup", readSearchKey);
+    document.querySelector("#searchbar").addEventListener("blur", showSearchBar);
     displayVButton.addEventListener("click", verticalDisplay);
     displayHButton.addEventListener("click", horizontalDisplay);
     document.querySelector("#home-anchor").classList.add("link-active");
@@ -483,6 +484,7 @@ function readSearchKey(e) {
         if (e.target.value.trim() !== "") {
             string = e.target.value
             search(string);
+            document.activeElement.blur();
         }
     }
 }
@@ -505,7 +507,6 @@ function search(_string) {
     document.querySelector("#home-anchor").classList.remove("link-active");
     page = 1;
     searchGameByName(_string);
-    document.activeElement.blur();
     changeHeader(_string);
     document.querySelector(".fetch-error").classList.add("hidden");
     document.querySelector(".fetch-error-description").innerHTML = "";
@@ -684,15 +685,17 @@ function showNav() {
     let leaveNav = document.querySelector(".leave-nav");
     if (nav.style.left !== "0px") {
         nav.style.left = "0px";
-
         leaveNav.classList.remove("hidden");
         leaveNav.addEventListener("click", function() {
             nav.style.left = "-1000px";
             leaveNav.classList.add("hidden");
+
         })
+
     } else {
         nav.style.left = "-1000px";
         leaveNav.classList.add("hidden");
+
     }
 }
 
@@ -700,8 +703,9 @@ function showSearchBar() {
 
     let header = document.querySelector("header");
     let headerContainer = document.querySelector(".header-container");
-    if (header.style.height >= "166px") {
+    if (header.style.height > "104px" && header.style.height <= "166px") {
         header.style.height = "104px";
+        document.querySelector(".search-suggestions").innerHTML = "";
 
         setTimeout(function() {
             headerContainer.style.overflow = "hidden";
