@@ -93,7 +93,7 @@
      #waiting-spinner {
          position: absolute;
          left: 80%;
-         top: 70%;
+         top: 68%;
          width: 50px;
          align-self: baseline;
          justify-self: center;
@@ -112,11 +112,17 @@
          transition: all 0.3s;
          height: 22px;
          overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
      }
      
      .search-suggestions p:hover {
          font-size: 18px;
          color: #7CD235;
+     }
+     
+     .search-suggestions p:last-child {
+         width: 80%;
      }
      
      .header-session-details {

@@ -578,7 +578,7 @@ function searchGameByName(string) {
         if (searchSuggestion) {
             document.querySelector(".search-suggestions").innerHTML = "";
             let waitingSearch = document.querySelector("#waiting-spinner");
-            waitingSearch.classList.add("hidden");
+            waitingSearch.classList.remove("hidden");
             let searchSpinner = document.querySelector("#search-spinner");
             searchSpinner.classList.add("hidden");
             for (let i = 0; i < 3; i++) {
