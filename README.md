@@ -17,7 +17,7 @@ Accepted users:
 }
 ```
 
-- Open gameFinder folder in visual Studio Code, and run login.html in live server.
+Open gameFinder folder in visual Studio Code, and run login.html in live server.
 
 ![How to go live](img/run_the_app.png)
 

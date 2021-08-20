@@ -22,8 +22,10 @@ function events() {
     document.querySelector("#burger-icon").addEventListener("click", showNav);
     document.querySelector("#nav-burger-icon").addEventListener("click", showNav);
     document.querySelector("#search-icon").addEventListener("click", showSearchBar);
-    document.querySelector("#searchbar").addEventListener("keyup", readSearchKey);
-    document.querySelector("#searchbar").addEventListener("blur", showSearchBar);
+    document.querySelector("#searchbar").addEventListener("input", readSearchKey);
+    document.querySelector("#searchbar").addEventListener("keyup", searchWithEnterKey);
+    document.querySelector("#searchbar").addEventListener("focus", showSearchSpinner);
+    document.querySelector("#searchbar").addEventListener("blur", closeSearchBar);
     displayVButton.addEventListener("click", verticalDisplay);
     displayHButton.addEventListener("click", horizontalDisplay);
     document.querySelector("#home-anchor").classList.add("link-active");
@@ -480,6 +482,18 @@ function makeModal(game) {
 // --------------- Search Functionallity ---------------- 
 function readSearchKey(e) {
 
+    let waitingSearch = document.querySelector("#waiting-spinner");
+    waitingSearch.classList.add("hidden");
+    let searchSpinner = document.querySelector("#search-spinner");
+    searchSpinner.classList.remove("hidden");
+
+    if (e.target.value.trim() === "") {
+        waitingSearch.classList.remove("hidden");
+        searchSpinner.classList.add("hidden");
+    }
+}
+
+function searchWithEnterKey(e) {
     if (e.keyCode === 13) {
         if (e.target.value.trim() !== "") {
             string = e.target.value
@@ -495,6 +509,7 @@ function suggestionsClickEvent() {
     for (let i = 0; i < suggestionsText.length; i++) {
         suggestionsText[i].addEventListener("click", function() {
             search(suggestionsText[i].id);
+            closeSearchBar();
         });
     }
 }
@@ -524,6 +539,11 @@ function searchSuggestions() {
     } else {
         document.querySelector(".search-suggestions").innerHTML = "";
     }
+}
+
+function showSearchSpinner() {
+    let waitingSearch = document.querySelector("#waiting-spinner");
+    waitingSearch.classList.remove("hidden");
 }
 
 function debounce(fn, wait) {
@@ -557,6 +577,10 @@ function searchGameByName(string) {
         }
         if (searchSuggestion) {
             document.querySelector(".search-suggestions").innerHTML = "";
+            let waitingSearch = document.querySelector("#waiting-spinner");
+            waitingSearch.classList.add("hidden");
+            let searchSpinner = document.querySelector("#search-spinner");
+            searchSpinner.classList.add("hidden");
             for (let i = 0; i < 3; i++) {
                 let gameName = data.results[i].name;
                 document.querySelector(".search-suggestions").innerHTML += `<p class="suggestion" id="${gameName}">${gameName}</p>`;
@@ -695,26 +719,30 @@ function showNav() {
     } else {
         nav.style.left = "-1000px";
         leaveNav.classList.add("hidden");
-
     }
 }
 
 function showSearchBar() {
-
     let header = document.querySelector("header");
-    let headerContainer = document.querySelector(".header-container");
     if (header.style.height > "104px" && header.style.height <= "166px") {
-        header.style.height = "104px";
-        document.querySelector(".search-suggestions").innerHTML = "";
-
-        setTimeout(function() {
-            headerContainer.style.overflow = "hidden";
-        }, 600)
-
+        closeSearchBar();
     } else {
         header.style.height = "166px";
-
     }
+}
+
+function closeSearchBar() {
+    let waitingSearch = document.querySelector("#waiting-spinner");
+    let searchSpinner = document.querySelector("#search-spinner");
+    waitingSearch.classList.add("hidden");
+    searchSpinner.classList.add("hidden");
+    let header = document.querySelector("header");
+    let headerContainer = document.querySelector(".header-container");
+    header.style.height = "104px";
+    setTimeout(function() {
+        headerContainer.style.overflow = "hidden";
+        document.querySelector(".search-suggestions").innerHTML = "";
+    }, 600)
 }
 
 function logout() {

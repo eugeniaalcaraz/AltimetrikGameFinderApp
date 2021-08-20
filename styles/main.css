@@ -89,6 +89,20 @@
          flex-direction: column;
      }
      
+     #search-spinner,
+     #waiting-spinner {
+         position: absolute;
+         left: 80%;
+         top: 70%;
+         width: 50px;
+         align-self: baseline;
+         justify-self: center;
+     }
+     
+     #waiting-spinner {
+         top: 75%;
+     }
+     
      .search-suggestions p {
          font-size: 16px;
          line-height: 22px;
