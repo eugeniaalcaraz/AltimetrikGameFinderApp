@@ -13,9 +13,11 @@ function events() {
     document.querySelector("#login-link-hidePass").addEventListener("click", hidePass);
     document.querySelector("#user-form").addEventListener("submit", loadMain);
     document.querySelector("#login-input-pass").addEventListener("click", removeError);
+    document.querySelector("#login-input-pass").addEventListener("focus", removeError);
     document.querySelector("#login-input-pass").addEventListener("blur", validatePass);
     document.querySelector("#login-input-pass").innerHTML = "";
     document.querySelector("#login-input-email").addEventListener("click", removeError);
+    document.querySelector("#login-input-email").addEventListener("focus", removeError);
     document.querySelector("#login-input-email").addEventListener("blur", validateEmail);
     document.querySelector("#login-input-email").innerHTML = "";
     startCarousel();

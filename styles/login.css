@@ -387,7 +387,8 @@
 }
 
 .show-snackbar {
-    top: -80px;
+    top: -10%;
+    z-index: 2;
 }
 
 .snackbar p {
@@ -440,6 +441,9 @@
         left: 10%;
         width: 80%;
     }
+    .show-snackbar {
+        top: -6%;
+    }
 }
 
 @media screen and (max-width:767px) {
@@ -482,5 +486,8 @@
         width: 89px;
         height: 9px;
         border-bottom: 1px solid var(--white);
+    }
+    .show-snackbar {
+        top: -1.5%;
     }
 }
