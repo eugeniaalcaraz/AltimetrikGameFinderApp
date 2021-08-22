@@ -22,9 +22,7 @@ function events() {
     document.querySelector("#burger-icon").addEventListener("click", showNav);
     document.querySelector("#nav-burger-icon").addEventListener("click", showNav);
     document.querySelector("#search-icon").addEventListener("click", showSearchBar);
-    document.querySelector("#searchbar").addEventListener("input", readSearchKey);
     document.querySelector("#searchbar").addEventListener("keyup", searchWithEnterKey);
-    document.querySelector("#searchbar").addEventListener("focus", showSearchSpinner);
     document.querySelector("#searchbar").addEventListener("blur", closeSearchBar);
     displayVButton.addEventListener("click", verticalDisplay);
     displayHButton.addEventListener("click", horizontalDisplay);
@@ -32,7 +30,6 @@ function events() {
     document.querySelector("#logout-text").addEventListener("click", logout);
     document.querySelector("#logout-icon").addEventListener("click", logout);
     document.querySelector("#searchbar").addEventListener("click", growHeaderContainer);
-
 }
 
 // --------------- Cards ---------------- 
@@ -177,6 +174,7 @@ function makeCards(cards) {
 
         newCard += `</p></li>`;
         document.querySelector(".loader").classList.add("hidden");
+        document.querySelector(".bottom-loader").classList.remove("hidden");
         document.querySelector("#card-list").innerHTML += newCard;
 
     }
@@ -186,9 +184,9 @@ function makeCards(cards) {
         page++;
     } else {
         stopScrolling = true;
+        document.querySelector(".bottom-loader").classList.add("hidden");
     }
 }
-
 
 function getGameDetails(cards) {
 
@@ -363,19 +361,28 @@ function makeModal(game) {
         </div><figure class="modal-gallery">`;
 
     modalInfo += `<img class="modal-first-video" src="img/video_placeholder.jpg" alt="">`;
-    for (let z = 0; z <= 3; z++) {
-        let picture = game.Pics[z];
+    if (game.Pics.length > 0) {
+        for (let z = 0; z < game.Pics.length; z++) {
+            let picture = game.Pics[z];
 
-        if (z < 3) {
-            modalInfo += `<img class="modal-image" src="${picture.image}" alt=""></img>`;
-        } else if (z === 3) {
-            modalInfo += `<div class="modal-image">
-            <img class="modal-last-image" src="${picture.image}" alt="">
-            <span class="modal-viewMore">
-        <p>View all</p>
-        ${viewAllSvg}</span></div>`;
+            if (z < 3) {
+                modalInfo += `<img class="modal-image" src="${picture.image || "img/not_found.jpg"}" alt=""></img>`;
+            } else if (z === 3) {
+                modalInfo += `<div class="modal-image">
+                <img class="modal-last-image" src="${picture.image || "img/not_found.jpg"}" alt="">
+                <span class="modal-viewMore">
+            <p>View all</p>
+            ${viewAllSvg}</span></div>`;
+            }
         }
+    } else {
+
+        modalInfo += `<img class="modal-image" src="img/not_found.jpg" alt=""></img>`;
+        modalInfo += `<img class="modal-image" src="img/not_found.jpg" alt=""></img>`;
+        modalInfo += `<img class="modal-image" src="img/not_found.jpg" alt=""></img>`;
+        modalInfo += `<img class="modal-image" src="img/not_found.jpg" alt=""></img>`;
     }
+
 
     modalInfo += `</figure>`;
     modalInfo += `<div class="modal-bottom-links">
@@ -443,7 +450,7 @@ function makeModal(game) {
                 </div>`;
     modalInfo += `<div class="modal-detail-container">
                 <p>Website</p>
-                <a class="modal-detail-link">${game.Website || "No website registered"}</a>
+                <a href=${game.Website} target="_blank" class="modal-detail-link">${game.Website || "No website registered"}</a>
                 </div>`;
     modalInfo += `</div></div></div>`;
 
@@ -480,18 +487,6 @@ function makeModal(game) {
 }
 
 // --------------- Search Functionallity ---------------- 
-function readSearchKey(e) {
-
-    let waitingSearch = document.querySelector("#waiting-spinner");
-    waitingSearch.classList.add("hidden");
-    let searchSpinner = document.querySelector("#search-spinner");
-    searchSpinner.classList.remove("hidden");
-
-    if (e.target.value.trim() === "") {
-        waitingSearch.classList.remove("hidden");
-        searchSpinner.classList.add("hidden");
-    }
-}
 
 function searchWithEnterKey(e) {
     if (e.keyCode === 13) {
@@ -525,6 +520,7 @@ function search(_string) {
     changeHeader(_string);
     document.querySelector(".fetch-error").classList.add("hidden");
     document.querySelector(".fetch-error-description").innerHTML = "";
+    document.querySelector(".bottom-loader").classList.add("hidden");
     document.querySelector(".loader").classList.remove("hidden");
     if (mobileDevice.matches) {
         showSearchBar();
@@ -541,10 +537,6 @@ function searchSuggestions() {
     }
 }
 
-function showSearchSpinner() {
-    let waitingSearch = document.querySelector("#waiting-spinner");
-    waitingSearch.classList.remove("hidden");
-}
 
 function debounce(fn, wait) {
     var timeout;
@@ -564,7 +556,7 @@ function debounce(fn, wait) {
 }
 
 var debouncedRead = debounce(searchSuggestions, 300);
-document.querySelector("#searchbar").addEventListener("keyup", debouncedRead);
+document.querySelector("#searchbar").addEventListener("input", debouncedRead);
 
 function searchGameByName(string) {
 
@@ -577,10 +569,6 @@ function searchGameByName(string) {
         }
         if (searchSuggestion) {
             document.querySelector(".search-suggestions").innerHTML = "";
-            let waitingSearch = document.querySelector("#waiting-spinner");
-            waitingSearch.classList.remove("hidden");
-            let searchSpinner = document.querySelector("#search-spinner");
-            searchSpinner.classList.add("hidden");
             for (let i = 0; i < 3; i++) {
                 let gameName = data.results[i].name;
                 document.querySelector(".search-suggestions").innerHTML += `<p class="suggestion" id="${gameName}">${gameName}</p>`;
@@ -732,10 +720,7 @@ function showSearchBar() {
 }
 
 function closeSearchBar() {
-    let waitingSearch = document.querySelector("#waiting-spinner");
-    let searchSpinner = document.querySelector("#search-spinner");
-    waitingSearch.classList.add("hidden");
-    searchSpinner.classList.add("hidden");
+
     let header = document.querySelector("header");
     let headerContainer = document.querySelector(".header-container");
     header.style.height = "104px";

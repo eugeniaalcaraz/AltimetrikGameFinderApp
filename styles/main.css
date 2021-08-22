@@ -89,20 +89,6 @@
          flex-direction: column;
      }
      
-     #search-spinner,
-     #waiting-spinner {
-         position: absolute;
-         left: 80%;
-         top: 68%;
-         width: 50px;
-         align-self: baseline;
-         justify-self: center;
-     }
-     
-     #waiting-spinner {
-         top: 75%;
-     }
-     
      .search-suggestions p {
          font-size: 16px;
          line-height: 22px;
@@ -301,6 +287,10 @@
          height: 314px;
      }
      
+     .game-cards-h-display ul li:nth-last-child() {
+         justify-self: center;
+     }
+     
      .game-card-image {
          height: 65%;
          overflow: hidden;
@@ -327,7 +317,7 @@
      }
      
      .game-card-info-left {
-         width: 70%;
+         width: 65%;
          display: flex;
          flex-wrap: wrap;
          align-content: space-between;
@@ -375,8 +365,10 @@
          flex-direction: column;
          flex-wrap: wrap;
          align-items: right;
-         align-content: center;
+         align-content: flex-end;
          justify-content: space-between;
+         width: 35%;
+         overflow: hidden;
      }
      
      .game-card-consoles {
@@ -568,8 +560,8 @@
          justify-content: center;
          transition: all 0.6s;
          position: relative;
-         padding-top: 100px;
-         height: 100%;
+         padding-top: 10vh;
+         height: 100vh;
          background-color: rgba(0, 0, 0, 0);
      }
      
@@ -581,7 +573,7 @@
      }
      
      .modal-background-img img {
-         max-height: 790px;
+         max-height: 60vh;
          width: 100%;
          border-radius: 10px 10px 0 0;
          object-fit: cover;
@@ -644,7 +636,7 @@
      .modal-info {
          cursor: auto;
          margin-top: 145px;
-         height: 65%;
+         height: 62vh;
          border-radius: 0 0 10px 10px;
          width: 75%;
          z-index: 999998;
@@ -847,6 +839,10 @@
          color: var(--white);
          text-decoration-line: underline;
          cursor: pointer;
+     }
+     
+     .modal-detail-link:hover {
+         color: var(--lightgreen);
      }
      
      .modal-gallery {
@@ -1413,7 +1409,8 @@
          }
      }
      
-     .loader {
+     .loader,
+     .bottom-loader {
          height: 80px;
          margin: 20px auto;
      }

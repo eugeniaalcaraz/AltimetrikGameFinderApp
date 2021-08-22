@@ -135,7 +135,7 @@
 }
 
 #remember-me-anchor:checked {
-    background: #7CD235 url(img/Vector.svg) no-repeat center;
+    background: #7CD235 url(../img/checked.svg) no-repeat center;
     border: none;
 }
 

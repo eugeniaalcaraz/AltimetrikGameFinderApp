@@ -40,3 +40,5 @@ Open gameFinder folder in visual Studio Code, and run login.html in live server.
 ## NICE TO HAVE
 
 - Last searches
+- Add button to go up to top if you've scroll down a lot.
+- Adjust height responsiveness
